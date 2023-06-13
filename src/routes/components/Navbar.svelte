@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
 	$: currentPage = $page.url.pathname;
 
 	let width: number;
@@ -17,11 +16,6 @@
 		{ name: 'Donate', path: '/donate' }
 	];
 
-	onMount(() => {
-		const currentPageIndex = links.findIndex((link) => link.path === currentPage);
-		width = linksDiv?.children[currentPageIndex].clientWidth;
-	});
-
 	$: {
 		const currentPageIndex = links.findIndex((link) => link.path === currentPage);
 		width = linksDiv?.children[currentPageIndex].clientWidth;
@@ -33,7 +27,7 @@
 			if (links[i].path === currentPage) {
 				break;
 			}
-			translateX += linksDiv?.children[i].clientWidth + LINK_GAP;
+			translateX += linksDiv?.children[i].clientWidth;
 		}
 	}
 </script>
@@ -45,12 +39,21 @@
 
 	<div class="relative">
 		<span
-			class="bar w-[25%] h-2 bg-red-500 absolute -top-2 transition-all duration-300 ease-in-out"
+			class="bar h-1 bg-red-500 absolute -top-1 transition-all duration-300 ease-in-out"
 			style="width: {width}px; translate: {translateX}px;"
 		/>
-		<div class="flex items-center w-96 relative" style="gap: {LINK_GAP}px" bind:this={linksDiv}>
+		<span
+			class="bar h-1 bg-red-500 absolute -bottom-1 transition-all duration-200 ease-in-out"
+			style="width: {width}px; translate: {translateX}px;"
+		/>
+		<div class="flex items-center w-96 relative" style="gap: {0}px" bind:this={linksDiv}>
 			{#each links as link}
-				<a href={link.path} id={link.name} class="hover:text-white">{link.name}</a>
+				<a
+					href={link.path}
+					id={link.name}
+					class="hover:text-red-500 transition-all duration-100 ease-in-out"
+					style="padding: 0 {LINK_GAP / 2}px;">{link.name}</a
+				>
 			{/each}
 		</div>
 	</div>
