@@ -1,6 +1,6 @@
-<!-- Home.svelte -->
+<!-- About.svelte -->
 <main>
-	<h1>Welcome to Our Website</h1>
+	<h1>About Us</h1>
 
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam turpis quis risus

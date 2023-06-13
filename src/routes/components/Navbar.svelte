@@ -1,29 +1,41 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 	$: currentPage = $page.url.pathname;
 
+	let width: number;
+	let translateX: number;
+	let LINK_GAP: number = 20;
+
+	let linksDiv: HTMLDivElement;
+
 	const links = [
-		{ name: 'Home', href: '/' },
-		{ name: 'Contact', href: '/contact' },
-		{ name: 'Team', href: '/team' },
-		{ name: 'About', href: '/about' },
-		{ name: 'Donate', href: '/donate' }
+		{ name: 'Home', path: '/' },
+		{ name: 'Contact', path: '/contact' },
+		{ name: 'Team', path: '/team' },
+		{ name: 'About', path: '/about' },
+		{ name: 'Donate', path: '/donate' }
 	];
 
-	let width = 100 / links.length;
+	onMount(() => {
+		const currentPageIndex = links.findIndex((link) => link.path === currentPage);
+		width = linksDiv?.children[currentPageIndex].clientWidth;
+	});
 
-	$: translation =
-		currentPage === '/'
-			? 0
-			: currentPage === '/contact'
-			? 100
-			: currentPage === '/team'
-			? 200
-			: currentPage === '/about'
-			? 300
-			: currentPage === '/donate'
-			? 400
-			: 0;
+	$: {
+		const currentPageIndex = links.findIndex((link) => link.path === currentPage);
+		width = linksDiv?.children[currentPageIndex].clientWidth;
+	}
+
+	$: {
+		translateX = 0;
+		for (let i = 0; i < links.length; i++) {
+			if (links[i].path === currentPage) {
+				break;
+			}
+			translateX += linksDiv?.children[i].clientWidth + LINK_GAP;
+		}
+	}
 </script>
 
 <nav
@@ -33,21 +45,13 @@
 
 	<div class="relative">
 		<span
-			class="bar w-[25%] h-2 bg-red-500 absolute"
-			style="width: {width}%; translate: {translation}%;"
+			class="bar w-[25%] h-2 bg-red-500 absolute -top-2 transition-all duration-300 ease-in-out"
+			style="width: {width}px; translate: {translateX}px;"
 		/>
-		<div class="grid grid-cols-5 items-center relative">
+		<div class="flex items-center w-96 relative" style="gap: {LINK_GAP}px" bind:this={linksDiv}>
 			{#each links as link}
-				<a href={link.href} class="hover:text-white">{link.name}</a>
+				<a href={link.path} id={link.name} class="hover:text-white">{link.name}</a>
 			{/each}
 		</div>
 	</div>
 </nav>
-
-<style>
-	.bar {
-		top: 0;
-		left: 0;
-		transition: all 0.3s ease-in-out;
-	}
-</style>
