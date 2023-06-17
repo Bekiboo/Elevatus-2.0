@@ -4,11 +4,11 @@
 
 	let width: number;
 	let translateX: number;
-	let LINK_GAP: number = 20;
+	const LINK_GAP: number = 20;
 
 	let linksDiv: HTMLDivElement;
 
-	const links = [
+	const LINKS = [
 		{ name: 'Home', path: '/' },
 		{ name: 'Contact', path: '/contact' },
 		{ name: 'Team', path: '/team' },
@@ -17,14 +17,14 @@
 	];
 
 	$: {
-		const currentPageIndex = links.findIndex((link) => link.path === currentPage);
+		const currentPageIndex = LINKS.findIndex((link) => link.path === currentPage);
 		width = linksDiv?.children[currentPageIndex].clientWidth;
 	}
 
 	$: {
 		translateX = 0;
-		for (let i = 0; i < links.length; i++) {
-			if (links[i].path === currentPage) {
+		for (let i = 0; i < LINKS.length; i++) {
+			if (LINKS[i].path === currentPage) {
 				break;
 			}
 			translateX += linksDiv?.children[i].clientWidth;
@@ -52,7 +52,7 @@
 
 		<!-- Links -->
 		<div class="flex items-center w-96 relative" style="gap: {0}px" bind:this={linksDiv}>
-			{#each links as link}
+			{#each LINKS as link}
 				<a
 					href={link.path}
 					id={link.name}
