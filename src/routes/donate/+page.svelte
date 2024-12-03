@@ -24,15 +24,15 @@
 			buttonText: 'Sponsor for $100/month'
 		},
 		oneTime50: {
-			url: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BP6QD3CLJKRY8',
+			url: 'https://www.paypal.com/donate/?hosted_button_id=NLMM5KDFBTM9W',
 			buttonText: 'Donate $50'
 		},
 		oneTime100: {
-			url: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BP6QD3CLJKRY8',
+			url: 'https://www.paypal.com/donate/?hosted_button_id=JXVJJTN8TU3FN',
 			buttonText: 'Donate $100'
 		},
 		oneTime200: {
-			url: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BP6QD3CLJKRY8',
+			url: 'https://www.paypal.com/donate/?hosted_button_id=5GV8WKTD3MR7L',
 			buttonText: 'Donate $200'
 		},
 		sponsorOther: {
