@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import Hamburger from './Hamburger.svelte'
-	$: currentPage = $page.url.pathname
+	let currentPage = $derived($page.url.pathname)
 
-	let barWidth: number
-	let barTranslate: number
+	let barWidth: number = $state(0)
+	// svelte-ignore non_reactive_update
+	let barTranslate: number = 0
 
-	let linksWrapper: HTMLDivElement
+	let linksWrapper: HTMLDivElement | null = $state(null)
 
-	let open = false
+	let open = $state(false)
 
 	const LINKS = [
 		{ name: 'Home', href: '/', color: 'white' },
@@ -18,13 +19,25 @@
 		{ name: 'Donate', href: '/donate', color: 'orange' }
 	]
 
-	$: {
+	// $effect(() => {
+	// 	if (linksWrapper) {
+	// 		const activeLink = linksWrapper.querySelector('a[aria-current="page"]')
+	// 		if (activeLink) {
+	// 			barWidth = activeLink.clientWidth
+	// 			barTranslate = activeLink.offsetLeft
+	// 		}
+	// 	}
+	// })
+
+	$effect(() => {
 		barTranslate = 0
 		for (let i = 0; i < LINKS.length; i++) {
 			if (LINKS[i].href.includes(currentPage)) break
-			barTranslate += linksWrapper?.children[i].clientWidth
+			if (linksWrapper && linksWrapper.children[i]) {
+				barTranslate += linksWrapper.children[i].clientWidth
+			}
 		}
-	}
+	})
 </script>
 
 <!-- Desktop Nav -->
@@ -42,7 +55,7 @@
 						: 'bg-white'} top-1"
 					style="width: {barWidth}px; translate: {barTranslate}px;"
 					aria-hidden="true"
-				/>
+				></span>
 				<!-- Bottom Bar -->
 				<span
 					class="absolute h-[.2rem] transition-all duration-200 ease-in-out {currentPage ==
@@ -51,7 +64,7 @@
 						: 'bg-white'} bottom-1"
 					style="width: {barWidth}px; translate: {barTranslate}px;"
 					aria-hidden="true"
-				/>
+				></span>
 			{/if}
 			<!-- Links -->
 			<div class="relative flex items-center w-96" bind:this={linksWrapper}>
@@ -85,16 +98,16 @@
 <button
 	class="fixed right-0 z-50 text-white md:hidden"
 	class:text-orange-500={open}
-	on:click={() => (open = !open)}
+	onclick={() => (open = !open)}
 >
-	<Hamburger bind:open />
+	<Hamburger open />
 </button>
 {#if open}
 	<div
 		class="fixed inset-0 top-0 z-30 w-full h-full bg-white/95 md:hidden"
-		on:click={() => (open = false)}
+		onclick={() => (open = false)}
 		aria-hidden="true"
-	/>
+	></div>
 	<nav
 		class="fixed z-40 flex items-center justify-center w-screen h-screen duration-300 ease-in-out md:hidden"
 		aria-labelledby="mobile-menu"
@@ -109,7 +122,7 @@
 						aria-current={currentPage === href}
 						class:text-red-500={color === 'orange'}
 						class:underline={currentPage === href}
-						on:click={() => (open = false)}>{name}</a
+						onclick={() => (open = false)}>{name}</a
 					>
 				{/each}
 			</div>

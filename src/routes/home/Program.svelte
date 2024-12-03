@@ -1,5 +1,12 @@
 <script>
-  export let src, alt, title, body, index
+  /** @type {{src: any, alt: any, title: any, body: any, index: any}} */
+  let {
+    src,
+    alt,
+    title,
+    body,
+    index
+  } = $props();
 
   let odd = index % 2 == 0
 

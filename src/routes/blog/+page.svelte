@@ -3,7 +3,11 @@
 	import Hero from '$lib/components/layout/Hero.svelte'
 	import { DateTime } from 'luxon'
 
-	export let data: PageData
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	const hero = {
 		src: 'img/hero/group_picture_zoo.jpg',

@@ -45,9 +45,9 @@
 		}
 	}
 
-	let monthly = true
-	let sponsorPlan = plans.sponsor25
-	let oneTimePlan = plans.oneTime50
+	let monthly = $state(true)
+	let sponsorPlan = $state(plans.sponsor25)
+	let oneTimePlan = $state(plans.oneTime50)
 </script>
 
 <svelte:head>
@@ -89,11 +89,11 @@
 			<div
 				class="bg-orange-500 absolute w-32 h-16 -z-10 duration-150 rounded-lg
                   ease-in-out {monthly ? '' : 'translate-x-32'}"
-			/>
+			></div>
 			<div
 				class="grid items-center w-32 h-full text-center"
 				class:text-white={monthly}
-				on:click={() => (monthly = true)}
+				onclick={() => (monthly = true)}
 			>
 				Monthly Sponsor
 			</div>
@@ -101,7 +101,7 @@
 			<div
 				class="grid items-center w-32 h-full text-center"
 				class:text-white={!monthly}
-				on:click={() => (monthly = false)}
+				onclick={() => (monthly = false)}
 			>
 				One Time Donation
 			</div>

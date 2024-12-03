@@ -1,5 +1,10 @@
 <script lang="ts">
-	export let url: string, text: string
+	interface Props {
+		url: string;
+		text: string;
+	}
+
+	let { url, text }: Props = $props();
 </script>
 
 <a href={url}>

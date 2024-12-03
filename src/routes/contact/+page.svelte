@@ -33,7 +33,7 @@
 		}
 	}
 
-	let errors: any
+	let errors: any = $state()
 </script>
 
 <svelte:head>
@@ -125,7 +125,7 @@
 		class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-orange-500 focus:border-orange-500"
 		placeholder="Leave a comment..."
 		required
-	/>
+	></textarea>
 
 	{#if errors?.message}
 		<div class="text-red-500">{errors?.message[0]}</div>

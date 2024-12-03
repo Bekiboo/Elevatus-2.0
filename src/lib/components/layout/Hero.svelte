@@ -1,8 +1,17 @@
 <script lang="ts">
-	export let src: string
-	export let alt: string
-	export let title: string
-	export let subtitle: string
+	interface Props {
+		src: string;
+		alt: string;
+		title: string;
+		subtitle: string;
+	}
+
+	let {
+		src,
+		alt,
+		title,
+		subtitle
+	}: Props = $props();
 </script>
 
 <div class="relative flex justify-center">

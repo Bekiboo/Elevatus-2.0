@@ -4,7 +4,11 @@
 	import { MetaTags } from 'svelte-meta-tags'
 	import { DateTime } from 'luxon'
 
-	export let data: PageData
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	const { blogPost }: { blogPost: any } = data
 	const { title, caption, created_at, elements, author, id } = blogPost

@@ -1,6 +1,10 @@
 <script lang="ts">
-	export let open: boolean
-	export let width = 60
+	interface Props {
+		open: boolean;
+		width?: number;
+	}
+
+	let { open, width = 60 }: Props = $props();
 </script>
 
 <svg class:open viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" {width}>
