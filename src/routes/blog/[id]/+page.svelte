@@ -5,10 +5,10 @@
 	import { DateTime } from 'luxon'
 
 	interface Props {
-		data: PageData;
+		data: PageData
 	}
 
-	let { data }: Props = $props();
+	let { data }: Props = $props()
 
 	const { blogPost }: { blogPost: any } = data
 	const { title, caption, created_at, elements, author, id } = blogPost
@@ -70,6 +70,13 @@
 
 		{#if element.type == 'title'}
 			<h2 class="mt-8 text-2xl font-bold">{element.value}</h2>
+		{/if}
+		{#if element.type == 'list'}
+			<ul class="pl-4 mt-4 list-disc list-inside">
+				{#each element.value as item}
+					<li>{item}</li>
+				{/each}
+			</ul>
 		{/if}
 	{/each}
 </div>
