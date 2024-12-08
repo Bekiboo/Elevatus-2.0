@@ -100,7 +100,7 @@
 	class:text-orange-500={open}
 	onclick={() => (open = !open)}
 >
-	<Hamburger open />
+	<Hamburger {open} />
 </button>
 {#if open}
 	<div
