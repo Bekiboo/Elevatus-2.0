@@ -92,12 +92,11 @@
 </nav>
 
 <!-- Mobile Nav -->
-<div class="absolute z-10 m-2 md:hidden">
+<div class="absolute z-50 m-2 md:hidden">
 	<a href="/"><img class="h-16" src="img/icons/Phoenix-white-stroke-heavy.png" alt="logo" /></a>
 </div>
 <button
-	class="fixed right-0 z-50 text-white md:hidden"
-	class:text-orange-500={open}
+	class="fixed right-0 z-50 {open ? 'text-orange-500' : 'text-white'} md:hidden"
 	onclick={() => (open = !open)}
 >
 	<Hamburger {open} />

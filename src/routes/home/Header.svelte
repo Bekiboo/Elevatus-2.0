@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte'
 
-	let innerWidth: number = $state()
+	let innerWidth: number = $state(0)
 </script>
 
 <svelte:window bind:innerWidth />
