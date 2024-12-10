@@ -18,7 +18,7 @@
 					class="absolute bottom-0 w-32 h-32 overflow-hidden rounded-bl-full rounded-br-full sm:h-40 sm:w-36"
 				>
 					<img
-						class="absolute bottom-0 object-cover w-32 h-32 duration-150 ease-in-out translate-y-1 border-transparent rounded-full group-hover:scale-110 group-hover:-translate-y-1 sm:w-36 sm:h-36"
+						class="absolute bottom-0 object-cover w-32 h-32 duration-150 ease-in-out translate-y-1 border-transparent rounded-full group-hover:scale-105 group-hover:-translate-y-0.5 sm:w-36 sm:h-36"
 						src={member.src}
 						alt="Picture of {member.firstName} {member.lastName}"
 					/>
