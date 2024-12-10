@@ -18,41 +18,22 @@
 <Hero {...hero} />
 
 <!-- Our Team -->
-<section class="flex flex-col max-w-6xl gap-4 px-8 mx-auto my-8">
-	<h2 class="m-auto text-4xl font-bold uppercase text-sky-700 w-fit">The Board</h2>
-	<div class="sm:flex sm:flex-wrap">
-		{#each members as member}
-			{#if member.group === 'board'}
-				<Member {member} />
-			{/if}
-		{/each}
-	</div>
-
-	<h2 class="m-auto text-4xl font-bold uppercase text-sky-700 w-fit">The Executive Team</h2>
-	<div class="sm:flex">
-		{#each members as member}
-			{#if member.group === 'executive'}
-				<Member {member} />
-			{/if}
-		{/each}
-	</div>
-
-	<h2 class="m-auto text-4xl font-bold uppercase text-sky-700 w-fit">The Education Team</h2>
-	<div class="sm:flex">
-		{#each members as member}
-			{#if member.group === 'education'}
-				<Member {member} />
-			{/if}
-		{/each}
-	</div>
-
-	<h2 class="m-auto text-4xl font-bold uppercase text-sky-700 w-fit">The Logistics Team</h2>
-
-	<div class="sm:flex">
-		{#each members as member}
-			{#if member.group === 'logistics'}
-				<Member {member} />
-			{/if}
-		{/each}
-	</div>
+<section class="flex flex-col items-center w-full max-w-6xl gap-8 px-8 mx-auto my-8">
+	{@render section('board', 'The Board')}
+	{@render section('executive', 'The Executive Team')}
+	{@render section('education', 'The Education Team')}
+	{@render section('logistics', 'The Logistics Team')}
 </section>
+
+{#snippet section(group: string, title: string)}
+	<section>
+		<h2 class="m-auto mb-4 text-2xl font-bold uppercase sm:text-4xl text-sky-700 w-fit">{title}</h2>
+		<div class="justify-center w-full gap-4 sm:flex sm:flex-wrap sm:w-auto max-w-72 sm:max-w-none">
+			{#each members as member}
+				{#if member.group === group}
+					<Member {member} />
+				{/if}
+			{/each}
+		</div>
+	</section>
+{/snippet}

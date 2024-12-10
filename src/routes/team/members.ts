@@ -73,12 +73,12 @@ const members = [
 	},
 	{
 		firstName: 'Nanouh',
-		lastName: 'Connault',
+		lastName: 'Andoniaina',
 		role: 'Secretary',
 		src: 'img/team/nanouh_andrianaivoarivelo.png',
 		group: 'executive',
 		bio: [
-			'Nanouh Connault is an assistant manager for Elevatus, where she has been serving since 2018. She plays a key role in navigating the complexities of nonprofit operations in Madagascar, with a deep understanding of Malagasy culture and local administration. Nanouh’s expertise helps Elevatus expand its reach and ensure effective program implementation for children affected by child labor and trafficking.',
+			'Nanouh Andoniaina is an assistant manager for Elevatus, where she has been serving since 2018. She plays a key role in navigating the complexities of nonprofit operations in Madagascar, with a deep understanding of Malagasy culture and local administration. Nanouh’s expertise helps Elevatus expand its reach and ensure effective program implementation for children affected by child labor and trafficking.',
 
 			'Since 2017, Nanouh has also worked as the in-country manager for the Bountiful Children Foundation in Madagascar. In this role, she oversees food distribution to malnourished and stunted children in Antananarivo, Antsirabe, and Tamatave while supervising the national team. Prior to her nonprofit career, Nanouh worked as a photogrammeter for 12 years, bringing valuable technical expertise to her diverse skill set.'
 		]
