@@ -1,8 +1,11 @@
 <script lang="ts">
-	let { member } = $props()
+	let { member, displayMemberModal } = $props()
 </script>
 
-<button class="flex items-center justify-between w-full gap-2 mb-4 sm:w-40 sm:flex-col">
+<button
+	onclick={() => displayMemberModal()}
+	class="flex items-center justify-between w-full gap-2 mb-4 sm:w-40 sm:flex-col"
+>
 	<div class="rounded-full outline outline-4 outline-yellow-400 group">
 		<div class="relative w-32 h-32 m-1 bg-yellow-400 rounded-full sm:w-36 sm:h-36">
 			<div
