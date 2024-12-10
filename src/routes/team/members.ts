@@ -3,7 +3,7 @@ const members = [
 		firstName: 'Lacee',
 		lastName: 'Curtis',
 		role: 'Chairperson',
-		src: 'img/team/lacee_curtis.png',
+		src: 'img/team/lacee_curtis',
 		group: 'board',
 		bio: [
 			"Lacee Curtis is a passionate attorney and non-profit leader with a strong commitment to creating opportunities for underprivileged communities. As a Co-Founder of Elevatus, Lacee has dedicated over a decade to empowering children in Madagascar through education, nutrition, and self-reliance programs. She oversees fundraising, program evaluation, and strategic planning, ensuring the foundation's ongoing success.",
@@ -15,8 +15,7 @@ const members = [
 		firstName: 'Liam',
 		lastName: 'Smith',
 		role: 'Governing Member',
-		src: 'img/team/liam_smith.png',
-		bgSrc: 'img/team/liam_smith_bg.png',
+		src: 'img/team/liam_smith',
 		group: 'board',
 		bio: [
 			'Liam Smith is a dedicated international law and human rights professional with extensive experience in legal advisory roles. Currently serving as an Attorney-Adviser for the Office of the Legal Adviser at the U.S. Department of State, Liam has a deep commitment to promoting justice and development. He holds a Juris Doctorate (cum laude) and a Master of Public Administration from Brigham Young University, where he earned multiple awards for academic excellence.',
@@ -28,7 +27,7 @@ const members = [
 		firstName: 'Zachary',
 		lastName: 'Knight',
 		role: 'Governing Member',
-		src: 'img/team/zachary_knight.png',
+		src: 'img/team/zachary_knight',
 		group: 'board',
 		bio: [
 			'Zachary Knight is an experienced project manager and international development professional with over a decade of expertise in USG-funded initiatives and non-profit leadership. He has served as a Governing Board Director for Elevatus since its inception in 2016, playing a critical role in shaping its strategic vision and fostering donor relationships to sustain programs supporting vulnerable children in Madagascar.',
@@ -40,7 +39,7 @@ const members = [
 		firstName: 'Nathan',
 		lastName: 'Haynie',
 		role: 'Governing Member',
-		src: 'img/team/nathan_haynie.png',
+		src: 'img/team/nathan_haynie',
 		group: 'board',
 		bio: [
 			'Nate Haynie is a results-driven sales and outreach professional with extensive experience in business development and revenue growth. As a Senior Account Executive at CINC Systems, Nate excels in driving top-line revenue through strategic sales, performance metrics, and business communication. His background spans multiple industries, where he has developed a reputation for closing high-value deals and optimizing sales processes.',
@@ -52,7 +51,7 @@ const members = [
 		firstName: 'Spencer',
 		lastName: 'Lehr',
 		role: 'Treasurer',
-		src: 'img/team/spencer_lehr.png',
+		src: 'img/team/spencer_lehr',
 		group: 'board',
 		bio: [
 			'Spencer Lehr is a skilled Senior Tax Accountant with a deep commitment to serving others. He currently works at Peak Capital Partners, where he manages tax compliance for various corporate entities and partnerships. Spencer holds a Master’s degree in Accounting from Utah Valley University and is a lifetime member of Beta Alpha Psi. His expertise includes fund accounting, tax compliance, and financial reporting.',
@@ -64,7 +63,7 @@ const members = [
 		firstName: 'Julien',
 		lastName: 'Connault',
 		role: 'Program Manager',
-		src: 'img/team/julien_connault.png',
+		src: 'img/team/julien_connault',
 		group: 'executive',
 		bio: [
 			'Julien Connault is a dedicated project coordinator and web developer with extensive experience in nonprofit management and community development. As a Project Coordinator for Elevatus, Julien oversees recruitment, training, and management while also handling finances and communications with the board in the U.S. He has been integral in launching impactful initiatives, such as the micro-loan program for struggling families in Madagascar, and has developed the foundation’s website.',
@@ -76,7 +75,7 @@ const members = [
 		firstName: 'Nanouh',
 		lastName: 'Andoniaina',
 		role: 'Secretary',
-		src: 'img/team/nanouh_andrianaivoarivelo.png',
+		src: 'img/team/nanouh_andrianaivoarivelo',
 		group: 'executive',
 		bio: [
 			'Nanouh Andoniaina is an assistant manager for Elevatus, where she has been serving since 2018. She plays a key role in navigating the complexities of nonprofit operations in Madagascar, with a deep understanding of Malagasy culture and local administration. Nanouh’s expertise helps Elevatus expand its reach and ensure effective program implementation for children affected by child labor and trafficking.',
@@ -88,7 +87,7 @@ const members = [
 		firstName: 'Ricardo',
 		lastName: 'Andriamihaja',
 		role: 'Team Manager',
-		src: 'img/team/ricardo_andriamihaja.png',
+		src: 'img/team/ricardo_andriamihaja',
 		group: 'executive',
 		bio: [
 			"Ricardo Andriamihaja has been an invaluable member of Elevatus since 2016, serving as the most trustworthy and stable employee over the years. As a jack of all trades, Ricardo ensures that the logistics of the foundation run smoothly, often coordinating with sponsored children 'sur le terrain' and managing crucial aspects of program operations. He has overseen the construction and renovation of school buildings and, more recently, the Youth Center, demonstrating his ability to handle complex tasks and projects.",
@@ -100,7 +99,7 @@ const members = [
 		firstName: 'Istriah',
 		lastName: 'Hefarison',
 		role: 'Sewing/Physics Teacher',
-		src: 'img/team/istriah_hefarison.png',
+		src: 'img/team/istriah_hefarison',
 		group: 'education',
 		bio: [
 			"Istriah is a valuable member of Elevatus, serving as a professional high-school teacher. She has been teaching physics and sewing classes to the children supported by Elevatus, ensuring that the students receive both academic and practical skills. In addition to her teaching responsibilities, Istriah also supervises the other teachers at Elevatus, helping to maintain a high standard of education across the foundation's programs."
@@ -110,7 +109,7 @@ const members = [
 		firstName: 'Fitahiana',
 		lastName: 'Albetini',
 		role: 'English Teacher',
-		src: 'img/team/fitahiana_albetini.png',
+		src: 'img/team/fitahiana_albetini',
 		group: 'education',
 		bio: []
 	},
@@ -118,7 +117,7 @@ const members = [
 		firstName: 'Onja',
 		lastName: 'Rahanitriniavo',
 		role: 'French Teacher',
-		src: 'img/team/onja_rahanitriniavo.png',
+		src: 'img/team/onja_rahanitriniavo',
 		group: 'education',
 		bio: []
 	},
@@ -126,7 +125,7 @@ const members = [
 		firstName: 'Solomanampy',
 		lastName: 'Andriamihaja',
 		role: 'Cook',
-		src: 'img/team/solomanampy_andriamihaja.png',
+		src: 'img/team/solomanampy_andriamihaja',
 		group: 'logistics',
 		bio: []
 	},
@@ -134,7 +133,7 @@ const members = [
 		firstName: 'Vero',
 		lastName: 'Razainasolo',
 		role: 'Cook',
-		src: 'img/team/vero_razainasolo.png',
+		src: 'img/team/vero_razainasolo',
 		group: 'logistics',
 		bio: []
 	}

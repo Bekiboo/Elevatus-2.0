@@ -59,7 +59,7 @@
 		<div class="flex flex-col items-center gap-4">
 			<img
 				class="w-40 h-40 rounded-full"
-				src={members[currentMember].src}
+				src={members[currentMember].src + '.png'}
 				alt="Picture of {members[currentMember].firstName} {members[currentMember].lastName}"
 			/>
 			<h3 class="text-xl font-semibold text-blue-900">{members[currentMember].role}</h3>
