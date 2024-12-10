@@ -16,6 +16,7 @@ const members = [
 		lastName: 'Smith',
 		role: 'Governing Member',
 		src: 'img/team/liam_smith.png',
+		bgSrc: 'img/team/liam_smith_bg.png',
 		group: 'board',
 		bio: [
 			'Liam Smith is a dedicated international law and human rights professional with extensive experience in legal advisory roles. Currently serving as an Attorney-Adviser for the Office of the Legal Adviser at the U.S. Department of State, Liam has a deep commitment to promoting justice and development. He holds a Juris Doctorate (cum laude) and a Master of Public Administration from Brigham Young University, where he earned multiple awards for academic excellence.',
