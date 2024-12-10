@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import Hamburger from './Hamburger.svelte'
+
 	let currentPage = $derived($page.url.pathname)
 
-	let barWidth: number = $state(0)
 	// svelte-ignore non_reactive_update
 	let barTranslate: number = 0
+	let barWidth: number = $state(0)
 
 	let linksWrapper: HTMLDivElement | null = $state(null)
 
@@ -18,16 +19,6 @@
 		{ name: 'Contact', href: '/contact', color: 'white' },
 		{ name: 'Donate', href: '/donate', color: 'orange' }
 	]
-
-	// $effect(() => {
-	// 	if (linksWrapper) {
-	// 		const activeLink = linksWrapper.querySelector('a[aria-current="page"]')
-	// 		if (activeLink) {
-	// 			barWidth = activeLink.clientWidth
-	// 			barTranslate = activeLink.offsetLeft
-	// 		}
-	// 	}
-	// })
 
 	$effect(() => {
 		barTranslate = 0
