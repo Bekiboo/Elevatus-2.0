@@ -111,7 +111,9 @@ const members = [
 		role: 'English Teacher',
 		src: 'img/team/fitahiana_albetini',
 		group: 'education',
-		bio: []
+		bio: [
+			'Fitahiana Albetini is a part-time English teacher at Elevatus, bringing his expertise and enthusiasm to help children improve their language skills. With a passion for education and empowering youth, he ensures that his students gain practical English communication abilities, opening doors to greater opportunities for their future.'
+		]
 	},
 	{
 		firstName: 'Onja',
@@ -119,7 +121,9 @@ const members = [
 		role: 'French Teacher',
 		src: 'img/team/onja_rahanitriniavo',
 		group: 'education',
-		bio: []
+		bio: [
+			'Onja Rahanitriniavo serves as a part-time French teacher at Elevatus, dedicated to fostering linguistic and academic growth among the children. Her teaching approach emphasizes practical language use, helping students enhance their proficiency in French, a vital skill for educational and professional advancement in Madagascar.'
+		]
 	},
 	{
 		firstName: 'Solomanampy',
@@ -127,7 +131,9 @@ const members = [
 		role: 'Cook',
 		src: 'img/team/solomanampy_andriamihaja',
 		group: 'logistics',
-		bio: []
+		bio: [
+			'Solomanampy Andriamihaja is one of the two talented cooks at Elevatus, working alongside his wife, Vero Razainasolo. Together, they prepare nutritious meals for the children and staff, ensuring everyone is well-fed and energized. With years of experience and a deep understanding of local cuisine, Solomanampy takes pride in contributing to the well-being of the foundation’s community.'
+		]
 	},
 	{
 		firstName: 'Vero',
@@ -135,7 +141,9 @@ const members = [
 		role: 'Cook',
 		src: 'img/team/vero_razainasolo',
 		group: 'logistics',
-		bio: []
+		bio: [
+			'Vero Razainasolo is a dedicated cook at Elevatus, sharing her role with her husband, Solomanampy Andriamihaja. The couple works tirelessly to provide healthy and delicious meals, helping to support the foundation’s mission of improving children’s lives. Vero’s warm personality and culinary expertise make her an invaluable part of the team.'
+		]
 	}
 ]
 
