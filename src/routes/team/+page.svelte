@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ChevronIcon from '$lib/components/icons/ChevronIcon.svelte'
 	import Hero from '$lib/components/layout/Hero.svelte'
 	import Modal from '$lib/components/Modal.svelte'
 	import Member from './Member.svelte'
@@ -57,11 +58,25 @@
 
 	{#snippet children()}
 		<div class="flex flex-col items-center gap-4">
-			<img
-				class="w-40 h-40 rounded-full"
-				src={members[currentMember].src + '.png'}
-				alt="Picture of {members[currentMember].firstName} {members[currentMember].lastName}"
-			/>
+			<div class="flex justify-between w-full">
+				<button
+					class="mt-2 text-orange-500 bg-orange-50 hover:bg-orange-100"
+					onclick={() => {
+						currentMember = currentMember === 0 ? members.length - 1 : currentMember - 1
+					}}><ChevronIcon rotation={180} /></button
+				>
+				<img
+					class="w-40 h-40 rounded-full"
+					src={members[currentMember].src + '.png'}
+					alt="Picture of {members[currentMember].firstName} {members[currentMember].lastName}"
+				/>
+				<button
+					class="mt-2 text-orange-500 bg-orange-50 hover:bg-orange-100"
+					onclick={() => {
+						currentMember = currentMember === members.length - 1 ? 0 : currentMember + 1
+					}}><ChevronIcon /></button
+				>
+			</div>
 			<h3 class="text-xl font-semibold text-blue-900">{members[currentMember].role}</h3>
 			{#each members[currentMember].bio as paragraph}
 				<p class="text-blue-900">{paragraph}</p>
