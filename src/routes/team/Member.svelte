@@ -3,7 +3,7 @@
 </script>
 
 <button
-	onclick={() => displayMemberModal()}
+	onclick={displayMemberModal}
 	class="flex items-center justify-between w-full gap-2 mb-4 sm:w-40 sm:flex-col"
 >
 	<div
