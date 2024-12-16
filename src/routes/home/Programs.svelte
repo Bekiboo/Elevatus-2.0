@@ -1,6 +1,4 @@
 <script>
-	import Program from './Program.svelte'
-
 	const programs = [
 		{
 			src: 'img/program/food_distribution.jpg',
@@ -60,8 +58,42 @@
 			]
 		}
 	]
+
+	const blobValues = [
+		['70% 30% 30% 70% / 30% 30% 70% 70%'],
+		['70% 30% 30% 70% / 70% 70% 30% 30%'],
+		['30% 70% 70% 30% / 70% 70% 30% 30%'],
+		['30% 70% 70% 30% / 30% 30% 70% 70%']
+	]
 </script>
 
-{#each programs as program, index}
-	<Program {...program} {index} />
-{/each}
+<section class="flex flex-col gap-16">
+	{#each programs as program, index}
+		{@const { src, alt, title, body } = program}
+		{@const random = Math.floor(Math.random() * blobValues.length)}
+		{@const odd = index % 2 == 0}
+		<div>
+			<div
+				class="flex flex-col items-center
+			  {odd ? 'md:flex-row' : 'md:flex-row-reverse'}"
+			>
+				<img
+					class="object-cover h-96 w-96 md:basis-1/3"
+					style="border-radius: {blobValues[random]}"
+					{src}
+					{alt}
+				/>
+				<div
+					class="md:basis-2/3 flex flex-col md:px-16
+				{odd ? 'md:text-left' : 'md:text-right'} 
+				{odd ? 'md:items-start' : 'md:items-end'}"
+				>
+					<h5 class="mb-2 text-4xl font-bold text-slate-600">{title}</h5>
+					{#each body as paragraph}
+						<p class="mb-3 font-normal text-gray-700 max-w-[40ch]">{paragraph}</p>
+					{/each}
+				</div>
+			</div>
+		</div>
+	{/each}
+</section>
