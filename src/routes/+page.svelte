@@ -4,6 +4,8 @@
 	import Programs from './home/Programs.svelte'
 	import Donations from './home/Donations.svelte'
 	import { MetaTags } from 'svelte-meta-tags'
+	import Impact from './home/Impact.svelte'
+	import ProblemSolution from './home/ProblemSolution.svelte'
 </script>
 
 <svelte:head>
@@ -31,8 +33,13 @@
 />
 
 <Header />
-<div class="max-w-6xl mx-auto">
+
+<div class="container flex flex-col justify-center max-w-6xl gap-24 mx-auto my-24">
 	<Mission />
+
+	<!-- <Impact /> -->
+
+	<ProblemSolution />
 
 	<Programs />
 
