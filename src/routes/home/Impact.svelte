@@ -4,20 +4,21 @@
 
 	const tweenOptions = {
 		delay: 0,
-		duration: 3000,
+		duration: 2000,
 		easing: (t: number) => --t * t * t + 1
 	}
 
 	const firstTween = new Tween(0, tweenOptions)
 	const secondTween = new Tween(0, tweenOptions)
 	const thirdTween = new Tween(0, tweenOptions)
+
 	const intersectorOptions = {
 		root: null,
 		threshold: 0.5,
 		unobserveOnEnter: true
 	}
 
-	let slideIn = false
+	let slideIn = $state(false)
 </script>
 
 <section
