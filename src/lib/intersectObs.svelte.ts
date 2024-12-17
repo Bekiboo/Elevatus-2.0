@@ -31,9 +31,8 @@ export const intersectObs: Action<HTMLElement, Options> = (
 							new CustomEvent('inview_change', { detail: { inView: true, entry, node, observer } })
 						)
 						unobserveOnEnter ? observer.disconnect() : null
-						console.log('Element is in view')
 					} else {
-						console.log('Element is not in view')
+						// console.log('Element is not in view')
 					}
 				})
 			},
