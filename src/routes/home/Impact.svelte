@@ -16,6 +16,8 @@
 		threshold: 0.5,
 		unobserveOnEnter: true
 	}
+
+	let slideIn = false
 </script>
 
 <section
@@ -24,8 +26,10 @@
 		firstTween.target = 80
 		secondTween.target = 8000
 		thirdTween.target = 520
+		slideIn = true
 	}}
-	class="flex justify-center max-w-2xl mx-auto lg:max-w-4xl maxsm:flex-col"
+	class="flex justify-center max-w-2xl mx-auto translate-y-16 opacity-0 lg:max-w-4xl maxsm:flex-col"
+	class:slideIn
 >
 	<div class="w-56 h-32 px-8 py-4 text-lg text-center maxMd:w-48 lg:w-80 lg:text-2xl">
 		<b>{Math.round(firstTween.current)}%</b> high school <br /> success rate <br />

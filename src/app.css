@@ -3,3 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slideIn {
+	transition:
+		transform 0.5s,
+		opacity 0.5s;
+	transform: translate(0, 0);
+	opacity: 1;
+}
