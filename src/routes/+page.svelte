@@ -34,10 +34,12 @@
 
 <Header />
 
-<div class="container flex flex-col justify-center max-w-6xl gap-24 mx-auto my-24">
+<div
+	class="container flex flex-col justify-center max-w-6xl gap-12 px-4 mx-auto my-12 sm:my-24 sm:gap-24"
+>
 	<Mission />
 
-	<!-- <Impact /> -->
+	<Impact />
 
 	<ProblemSolution />
 
