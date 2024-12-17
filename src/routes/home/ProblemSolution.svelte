@@ -57,7 +57,7 @@
 				<div>
 					<h3 class="text-2xl font-bold">NUTRITION</h3>
 					<p>
-						Two <em class="not-italic font-bold">healthy meals</em> <br />
+						Healthy <em class="not-italic font-bold">meals</em> <br />
 						every school day
 					</p>
 				</div>

@@ -56,7 +56,7 @@
 	]
 </script>
 
-<section class="flex flex-col gap-16">
+<section class="flex flex-col gap-16 overflow-hidden">
 	{#each programs as program, index}
 		<Program {program} {index} />
 	{/each}
