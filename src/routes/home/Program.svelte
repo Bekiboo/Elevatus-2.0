@@ -17,7 +17,7 @@
 
 	const intersectorOptions = {
 		root: null,
-		threshold: 0.5,
+		threshold: 0.33,
 		unobserveOnEnter: true,
 		onIntersect: (entry: any) => {
 			if (entry.isIntersecting) {
