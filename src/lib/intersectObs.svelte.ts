@@ -1,4 +1,3 @@
-// intersectObs.svelte
 import type { Action } from 'svelte/action'
 
 type Options = {
@@ -21,6 +20,13 @@ const defaultOptions: Options = {
 	onIntersect: () => {}
 }
 
+/**
+ * `intersectObs` is a Svelte action that uses the Intersection Observer API to detect when an element is in view.
+ *
+ * @param {HTMLElement} node - The DOM element to observe.
+ * @param {Options} [options={}] - Configuration options for the observer.
+ * @returns {Object} - An object containing a `destroy` method to clean up the observer.
+ */
 export const intersectObs: Action<HTMLElement, Options> = (node, options = {}) => {
 	const { root, rootMargin, threshold, unobserveOnEnter, onIntersect } = {
 		...defaultOptions,
