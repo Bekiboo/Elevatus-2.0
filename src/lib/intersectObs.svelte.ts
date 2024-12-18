@@ -1,3 +1,4 @@
+// intersectObs.svelte
 import type { Action } from 'svelte/action'
 
 type Options = {
@@ -5,48 +6,45 @@ type Options = {
 	rootMargin?: string
 	threshold?: number | number[]
 	unobserveOnEnter?: boolean
+	onIntersect?: (
+		entry: IntersectionObserverEntry,
+		node: HTMLElement,
+		observer: IntersectionObserver
+	) => void
 }
 
 const defaultOptions: Options = {
 	root: null,
 	rootMargin: '0px',
 	threshold: 0,
-	unobserveOnEnter: false
+	unobserveOnEnter: false,
+	onIntersect: () => {}
 }
 
-export const intersectObs: Action<HTMLElement, Options> = (
-	node: HTMLElement,
-	options: Options = {}
-) => {
-	const { root, rootMargin, threshold, unobserveOnEnter }: Options = {
+export const intersectObs: Action<HTMLElement, Options> = (node, options = {}) => {
+	const { root, rootMargin, threshold, unobserveOnEnter, onIntersect } = {
 		...defaultOptions,
 		...options
 	}
-	$effect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						node.dispatchEvent(
-							new CustomEvent('inview_change', { detail: { inView: true, entry, node, observer } })
-						)
-						unobserveOnEnter ? observer.disconnect() : null
-					} else {
-						// console.log('Element is not in view')
-					}
-				})
-			},
-			{
-				root,
-				rootMargin,
-				threshold
-			}
-		)
 
-		observer.observe(node)
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					// Appel de la callback passée
+					onIntersect?.(entry, node, observer)
+					if (unobserveOnEnter) observer.disconnect()
+				}
+			})
+		},
+		{ root, rootMargin, threshold }
+	)
 
-		return () => {
+	observer.observe(node)
+
+	return {
+		destroy() {
 			observer.disconnect()
 		}
-	})
+	}
 }

@@ -18,7 +18,12 @@
 	const intersectorOptions = {
 		root: null,
 		threshold: 0.5,
-		unobserveOnEnter: true
+		unobserveOnEnter: true,
+		onIntersect: (entry: any) => {
+			if (entry.isIntersecting) {
+				slideIn = true
+			}
+		}
 	}
 
 	let slideIn = $state(false)
@@ -26,9 +31,6 @@
 
 <div
 	use:intersectObs={intersectorOptions}
-	oninview_change={(e: any) => {
-		slideIn = true
-	}}
 	class="flex flex-col items-center opacity-0
   {odd ? 'md:flex-row translate-x-16' : 'md:flex-row-reverse -translate-x-16'}"
 	class:slideIn

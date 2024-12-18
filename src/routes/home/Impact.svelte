@@ -15,7 +15,15 @@
 	const intersectorOptions = {
 		root: null,
 		threshold: 0.5,
-		unobserveOnEnter: true
+		unobserveOnEnter: true,
+		onIntersect: (entry: any) => {
+			if (entry.isIntersecting) {
+				firstTween.target = 80
+				secondTween.target = 8000
+				thirdTween.target = 520
+				slideIn = true
+			}
+		}
 	}
 
 	let slideIn = $state(false)
@@ -23,12 +31,6 @@
 
 <section
 	use:intersectObs={intersectorOptions}
-	oninview_change={(e: any) => {
-		firstTween.target = 80
-		secondTween.target = 8000
-		thirdTween.target = 520
-		slideIn = true
-	}}
 	class="flex justify-center max-w-xl mx-auto translate-y-16 opacity-0 md:max-w-2xl lg:max-w-3xl maxsm:flex-col"
 	class:slideIn
 >
