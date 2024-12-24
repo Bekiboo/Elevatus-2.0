@@ -19,6 +19,7 @@
 		title: title,
 		subtitle: caption
 	}
+	console.log(hero)
 </script>
 
 <svelte:head>
@@ -26,9 +27,8 @@
 </svelte:head>
 
 <MetaTags
-	{title}
-	description={caption}
 	openGraph={{
+		type: 'website',
 		url: `https://www.elevatus-foundation.org/blog/${id}`,
 		title: title,
 		description: caption,
