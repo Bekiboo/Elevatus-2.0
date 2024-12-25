@@ -3,6 +3,7 @@
 	import Hamburger from './Hamburger.svelte'
 
 	let currentPage = $derived($page.url.pathname)
+	$inspect(currentPage, 'currentPage')
 
 	// svelte-ignore non_reactive_update
 	let barTranslate: number = 0
@@ -35,7 +36,7 @@
 <nav class="hidden w-full px-12 py-1 font-bold text-white uppercase bg-amber-400 md:block">
 	<div class="flex items-center justify-between max-w-6xl px-8 mx-auto">
 		<!-- Logo -->
-		<a href="/"><img class="h-16" src="img/white_logo.png" alt="logo" /></a>
+		<a href="/"><img class="h-16" src="../img/icons/white_logo.png" alt="logo" /></a>
 		<div class="relative">
 			{#if LINKS.some((link) => link.href === currentPage)}
 				<!-- Top Bar -->
@@ -84,7 +85,7 @@
 
 <!-- Mobile Nav -->
 <div class="absolute z-50 m-2 md:hidden">
-	<a href="/"><img class="h-16" src="img/icons/Phoenix-white-stroke-heavy.png" alt="logo" /></a>
+	<a href="/"><img class="h-16" src="../img/icons/Phoenix-white-stroke-heavy.png" alt="logo" /></a>
 </div>
 <button
 	class="fixed right-0 z-50 {open ? 'text-orange-500' : 'text-white'} md:hidden"

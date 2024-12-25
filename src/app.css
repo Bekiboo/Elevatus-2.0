@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 0.25s;
+} */
+
 .slideIn {
 	transition:
 		-webkit-transform 0.5s,
