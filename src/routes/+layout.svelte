@@ -19,7 +19,13 @@
 	{#if !$page.error}
 		{@render children?.()}
 	{:else}
-		<div>An error occured</div>
+		<div
+			class="flex items-center justify-center w-full h-[80vh]
+		text-4xl font-bold text-amber-400
+		"
+		>
+			{$page.error.message}
+		</div>
 	{/if}
 </main>
 
