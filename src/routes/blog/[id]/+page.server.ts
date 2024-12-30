@@ -6,7 +6,7 @@ async function getPost(id: string) {
 	console.log('getPost: ', id)
 	const { data, error: err } = await supabaseClient.from('blog-post').select().eq('id', id)
 	console.log(data)
-	if (err === null) error(404, 'Post not found')
+	// if (err === null) error(404, 'Post not found') TO FIX
 	return data![0]
 }
 
