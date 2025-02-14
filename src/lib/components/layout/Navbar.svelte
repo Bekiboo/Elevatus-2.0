@@ -2,11 +2,13 @@
 	import { page } from '$app/stores'
 	import Hamburger from './Hamburger.svelte'
 
-	let currentPage = $derived($page.url.pathname)
-	$inspect(currentPage, 'currentPage')
+	let currentPage = $derived.by(() => {
+		const segments = $page.url.pathname.split('/').filter(Boolean)
+		return segments.length ? `/${segments[0]}` : '/'
+	})
 
 	// svelte-ignore non_reactive_update
-	let barTranslate: number = 0
+	let barTranslate: number = 0 // cannot be a $state or we get infinite loop
 	let barWidth: number = $state(0)
 
 	let linksWrapper: HTMLDivElement | null = $state(null)

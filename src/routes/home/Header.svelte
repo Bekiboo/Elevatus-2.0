@@ -1,6 +1,9 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte'
+	let innerWidth: number
 </script>
+
+<svelte:window bind:innerWidth />
 
 <div class="relative flex flex-col items-center justify-end w-full overflow-hidden text-white">
 	<!-- Desktop Hero -->
