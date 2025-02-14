@@ -1,10 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte'
-
-	let innerWidth: number = $state(0)
 </script>
 
-<svelte:window bind:innerWidth />
 <div class="relative flex flex-col items-center justify-end w-full overflow-hidden text-white">
 	<!-- Desktop Hero -->
 	{#if innerWidth > 640}
@@ -15,7 +12,6 @@
 			muted
 			autoplay
 		>
-			<!-- A CORRIGER, VIDEO NE CHARGE PLUS EN GRAND ECRAN, innerWidth a une valeur de 0 au chargement -->
 			<source src="img/Elevatus_loop_large.mp4" type="video/mp4" />
 			<div class="texture top-0 left-0 w-[100vw] h-[100vh]"></div>
 		</video>
