@@ -41,6 +41,7 @@
 	"dependencies": {
 		"@sendgrid/mail": "^8.1.4",
 		"@supabase/supabase-js": "^2.49.1",
+		"@tailwindcss/vite": "^4.0.9",
 		"luxon": "^3.5.0",
 		"svelte-french-toast": "^1.2.0",
 		"svelte-meta-tags": "^4.2.0",
