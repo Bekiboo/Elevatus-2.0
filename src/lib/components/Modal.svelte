@@ -22,9 +22,9 @@
 			<!-- svelte-ignore a11y_autofocus -->
 			<button autofocus onclick={() => dialog.close()}>✖</button>
 		</header>
-		<hr />
+		<!-- <hr /> -->
 		{@render children?.()}
-		<hr />
+		<!-- <hr /> -->
 	</div>
 </dialog>
 
@@ -34,6 +34,8 @@
 		border-radius: 0.2em;
 		border: none;
 		padding: 0;
+		margin-inline: auto;
+		margin-top: 3rem;
 	}
 	dialog::backdrop {
 		background: rgba(0, 0, 0, 0.3);
