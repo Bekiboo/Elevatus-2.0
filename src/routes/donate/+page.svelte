@@ -84,27 +84,27 @@
 
 	<div class="flex flex-col basis-1/2">
 		<div
-			class="flex items-center w-64 h-16 mx-auto mb-5 text-lg text-gray-500 rounded-lg cursor-pointer outline outline-2 outline-gray-300"
+			class="flex items-center w-64 h-16 mx-auto mb-5 text-lg text-gray-500 rounded-lg cursor-pointer outline-2 outline-gray-300"
 		>
 			<div
 				class="bg-orange-500 absolute w-32 h-16 -z-10 duration-150 rounded-lg
                   ease-in-out {monthly ? '' : 'translate-x-32'}"
 			></div>
-			<div
-				class="grid items-center w-32 h-full text-center"
+			<button
+				class="grid items-center w-32 h-full text-center cursor-pointer"
 				class:text-white={monthly}
 				onclick={() => (monthly = true)}
 			>
 				Monthly Sponsor
-			</div>
+			</button>
 
-			<div
-				class="grid items-center w-32 h-full text-center"
+			<button
+				class="grid items-center w-32 h-full text-center cursor-pointer"
 				class:text-white={!monthly}
 				onclick={() => (monthly = false)}
 			>
 				One Time Donation
-			</div>
+			</button>
 		</div>
 
 		{#if monthly}

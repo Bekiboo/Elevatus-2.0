@@ -14,7 +14,7 @@
 		<div class="flex items-center">
 			<h5 class="mr-4 font-bold md:text-xl">CONNECT WITH US:</h5>
 			<div class="flex">
-				<a href="https://facebook.com/ElevatusFoundation" target="blank">
+				<a href="https://facebook.com/ElevatusFoundation" target="blank" aria-label="Facebook">
 					<svg
 						class="duration-200 h-14 w-14 hover:fill-orange-500 hover:-translate-y-1 social__facebook"
 						fill="#fff"
@@ -28,7 +28,11 @@
 						/>
 					</svg>
 				</a>
-				<a href="https://www.instagram.com/elevatusfoundation/" target="blank">
+				<a
+					href="https://www.instagram.com/elevatusfoundation/"
+					target="blank"
+					aria-label="Instagram"
+				>
 					<svg
 						class="duration-200 h-14 w-14 hover:fill-orange-500 hover:-translate-y-1 social__instagram"
 						fill="#fff"
@@ -42,7 +46,11 @@
 						/>
 					</svg>
 				</a>
-				<a href="https://www.youtube.com/channel/UCTm2WWL4iPQOqHkbT1LjhYA" target="blank">
+				<a
+					href="https://www.youtube.com/channel/UCTm2WWL4iPQOqHkbT1LjhYA"
+					target="blank"
+					aria-label="YouTube"
+				>
 					<svg
 						class="duration-200 h-14 w-14 hover:fill-orange-500 hover:-translate-y-1 social__youtube"
 						fill="#fff"
