@@ -65,7 +65,10 @@
 		{/if}
 
 		{#if element.type == 'image'}
-			<img class="w-full mt-4" src={element.value} alt="image n°{i}" />
+			<figure>
+				<img class="w-full mt-4" src={element.value} alt="image n°{i}" />
+				<figcaption class="text-sm text-center text-gray-600">{element.caption}</figcaption>
+			</figure>
 		{/if}
 
 		{#if element.type == 'title'}
