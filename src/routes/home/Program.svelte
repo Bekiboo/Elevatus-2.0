@@ -32,7 +32,8 @@
 <div
 	use:intersectObs={intersectorOptions}
 	class="flex flex-col items-center opacity-0
-  {odd ? 'md:flex-row translate-x-16' : 'md:flex-row-reverse -translate-x-16'}"
+  {odd ? 'md:flex-row' : 'md:flex-row-reverse'}"
+	style="transform: translateX({odd ? '4rem' : '-4rem'});"
 	class:slideIn
 >
 	<img

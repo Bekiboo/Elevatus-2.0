@@ -31,9 +31,7 @@
 	<div class="absolute z-20 flex flex-col justify-end w-full max-w-6xl px-8 mx-auto">
 		<div class="flex flex-col mb-16">
 			<h4 class="mb-1 text-lg font-thin sm:text-2xl">Fighting Child Labor in Madagascar</h4>
-			<h1
-				class="max-w-md text-3xl font-extrabold leading-7 text-left uppercase sm:text-5xl sm:max-w-2xl"
-			>
+			<h1 class="max-w-md text-3xl font-extrabold text-left uppercase sm:text-5xl sm:max-w-2xl">
 				Because they deserve their <em
 					class="text-black/0"
 					style="font-style: unset; -webkit-text-stroke: 1px white;">childhood</em

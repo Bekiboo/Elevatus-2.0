@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* ::view-transition-old(root),
 ::view-transition-new(root) {
@@ -15,8 +13,8 @@
 		-moz-transform 0.5s,
 		transform 0.5s,
 		opacity 0.5s;
-	-webkit-transform: translate(0, 0);
-	-moz-transform: translate(0, 0);
-	transform: translate(0, 0);
+	-webkit-transform: translate(0, 0) !important;
+	-moz-transform: translate(0, 0) !important;
+	transform: translate(0, 0) !important;
 	opacity: 1;
 }
