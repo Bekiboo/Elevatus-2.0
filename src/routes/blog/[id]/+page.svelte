@@ -46,7 +46,7 @@
 
 <Hero {...hero} />
 
-<div class="mx-auto px-8 my-8 max-w-[60ch]">
+<div class="mx-auto px-4 my-8 max-w-[75ch]">
 	<div class="flex justify-between">
 		<a href="/blog">&larr; Back to the Blog</a>
 		<div class="flex flex-col">
