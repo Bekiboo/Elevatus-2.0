@@ -52,7 +52,7 @@
 
 <Modal bind:showModal>
 	{#snippet header()}
-		<h2 class="text-2xl font-bold uppercase text-sky-700">
+		<h2 class="m-auto mb-2 text-2xl font-bold uppercase text-sky-700">
 			{members[currentMember].firstName}
 			{members[currentMember].lastName}
 		</h2>
