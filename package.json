@@ -21,6 +21,7 @@
 		"@typescript-eslint/eslint-plugin": "^8.26.0",
 		"@typescript-eslint/parser": "^8.26.0",
 		"autoprefixer": "^10.4.20",
+		"drizzle-kit": "^0.31.5",
 		"eslint": "^9.21.0",
 		"eslint-config-prettier": "^10.0.2",
 		"eslint-plugin-svelte": "^3.0.2",
@@ -42,7 +43,10 @@
 		"@sendgrid/mail": "^8.1.4",
 		"@supabase/supabase-js": "^2.49.1",
 		"@tailwindcss/vite": "^4.0.9",
+		"dotenv": "^17.2.3",
+		"drizzle-orm": "^0.44.6",
 		"luxon": "^3.5.0",
+		"postgres": "^3.4.7",
 		"svelte-french-toast": "^1.2.0",
 		"svelte-meta-tags": "^4.2.0",
 		"zod": "^3.24.2"
