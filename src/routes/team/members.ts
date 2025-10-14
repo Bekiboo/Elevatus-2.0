@@ -36,33 +36,9 @@ const members = [
 		]
 	},
 	{
-		firstName: 'Nathan',
-		lastName: 'Haynie',
-		role: 'Governing Member',
-		src: 'img/team/nathan_haynie',
-		group: 'board',
-		bio: [
-			'Nate Haynie is a results-driven sales and outreach professional with extensive experience in business development and revenue growth. As a Senior Account Executive at CINC Systems, Nate excels in driving top-line revenue through strategic sales, performance metrics, and business communication. His background spans multiple industries, where he has developed a reputation for closing high-value deals and optimizing sales processes.',
-
-			"With a Bachelor's degree in Communications from Utah Valley University, Nate has honed his skills in sales, marketing, and copywriting. He is passionate about coaching sales teams and public speaking. Nate’s experience with Elevatus Foundation, where he served from June 2017 to April 2020, allowed him to contribute to the foundation's mission through outreach and partnerships that supported children in Madagascar."
-		]
-	},
-	{
-		firstName: 'Spencer',
-		lastName: 'Lehr',
-		role: 'Treasurer',
-		src: 'img/team/spencer_lehr',
-		group: 'board',
-		bio: [
-			'Spencer Lehr is a skilled Senior Tax Accountant with a deep commitment to serving others. He currently works at Peak Capital Partners, where he manages tax compliance for various corporate entities and partnerships. Spencer holds a Master’s degree in Accounting from Utah Valley University and is a lifetime member of Beta Alpha Psi. His expertise includes fund accounting, tax compliance, and financial reporting.',
-
-			'Spencer’s connection to Madagascar runs deep, having spent two years as a missionary in the country from 2014 to 2016. This experience fueled his passion for helping the people of Madagascar, and he has since dedicated himself to supporting Elevatus. As Treasurer, Spencer ensures the foundation is in compliance with all regulations, helping to maintain its financial integrity and sustainability as it works to improve the lives of children in Madagascar.'
-		]
-	},
-	{
 		firstName: 'Julien',
 		lastName: 'Connault',
-		role: 'Program Manager',
+		role: 'Country Director',
 		src: 'img/team/julien_connault',
 		group: 'executive',
 		bio: [
@@ -74,7 +50,7 @@ const members = [
 	{
 		firstName: 'Nanouh',
 		lastName: 'Andoniaina',
-		role: 'Secretary',
+		role: 'Administrative and Finance Coordinator',
 		src: 'img/team/nanouh_andrianaivoarivelo',
 		group: 'executive',
 		bio: [
@@ -98,7 +74,7 @@ const members = [
 	{
 		firstName: 'Istriah',
 		lastName: 'Hefarison',
-		role: 'Sewing/Physics Teacher',
+		role: 'Sewing/Math Teacher',
 		src: 'img/team/istriah_hefarison',
 		group: 'education',
 		bio: [
