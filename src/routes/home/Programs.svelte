@@ -6,51 +6,63 @@
 			src: 'img/program/food_distribution.jpg',
 			title: 'Food Distribution',
 			body: [
-				'A hungry child is a child who will have a difficult time focusing at school.',
-				'In 2023, Elevatus distributed 8,000 meals, preventing dozens of children from going malnourished.',
-				'With your help, we hope to double this number in 2025.'
+				'No child should have to learn on an empty stomach.',
+				'In 2023, Elevatus Foundation provided over 8,000 meals to children in need, helping prevent malnutrition and support learning.',
+				'With your support, we aim to double that impact in 2025.'
 			]
 		},
 		{
 			src: 'img/program/tutoring_classes.jpg',
 			title: 'Tutoring Classes',
 			body: [
-				'Every Wednesday afternoon, students have the option to attend tutoring classes for 3 hours.',
-				'Despite tutoring classes not being mandatory, almost every child from the junior school attends weekly. A few students from the nearby high school join as well!',
-				'We need your help to increase the number of teachers, and even to build new classrooms to hold all those children.'
+				'Each week, students show up after school—eager to learn, even when they don’t have to.',
+				'Participation has grown well beyond expectations, and we now have many junior school students and high schoolers asking to join.',
+				'To meet the growing demand, we need your support to expand our teaching staff and create more classroom space for eager learners.'
 			]
 		},
 		{
 			src: 'img/program/sewing_classes.jpg',
-			title: 'Sewing Classes',
+			title: 'Trade Classes',
 			body: [
-				'At Elevatus we firmly believe that children need to explore different crafts, especially when living in rural areas.',
-				'Every child at the school is able to take a sewing class, throughout the year with Felana, who is also their math tutor.',
-				'As Elevatus grows and gains new sponsors, we will introduce additional trade classes, such as carpentry, cooking, and others!'
+				'At Elevatus, we believe that hands-on skills can open doors—especially for children growing up in rural communities.',
+				'Throughout the year, every student has the chance to learn sewing with Felana, who doubles as their math tutor.',
+				'With continued support and new sponsorships, we plan to expand our vocational offerings to include carpentry, cooking, and more—giving students the tools to shape their own futures.'
+			]
+		},
+		{
+			src: 'img/program/computer_literacy.png',
+			title: 'Computer Literacy Program',
+			body: [
+				'In today’s world, basic computer skills are essential for higher education and future employment.',
+				'Many children in rural areas face barriers to using technology, which can limit their opportunities.',
+				'Our new Computer Literacy Program introduces students to computers and digital tools, preparing them for high school, college, and beyond.'
 			]
 		},
 		{
 			src: 'img/program/school_supplies.jpg',
 			title: 'School Supplies and Tuition',
 			body: [
-				'Each year, Elevatus pays for the tuition and the school supplies of every sponsored children and distributes notebooks to all children.',
-				'Throughout the year, we also make sure that their school supplies are updated and replenished'
+				'Every child deserves the tools to succeed in the classroom.',
+				'Each year, Elevatus covers tuition and provides school supplies for all sponsored students, along with notebooks for every child at the school.',
+				'We continue to support them throughout the year, making sure supplies are replenished and no student falls behind for lack of resources.'
 			]
 		},
 		{
-			src: 'img/program/school_renovations.jpg',
-			title: 'School Renovation',
+			src: 'img/program/youth_center.png',
+			title: 'Youth Center Development',
 			body: [
-				'Since 2016, Elevatus has completed extension projects (adding of new classrooms and libaries) at 4 schools, and has entirely renovated a 100-year old junior school.',
-				'Elevatus still takes care of these historical buildings, but we would like to continue improving and expanding to host even more children.'
+				'After renovating and expanding 4 schools between 2016 and 2020, Elevatus realized the need for a space of our own to fully support children’s learning and development.',
+				'In 2023, we began building a Youth Center in the same region where we have worked for years.',
+				'The center now includes 3 classrooms and hosts all our activities—from tutoring and trade classes to dance and sports.',
+				'With plenty of space to grow, our vision is to expand the Youth Center into a vibrant community hub for 200 children.'
 			]
 		},
 		{
 			src: 'img/program/activities.jpg',
 			title: 'Activities',
 			body: [
-				'At least once a month, Elevatus organizes a special activity for the sponsored children. These activities range from a trip to the zoo to a dance class to a volleyball tournament.',
-				'It’s an amazing experience for these students who don’t typically have the opportunity for such activities in their villages.'
+				'Every month, Elevatus hosts a special activity for sponsored students—ranging from a trip to the zoo to dance classes to sports tournaments.',
+				'For children growing up in rural areas, these experiences are rare. They offer joy, new perspectives, and a chance to simply be kids.'
 			]
 		}
 	]

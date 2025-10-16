@@ -35,7 +35,9 @@
 </script>
 
 <!-- Desktop Nav -->
-<nav class="hidden w-full px-12 py-1 font-bold text-white uppercase bg-amber-400 md:block">
+<nav
+	class="hidden w-full px-12 py-1 font-bold text-white uppercase bg-amber-400 md:block fixed z-50"
+>
 	<div class="flex items-center justify-between max-w-6xl px-8 mx-auto">
 		<!-- Logo -->
 		<a href="/"><img class="h-16" src="../img/icons/white_logo.png" alt="logo" /></a>

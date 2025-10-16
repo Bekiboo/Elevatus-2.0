@@ -68,7 +68,7 @@
 				her with:
 			</p>
 			<ul class="my-4 ml-4 space-y-1 list-disc list-inside">
-				<li>Two healthy healthy meals every school day</li>
+				<li>A healthy meal every school day</li>
 				<li>School tuition and school supplies</li>
 				<li>Weekly tutoring classes</li>
 				<li>Sewing classes</li>
