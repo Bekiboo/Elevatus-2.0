@@ -1,6 +1,14 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import Hamburger from './Hamburger.svelte'
+	import { onMount } from 'svelte'
+	let scrolled = $state(false)
+
+	onMount(() => {
+		const handleScroll = () => (scrolled = window.scrollY > 20)
+		window.addEventListener('scroll', handleScroll)
+		return () => window.removeEventListener('scroll', handleScroll)
+	})
 
 	let currentPage = $derived.by(() => {
 		const segments = $page.url.pathname.split('/').filter(Boolean)
@@ -36,7 +44,9 @@
 
 <!-- Desktop Nav -->
 <nav
-	class="hidden w-full px-12 py-1 font-bold text-white uppercase bg-amber-400 md:block fixed z-50"
+	class="hidden w-full px-12 py-1 font-bold text-white uppercase {scrolled
+		? 'bg-amber-400'
+		: 'bg-transparent'} md:block fixed z-50 duration-100"
 >
 	<div class="flex items-center justify-between max-w-6xl px-8 mx-auto">
 		<!-- Logo -->
