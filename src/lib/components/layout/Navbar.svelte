@@ -46,7 +46,7 @@
 <nav
 	class="hidden w-full px-12 py-1 font-bold text-white uppercase {scrolled
 		? 'bg-amber-400'
-		: 'bg-transparent'} md:block fixed z-50 duration-100"
+		: 'bg-transparent'} md:block fixed z-50 duration-300"
 >
 	<div class="flex items-center justify-between max-w-6xl px-8 mx-auto">
 		<!-- Logo -->
