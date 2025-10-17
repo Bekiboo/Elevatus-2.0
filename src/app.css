@@ -1,6 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import 'tailwindcss';
 
-@import "tailwindcss";
+@font-face {
+	font-family: 'Oswald';
+	font-style: normal;
+	font-optical-sizing: auto;
+	font-weight: 900;
+	src: url('/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'AG-Bold';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('/fonts/AvantGardeCE-Book.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url('/fonts/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+}
+
+@theme {
+	/* fonts */
+	--font-roboto: 'Roboto', sans-serif;
+	--font-ag-bold: 'AG-Bold', sans-serif;
+	--font-ag-medium: 'AG-Medium', sans-serif;
+	--font-oswald: 'Oswald', sans-serif;
+}
 
 /* ::view-transition-old(root),
 ::view-transition-new(root) {
