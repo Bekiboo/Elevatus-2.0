@@ -4,7 +4,7 @@
 
 	const tweenOptions = {
 		delay: 0,
-		duration: 3000,
+		duration: 2000,
 		easing: (t: number) => 1 - Math.pow(2, -10 * t)
 	}
 
@@ -29,26 +29,47 @@
 	let slideIn = $state(false)
 </script>
 
-<section class="bg-brand py-8 sm:py-16 text-white" use:intersectObs={intersectorOptions}>
+<section
+	class="bg-dark py-8 sm:py-16 text-white flex flex-col items-center p-4"
+	use:intersectObs={intersectorOptions}
+>
+	<h2 class="text-4xl sm:text-6xl font-extrabold text-center uppercase mb-4">
+		Your <span class="text-brand">Impact</span> in 2024
+	</h2>
+	<p class="mb-6 sm:mb-12 text-center max-w-2xl mx-auto text-lg">
+		With your support, Elevatus has made significant strides in combating child labor in Madagascar.
+		Here are some of the key impacts we've achieved together this year:
+	</p>
 	<!-- opacity-0 
 	class:slideIn
 	style="transform: translateY(4rem)" -->
-	<div class="flex justify-center max-w-xl mx-auto md:max-w-2xl lg:max-w-3xl max-sm:flex-col">
+	<div class="flex justify-center max-sm:flex-col">
 		<div
-			class="w-56 h-32 px-8 py-4 text-lg text-center max-sm:content-center sm:w-52 lg:w-80 lg:text-2xl"
+			class="flex flex-col items-center w-56 px-8 py-4 text-lg max-sm:content-center sm:w-52 lg:w-80 lg:text-2xl"
 		>
-			<b>{Math.round(firstTween.current)}%</b> high school <br /> success rate <br />
-			<small>vs. national 56%</small>
+			<div class="font-bold text-6xl font-saira">
+				{Math.round(firstTween.current)}%
+			</div>
+			<div>
+				high school <br /> success rate <br />
+				<small>vs. national 56%</small>
+			</div>
 		</div>
 		<div
-			class="w-56 h-32 px-8 py-4 text-lg text-center max-sm:content-center sm:w-52 lg:w-80 lg:text-2xl max-sm:border-t-2 max-sm:border-b-2 sm:border-l-2 sm:border-r-2"
+			class="flex flex-col items-center w-56 px-8 py-4 text-lg max-sm:content-center sm:w-52 lg:w-80 lg:text-2xl max-sm:border-t-2 max-sm:border-b-2 sm:border-l-2 sm:border-r-2"
 		>
-			<b>{Math.round(secondTween.current)}</b> meals <br /> distributed
+			<div class="font-bold text-6xl font-saira">
+				{Math.round(secondTween.current)}<span class="text-brand font-sans text-6xl">+</span>
+			</div>
+			<span>meals <br /> distributed</span>
 		</div>
 		<div
-			class="w-56 h-32 px-8 py-4 text-lg text-center max-sm:content-center sm:w-52 lg:w-80 lg:text-2xl"
+			class="flex flex-col items-center w-56 px-8 py-4 text-lg max-sm:content-center sm:w-52 lg:w-80 lg:text-2xl"
 		>
-			<b>{Math.round(thirdTween.current)}+</b> hours <br />of tutoring provided
+			<div class="font-bold text-6xl font-saira">
+				{Math.round(thirdTween.current)}<span class="text-brand font-sans text-6xl">+</span>
+			</div>
+			<span>hours of<br /> tutoring <br /> provided</span>
 		</div>
 	</div>
 </section>

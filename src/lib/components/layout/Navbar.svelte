@@ -6,6 +6,7 @@
 	let scrolled = $state(false)
 
 	onMount(() => {
+		scrolled = window.scrollY > 20
 		const handleScroll = () => (scrolled = window.scrollY > 20)
 		window.addEventListener('scroll', handleScroll)
 		return () => window.removeEventListener('scroll', handleScroll)

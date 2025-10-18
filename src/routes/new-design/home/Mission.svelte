@@ -4,9 +4,9 @@
 	const { className }: { className?: string } = $props()
 </script>
 
-<section id="about-section" class={cn(className)}>
+<section id="about-section" class={cn([className, 'p-4'])}>
 	<div class="flex flex-col items-center max-w-md m-auto text-center sm:max-w-[720px]">
-		<h2 class="mb-2 text-[2.5rem] font-[900] uppercase sm:mb-4 sm:text-8xl">
+		<h2 class="mb-2 text-4xl font-[900] uppercase sm:mb-4 sm:text-6xl">
 			Our <span class="text-brand">Mission</span>
 		</h2>
 		<h3 class="text-xl sm:text-3xl font-light">
