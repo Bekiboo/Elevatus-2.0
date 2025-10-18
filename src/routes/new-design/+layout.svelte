@@ -1,6 +1,7 @@
 <script lang="ts">
-	import '../app.css'
-	import { page } from '$app/state'
+	import { page } from '$app/stores'
+	import Footer from '$lib/components/layout/Footer.svelte'
+	import Navbar from '$lib/components/layout/Navbar.svelte'
 	import ViewTransition from '$lib/components/ViewTransition.svelte'
 	interface Props {
 		children?: import('svelte').Snippet
@@ -11,8 +12,10 @@
 
 <ViewTransition />
 
-<main class="mx-auto min-h-[80vh] bg-light">
-	{#if !page.error}
+<Navbar />
+
+<main class="mx-auto min-h-[80vh]">
+	{#if !$page.error}
 		{@render children?.()}
 	{:else}
 		<div
@@ -20,7 +23,9 @@
 		text-4xl font-bold text-amber-400
 		"
 		>
-			{page.error.message}
+			{$page.error.message}
 		</div>
 	{/if}
 </main>
+
+<Footer />

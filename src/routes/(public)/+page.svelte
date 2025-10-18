@@ -3,9 +3,9 @@
 	import Mission from './home/Mission.svelte'
 	import Programs from './home/Programs.svelte'
 	import Donations from './home/Donations.svelte'
-	import { MetaTags } from 'svelte-meta-tags'
 	import Impact from './home/Impact.svelte'
 	import ProblemSolution from './home/ProblemSolution.svelte'
+	import { MetaTags } from 'svelte-meta-tags'
 </script>
 
 <svelte:head>

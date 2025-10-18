@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores'
+	import { fade } from 'svelte/transition'
 	import Hamburger from './Hamburger.svelte'
 	import { onMount } from 'svelte'
 	let scrolled = $state(false)
@@ -40,69 +41,80 @@
 			}
 		}
 	})
+
+	let mounted = $state(false)
+
+	onMount(() => {
+		mounted = true
+	})
 </script>
 
 <!-- Desktop Nav -->
-<nav
-	class="hidden w-full px-12 py-1 font-bold text-white uppercase {scrolled
-		? 'bg-amber-400'
-		: 'bg-transparent'} md:block fixed z-50 duration-300"
->
-	<div class="flex items-center justify-between max-w-6xl px-8 mx-auto">
-		<!-- Logo -->
-		<a href="/"><img class="h-16" src="../img/icons/white_logo.png" alt="logo" /></a>
-		<div class="relative">
-			{#if LINKS.some((link) => link.href === currentPage)}
-				<!-- Top Bar -->
-				<span
-					class="absolute h-[.2rem] transition-all duration-300 ease-in-out {currentPage ==
-					'/donate'
-						? 'bg-red-500'
-						: 'bg-white'} top-1"
-					style="width: {barWidth}px; translate: {barTranslate}px;"
-					aria-hidden="true"
-				></span>
-				<!-- Bottom Bar -->
-				<span
-					class="absolute h-[.2rem] transition-all duration-200 ease-in-out {currentPage ==
-					'/donate'
-						? 'bg-red-500'
-						: 'bg-white'} bottom-1"
-					style="width: {barWidth}px; translate: {barTranslate}px;"
-					aria-hidden="true"
-				></span>
-			{/if}
-			<!-- Links -->
-			<div class="relative flex items-center w-96" bind:this={linksWrapper}>
-				{#each LINKS as link}
-					{@const { href, name, color } = link}
-					{#if href === currentPage}
-						<a
-							class="p-2 hover:text-red-500"
-							class:text-red-500={color === 'orange'}
-							{href}
-							bind:clientWidth={barWidth}
-							aria-current={currentPage === href}>{name}</a
-						>
-					{:else}
-						<a
-							class="p-2 duration-100 ease-in-out hover:text-red-500"
-							{href}
-							class:text-red-500={color === 'orange'}>{name}</a
-						>
-					{/if}
-				{/each}
+{#if mounted}
+	<nav
+		in:fade={{ duration: 300, delay: 1000 }}
+		class="hidden w-full px-12 py-1 font-bold text-white uppercase {scrolled
+			? 'bg-[#222] shadow-2xl'
+			: 'bg-transparent'} md:block fixed z-50 duration-300"
+	>
+		<div class="flex items-center justify-between max-w-6xl px-8 mx-auto">
+			<!-- Logo -->
+			<a href="/"><img class="h-16" src="../img/icons/white_logo.png" alt="logo" /></a>
+			<div class="relative">
+				{#if LINKS.some((link) => link.href === currentPage)}
+					<!-- Top Bar -->
+					<span
+						class="absolute h-[.2rem] transition-all duration-300 ease-in-out {currentPage ==
+						'/donate'
+							? 'bg-red-500'
+							: 'bg-white'} top-1"
+						style="width: {barWidth}px; translate: {barTranslate}px;"
+						aria-hidden="true"
+					></span>
+					<!-- Bottom Bar -->
+					<span
+						class="absolute h-[.2rem] transition-all duration-200 ease-in-out {currentPage ==
+						'/donate'
+							? 'bg-red-500'
+							: 'bg-white'} bottom-1"
+						style="width: {barWidth}px; translate: {barTranslate}px;"
+						aria-hidden="true"
+					></span>
+				{/if}
+				<!-- Links -->
+				<div class="relative flex items-center" bind:this={linksWrapper}>
+					{#each LINKS as link}
+						{@const { href, name, color } = link}
+						{#if href === currentPage}
+							<a
+								class="p-2 hover:text-red-500 font-medium"
+								class:text-red-500={color === 'orange'}
+								{href}
+								bind:clientWidth={barWidth}
+								aria-current={currentPage === href}>{name}</a
+							>
+						{:else}
+							<a
+								class="p-2 duration-100 ease-in-out hover:text-red-500 font-medium"
+								{href}
+								class:text-red-500={color === 'orange'}>{name}</a
+							>
+						{/if}
+					{/each}
+				</div>
 			</div>
 		</div>
-	</div>
-</nav>
+	</nav>
+{/if}
 
 <!-- Mobile Nav -->
 <div class="absolute z-50 m-2 md:hidden">
 	<a href="/"><img class="h-16" src="../img/icons/Phoenix-white-stroke-heavy.png" alt="logo" /></a>
 </div>
 <button
-	class="fixed right-0 z-50 {open ? 'text-orange-500' : 'text-white'} md:hidden"
+	class="fixed right-2 top-2 z-50 {open
+		? 'text-orange-500'
+		: 'text-white bg-dark rounded-full shadow-lg shadow-gray-900'} md:hidden"
 	onclick={() => (open = !open)}
 >
 	<Hamburger {open} />
