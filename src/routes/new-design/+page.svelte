@@ -16,9 +16,10 @@
 
 <Header />
 
-<div
+<!-- <div
 	class="container flex flex-col justify-center max-w-6xl gap-12 px-4 mx-auto my-12 sm:my-24 sm:gap-24"
->
+> -->
+<div class="flex flex-col justify-center gap-12 my-12 sm:my-24 sm:gap-24">
 	<Mission />
 
 	<Impact />
