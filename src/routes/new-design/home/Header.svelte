@@ -18,9 +18,9 @@
 			class="mx-auto text-[10rem] sm:text-[18rem] font-light uppercase
 		bg-clip-text text-transparent bg-cover bg-center leading-none text-center
 		font-saira"
-			style="background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('http://localhost:5173/img/child_labor.jpg');
-			background-size: 250%;
-			background-position: 71% {bgParallax}%;
+			style="background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('http://www.elevatus-foundation.org/img/child_labor.jpg');
+			background-size: 100%;
+			background-position: 100% {bgParallax}%;
 			"
 		>
 			<span class="tracking-tight">Ending</span>
@@ -47,6 +47,6 @@
 
 <svelte:window
 	on:scroll={() => {
-		bgParallax = 54 - window.scrollY * 0.1
+		bgParallax = 54 - window.scrollY * 0.25
 	}}
 />
