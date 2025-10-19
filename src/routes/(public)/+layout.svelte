@@ -14,7 +14,7 @@
 
 <Navbar />
 
-<main class="mx-auto min-h-[80vh]">
+<main class="mx-auto min-h-[80vh] font-sans">
 	{#if !$page.error}
 		{@render children?.()}
 	{:else}
