@@ -1,13 +1,17 @@
 <script>
-	import { fade, fly } from 'svelte/transition'
+	import { fade } from 'svelte/transition'
 	import { onMount } from 'svelte'
 
 	let mounted = $state(false)
-
 	let bgParallax = $state(54)
+	const bgUrl = 'http://www.elevatus-foundation.org/img/child_labor.jpg'
 
 	onMount(() => {
-		mounted = true
+		const img = new Image()
+		img.src = bgUrl
+		img.onload = () => {
+			mounted = true
+		}
 	})
 </script>
 
@@ -16,11 +20,12 @@
 		<h1
 			in:fade={{ duration: 1000, delay: 200 }}
 			class="mx-auto text-[10rem] sm:text-[18rem] font-light uppercase
-		bg-clip-text text-transparent bg-cover bg-center leading-none text-center
-		font-saira"
-			style="background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('http://www.elevatus-foundation.org/img/child_labor.jpg');
-			background-size: 100%;
-			background-position: 100% {bgParallax}%;
+			bg-clip-text text-transparent bg-cover bg-center leading-none text-center
+			font-saira"
+			style="
+				background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('{bgUrl}');
+				background-size: 100%;
+				background-position: 100% {bgParallax}%;
 			"
 		>
 			<span class="tracking-tight">Ending</span>
@@ -28,6 +33,7 @@
 			<div class="sm:-mt-20 -mt-10">Child</div>
 			<div class="sm:-mt-20 -mt-10 tracking-wide">Labor</div>
 		</h1>
+
 		<div in:fade={{ duration: 300, delay: 1000 }} class="flex gap-4 max-sm:mt-8">
 			<a
 				href="/donate"
@@ -47,6 +53,6 @@
 
 <svelte:window
 	on:scroll={() => {
-		bgParallax = 54 - window.scrollY * 0.25
+		bgParallax = 54 - window.scrollY * 0.33
 	}}
 />

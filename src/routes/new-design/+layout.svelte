@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import Footer from '$lib/components/layout/Footer.svelte'
-	import Navbar from '$lib/components/layout/Navbar.svelte'
 	import ViewTransition from '$lib/components/ViewTransition.svelte'
+	import Navbar from './Navbar.svelte'
 	interface Props {
 		children?: import('svelte').Snippet
 	}

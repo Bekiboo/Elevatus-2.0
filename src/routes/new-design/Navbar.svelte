@@ -55,7 +55,7 @@
 	<nav
 		in:fade={{ duration: 300, delay: 1000 }}
 		class="hidden w-full px-12 py-1 font-bold text-white uppercase {scrolled
-			? 'bg-[#fab900] shadow-2xl'
+			? 'bg-[#222] shadow-2xl'
 			: 'bg-transparent'} md:block fixed z-50 duration-300"
 	>
 		<div class="flex items-center justify-between max-w-6xl px-8 mx-auto">
