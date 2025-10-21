@@ -1,13 +1,55 @@
 <script lang="ts">
 	import { cn } from '$lib/utils'
-	import { fly, slide } from 'svelte/transition'
+	import { onMount, onDestroy } from 'svelte'
+	import { slide } from 'svelte/transition'
 
 	const { className }: { className?: string } = $props()
 
 	let selectedImage: number = $state(0)
+	let autoCycle: boolean = $state(true)
+	let intervalId: ReturnType<typeof setInterval> | null = null
+
+	const totalImages = 4
+	const cycleDelay = 4000
+
+	function startCycle() {
+		stopCycle()
+		intervalId = setInterval(() => {
+			if (autoCycle) {
+				selectedImage = (selectedImage + 1) % totalImages
+			}
+		}, cycleDelay)
+	}
+
+	function stopCycle() {
+		if (intervalId) clearInterval(intervalId)
+	}
+
+	onMount(() => {
+		startCycle()
+	})
+
+	onDestroy(() => {
+		stopCycle()
+	})
+
+	function handleOutsideClick(event: MouseEvent) {
+		const section = document.getElementById('challenges-section')
+		if (section && !section.contains(event.target as Node)) {
+			autoCycle = true
+			startCycle()
+		}
+	}
+
+	// réactive la détection du clic à l’extérieur
+	onMount(() => {
+		document.addEventListener('click', handleOutsideClick)
+		return () => document.removeEventListener('click', handleOutsideClick)
+	})
 </script>
 
 <section
+	id="challenges-section"
 	class={cn([className, 'flex flex-col items-center justify-center px-4 bg-dark text-light'])}
 >
 	<h2 class="text-4xl sm:text-6xl font-extrabold text-center uppercase mb-4">
@@ -50,10 +92,14 @@
 
 {#snippet Challenge(image: string, title: string, content: string, index: number)}
 	<button
-		onclick={() => (selectedImage = index)}
+		onclick={() => {
+			selectedImage = index
+			autoCycle = false
+			stopCycle()
+		}}
 		class="relative duration-500 ease-in-out h-96 overflow-hidden {selectedImage != index
-			? `	hover:opacity-100 max-sm:h-[36.6%] sm:w-[16%]`
-			: `w-full h-full sm:w-1/2`}"
+			? `hover:opacity-100 max-sm:h-[36.6%] sm:w-[16%]`
+			: `w-full h-full sm:w-1/2`} "
 		aria-label={title}
 	>
 		<!-- Fixed-size image -->
@@ -75,7 +121,7 @@
 		<div class="relative z-20 h-full w-full flex flex-col justify-end p-4">
 			<h3 class="text-2xl text-left font-bold text-brand mb-2 sm:max-w-[16.6%]">{title}</h3>
 			{#if selectedImage === index}
-				<p in:slide out:slide class="sm:w-[40vw] text-left">{content}</p>
+				<p in:slide={{ delay: 300 }} out:slide class="sm:w-[40vw] text-left">{content}</p>
 			{/if}
 		</div>
 	</button>
