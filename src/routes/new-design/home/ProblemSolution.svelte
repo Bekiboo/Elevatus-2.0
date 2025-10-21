@@ -1,79 +1,74 @@
 <script lang="ts">
+	import { cn } from '$lib/utils'
+
+	const { className }: { className?: string } = $props()
+
+	let selectedImage: number = $state(0)
 </script>
 
-<!-- INFOGRAPHIC -->
-<section class="shadow-md bg-slate-100 text-slate-700 shadow-slate-400">
-	<div class="flex flex-col py-8 sm:flex-row">
-		<!-- 1st Part -->
-		<div class="max-w-xs m-auto">
-			<h2 class="mt-4 text-3xl font-bold text-blue-500 uppercase">The Problem</h2>
-			<h4 class="mb-4 font-extralight">What is the situation for children in Madagascar?</h4>
-			<!-- card -->
-			<div class="grid items-center h-32 grid-cols-2 mb-8 text-right sm:h-40">
-				<img class="grow max-h-32 sm:max-h-40" src="img/vector/icon-labor.svg" alt="" />
-				<div>
-					<h3 class="text-4xl font-bold">47%</h3>
-					<p>age 5 to 17 <br />are engaged in<br />Child Labor</p>
-				</div>
-			</div>
-			<!-- card -->
-			<div class="grid items-center h-32 grid-cols-2 mb-8 text-right sm:h-40">
-				<img class="grow max-h-32 sm:max-h-40" src="img/vector/icon-hungry.svg" alt="" />
-				<div>
-					<h3 class="text-4xl font-bold">Half</h3>
-					<p>suffer from <br />Chronic Malnutrition</p>
-				</div>
-			</div>
-			<!-- card -->
-			<div class="grid items-center h-32 grid-cols-2 mb-8 text-right sm:h-40">
-				<img class="grow max-h-32 sm:max-h-40" src="img/vector/icon-married.svg" alt="" />
-				<div>
-					<h3 class="text-4xl font-bold">37%</h3>
-					<p>are married <br />Before the Age of 18</p>
-				</div>
-			</div>
-		</div>
-
-		<!-- 2nd Part -->
-		<div class="max-w-xs m-auto">
-			<h2 class="mt-4 text-3xl font-bold text-blue-500 uppercase">Our Solution</h2>
-			<h4 class="mb-4 font-extralight">What does Elevatus provide when you sponsor a child?</h4>
-			<!-- card -->
-			<div class="grid items-center h-32 grid-cols-2 mb-8 text-right sm:h-40">
-				<img class="grow max-h-32 sm:max-h-40" src="img/vector/icon-education.svg" alt="" />
-				<div>
-					<h3 class="text-2xl font-bold">EDUCATION</h3>
-					<p>
-						School <em class="not-italic font-bold">tuition</em>, <br />
-						School <em class="not-italic font-bold">supplies</em>, <br />
-						<em class="not-italic font-bold">tutoring</em> classes <br />
-						and <em class="not-italic font-bold">trade</em> classes <br />
-					</p>
-				</div>
-			</div>
-			<!-- card -->
-			<div class="grid items-center h-32 grid-cols-2 mb-8 text-right sm:h-40">
-				<img class="grow max-h-32 sm:max-h-40" src="img/vector/icon-wellfed.svg" alt="" />
-				<div>
-					<h3 class="text-2xl font-bold">NUTRITION</h3>
-					<p>
-						Healthy <em class="not-italic font-bold">meals</em> <br />
-						every school day
-					</p>
-				</div>
-			</div>
-			<!-- card -->
-			<div class="grid items-center h-32 grid-cols-2 mb-8 text-right sm:h-40">
-				<img class="grow max-h-32 sm:max-h-40" src="img/vector/icon-friends.svg" alt="" />
-				<div>
-					<h3 class="text-2xl font-bold">SECURITY</h3>
-					<p>
-						A <em class="not-italic font-bold">safe place</em> <br />
-						to grow and <br />
-						make friends
-					</p>
-				</div>
-			</div>
-		</div>
+<section
+	class={cn([className, 'flex flex-col items-center justify-center px-4 bg-dark text-light'])}
+>
+	<h2 class="text-4xl sm:text-6xl font-extrabold text-center uppercase mb-4">
+		The <span class="text-brand">Challenges</span>
+	</h2>
+	<p class="max-w-3xl text-center mb-8 sm:mb-16">
+		Child labor remains a pervasive issue in Madagascar, with many children forced to work in
+		hazardous conditions instead of attending school. At Elevatus, we are dedicated to breaking this
+		cycle by providing education, resources, and support to these children and their families.
+	</p>
+	<div class="flex w-[90vw] h-96">
+		{@render Challenge(
+			'/img/child_labor.jpg',
+			'Child Labor in Madagascar',
+			'Many children in Madagascar are forced to work in hazardous conditions, depriving them of their childhood and education.',
+			0
+		)}
+		{@render Challenge(
+			'/img/child_labor.jpg',
+			'Barriers to Education',
+			'Poverty, lack of access to schools, and cultural factors often prevent children from attending school regularly.',
+			1
+		)}
+		{@render Challenge(
+			'/img/child_labor.jpg',
+			'Health Risks',
+			'Children engaged in labor are often exposed to dangerous environments that can lead to serious health issues.',
+			2
+		)}
+		{@render Challenge(
+			'/img/child_labor.jpg',
+			'Community Impact',
+			'Child labor affects not only the children but also their families and communities, perpetuating the cycle of poverty.',
+			3
+		)}
 	</div>
 </section>
+
+{#snippet Challenge(image: string, title: string, content: string, index: number)}
+	<button
+		onclick={() => (selectedImage = index)}
+		class="duration-500 ease-in-out h-96 {selectedImage != index
+			? 'opacity-70 hover:opacity-100'
+			: ''}"
+		style="width: {selectedImage === index ? '50%' : 50 / 3 + '%'}"
+		aria-label={title}
+	>
+		<div
+			class="overflow-hidden w-full h-full bg-cover bg-center {selectedImage != index
+				? 'grayscale-100 opacity-50 blur-[1px] hover:blur-none hover:grayscale-0'
+				: ''}"
+			style="background-image: url({image});
+			transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);"
+		>
+			<div
+				class="h-full w-full flex flex-col justify-end p-4 {selectedImage === index
+					? ''
+					: 'hidden'} "
+			>
+				<h3 class="text-2xl font-bold mb-2">{title}</h3>
+				<p class={selectedImage === index ? '' : 'hidden sm:block'}>{content}</p>
+			</div>
+		</div>
+	</button>
+{/snippet}
