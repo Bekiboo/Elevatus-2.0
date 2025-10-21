@@ -15,12 +15,12 @@
 	})
 </script>
 
-<div class="w-full h-screen bg-dark flex flex-col items-center justify-center">
+<div class="relative w-full h-screen bg-dark flex flex-col items-center justify-center">
 	{#if mounted}
 		<h1
 			in:fade={{ duration: 1000, delay: 200 }}
-			class="mx-auto text-[10rem] sm:text-[18rem] font-light uppercase
-			bg-clip-text text-transparent bg-cover bg-center leading-none text-center
+			class="mx-auto mb-16 text-[10rem] sm:text-[30vh] font-light uppercase
+			bg-clip-text text-transparent bg-cover bg-center leading-[75%] text-center
 			font-saira"
 			style="
 				background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('{bgUrl}');
@@ -30,11 +30,11 @@
 		>
 			<span class="tracking-tight">Ending</span>
 			<br />
-			<div class="sm:-mt-20 -mt-10">Child</div>
-			<div class="sm:-mt-20 -mt-10 tracking-wide">Labor</div>
+			<div>Child</div>
+			<div class="tracking-wide">Labor</div>
 		</h1>
 
-		<div in:fade={{ duration: 300, delay: 1000 }} class="flex gap-4 max-sm:mt-8">
+		<div in:fade={{ duration: 300, delay: 1000 }} class="absolute bottom-8 flex gap-4 mt-8">
 			<a
 				href="/donate"
 				class="w-40 sm:w-60 py-4 max-sm:text-sm sm:py-6 bg-brand text-white font-semibold rounded-full hover:bg-[#f59e0b] transition duration-200 cursor-pointer uppercase flex items-center justify-center"
