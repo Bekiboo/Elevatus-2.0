@@ -37,7 +37,7 @@
 		<div in:fade={{ duration: 300, delay: 1000 }} class="absolute bottom-8 flex gap-4 mt-8">
 			<a
 				href="/donate"
-				class="w-40 sm:w-60 py-4 max-sm:text-sm sm:py-6 bg-brand text-white font-semibold rounded-full hover:bg-[#f59e0b] transition duration-200 cursor-pointer uppercase flex items-center justify-center"
+				class="w-40 sm:w-60 py-4 max-sm:text-sm sm:py-6 bg-brand text-white font-semibold rounded-full hover:bg-brand-light transition duration-200 cursor-pointer uppercase flex items-center justify-center"
 			>
 				Donate
 			</a>
