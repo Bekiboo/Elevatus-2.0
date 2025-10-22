@@ -110,7 +110,9 @@
 				background-image: url({image});
 				background-size: cover;
 				background-position: top center;
-				filter: grayscale({selectedImage != index ? '100%' : '0%'}) blur({selectedImage != index ? '1px' : '0px'});
+				filter: grayscale({selectedImage != index ? '100%' : '0%'}) blur({selectedImage != index
+				? '1px'
+				: '0px'});
 				transition: all 700ms cubic-bezier(0.4,0,0.2,1);
 			"
 		>
