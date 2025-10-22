@@ -84,14 +84,14 @@
 
 	<div class="flex flex-col basis-1/2">
 		<div
-			class="flex items-center w-64 h-16 mx-auto mb-5 text-lg text-gray-500 rounded-lg cursor-pointer outline-2 outline-gray-300"
+			class="relative flex items-center w-64 h-16 mx-auto mb-5 text-lg text-gray-500 rounded-lg cursor-pointer outline-2 outline-gray-300 overflow-hidden"
 		>
 			<div
-				class="bg-orange-500 absolute w-32 h-16 -z-10 duration-150 rounded-lg
+				class="bg-brand absolute top-0 left-0 w-32 h-16 duration-150 rounded-lg
                   ease-in-out {monthly ? '' : 'translate-x-32'}"
 			></div>
 			<button
-				class="grid items-center w-32 h-full text-center cursor-pointer"
+				class="relative z-10 grid items-center w-32 h-full text-center cursor-pointer"
 				class:text-white={monthly}
 				onclick={() => (monthly = true)}
 			>
@@ -99,7 +99,7 @@
 			</button>
 
 			<button
-				class="grid items-center w-32 h-full text-center cursor-pointer"
+				class="relative z-10 grid items-center w-32 h-full text-center cursor-pointer"
 				class:text-white={!monthly}
 				onclick={() => (monthly = false)}
 			>
