@@ -104,13 +104,14 @@
 	>
 		<!-- Fixed-size image -->
 		<div
-			class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]
-			w-full sm:w-[50vw] sm:h-full h-[600px]
-			{selectedImage != index ? 'grayscale blur-[1px]' : ''}"
+			class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+			w-full sm:w-[50vw] sm:h-full h-[600px]"
 			style="
 				background-image: url({image});
 				background-size: cover;
 				background-position: top center;
+				filter: grayscale({selectedImage != index ? '100%' : '0%'}) blur({selectedImage != index ? '1px' : '0px'});
+				transition: all 700ms cubic-bezier(0.4,0,0.2,1);
 			"
 		>
 			<!-- Overlay -->
