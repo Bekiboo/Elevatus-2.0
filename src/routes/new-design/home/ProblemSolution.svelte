@@ -62,17 +62,17 @@
 	</p>
 
 	<!-- Challenge Cards -->
-	<div class="flex max-sm:flex-col w-[90vw] h-[800px] sm:h-96">
+	<div class="flex max-sm:flex-col w-[90vw] h-[800px] sm:h-[600px] overflow-hidden">
 		{@render Challenge(
-			'/img/child_labor.jpg',
+			'/img/child_redhood_breaking_rocks-l.jpg',
 			'Child Labor',
 			'Many children in Madagascar are forced to work in hazardous conditions, depriving them of their childhood and education.',
 			0
 		)}
 		{@render Challenge(
-			'/img/child_labor.jpg',
+			'/img/chronic_malnutrition.png',
 			'Chronic Malnutrition',
-			'47% of children ages 5–17 work to survive — many in fields, quarries, or domestic labor.',
+			'Over 50% of children under five in Madagascar suffer from chronic malnutrition, impacting their growth and cognitive development.',
 			1
 		)}
 		{@render Challenge(
@@ -82,7 +82,7 @@
 			2
 		)}
 		{@render Challenge(
-			'/img/child_labor.jpg',
+			'/img/education_problem.png',
 			'Failing Education System',
 			'The nation invests just 2.5% of GDP in education, far below regional averages. Underqualified community teachers (FRAM) make up 63 percent of the primary teaching workforce.',
 			3
@@ -97,15 +97,15 @@
 			autoCycle = false
 			stopCycle()
 		}}
-		class="relative duration-500 ease-in-out h-96 overflow-hidden {selectedImage != index
-			? `hover:opacity-100 max-sm:h-[36.6%] sm:w-[16%]`
+		class="relative duration-500 ease-in-out h-[600px] overflow-hidden {selectedImage != index
+			? `hover:opacity-100 max-sm:h-[36.6%] sm:w-[17%]`
 			: `w-full h-full sm:w-1/2`} "
 		aria-label={title}
 	>
 		<!-- Fixed-size image -->
 		<div
 			class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]
-			w-full sm:w-[50vw] sm:h-full h-96
+			w-full sm:w-[50vw] sm:h-full h-[600px]
 			{selectedImage != index ? 'grayscale blur-[1px]' : ''}"
 			style="
 				background-image: url({image});
@@ -114,7 +114,7 @@
 			"
 		>
 			<!-- Overlay -->
-			<div class="absolute inset-0 0 bg-linear-to-b from-transparent from-0% to-dark"></div>
+			<div class="absolute inset-0 bg-linear-to-b from-transparent from-0% to-dark"></div>
 		</div>
 
 		<!-- Text -->
