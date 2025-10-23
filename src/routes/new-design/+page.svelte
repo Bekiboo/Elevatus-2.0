@@ -1,9 +1,9 @@
 <script>
 	import Mission from './home/Mission.svelte'
-	import Programs from './home/Programs.svelte'
+	import Response from './home/Response.svelte'
 	import Donations from './home/Donations.svelte'
 	import Impact from './home/Impact.svelte'
-	import ProblemSolution from './home/ProblemSolution.svelte'
+	import Challenges from './home/Challenges.svelte'
 	import { onMount } from 'svelte'
 	import Header from './home/Header.svelte'
 
@@ -24,9 +24,9 @@
 
 	<Impact className="min-h-[60vh] py-16!" />
 
-	<ProblemSolution className="min-h-[60vh] py-16!" />
+	<Challenges className="min-h-[60vh] py-16!" />
 
-	<Programs />
+	<Response className="min-h-[60vh] py-16!" />
 
 	<Donations />
 </div>

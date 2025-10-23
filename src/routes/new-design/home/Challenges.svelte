@@ -82,7 +82,7 @@
 			2
 		)}
 		{@render Challenge(
-			'/img/education_problem.png',
+			'/img/education_problem.jpg',
 			'Failing Education System',
 			'The nation invests just 2.5% of GDP in education, far below regional averages. Underqualified community teachers (FRAM) make up 63 percent of the primary teaching workforce.',
 			3

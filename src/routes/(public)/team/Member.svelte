@@ -7,7 +7,7 @@
 	class="flex items-center justify-between w-full gap-2 mb-4 sm:w-40 sm:flex-col"
 >
 	<div
-		class="relative w-32 h-32 duration-150 ease-in-out rounded-full sm:w-36 sm:h-36 outline outline-4 outline-yellow-400 outline-offset-4 group hover:outline-offset-0 hover:outline-transparent"
+		class="relative w-32 h-32 duration-150 ease-in-out rounded-full sm:w-36 sm:h-36 outline-4 outline-brand outline-offset-4 group hover:outline-offset-0 hover:outline-transparent"
 	>
 		<div
 			class="absolute bottom-0 w-full h-40 overflow-hidden rounded-bl-full rounded-br-full sm:h-40 sm:w-full"
