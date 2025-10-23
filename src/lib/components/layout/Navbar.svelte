@@ -36,7 +36,7 @@
 	$effect(() => {
 		barTranslate = 0
 		for (let i = 0; i < LINKS.length; i++) {
-			if (LINKS[i].href.includes(currentPage)) break
+			if (LINKS[i].href === currentPage) break
 			if (linksWrapper && linksWrapper.children[i]) {
 				barTranslate += linksWrapper.children[i].clientWidth
 			}
@@ -67,7 +67,7 @@
 					<span
 						class="absolute h-[.2rem] transition-all duration-300 ease-in-out {currentPage ==
 						'/donate'
-							? 'bg-red-500'
+							? 'bg-brand'
 							: 'bg-white'} top-1"
 						style="width: {barWidth}px; translate: {barTranslate}px;"
 						aria-hidden="true"
@@ -76,7 +76,7 @@
 					<span
 						class="absolute h-[.2rem] transition-all duration-200 ease-in-out {currentPage ==
 						'/donate'
-							? 'bg-red-500'
+							? 'bg-brand'
 							: 'bg-white'} bottom-1"
 						style="width: {barWidth}px; translate: {barTranslate}px;"
 						aria-hidden="true"
@@ -88,17 +88,17 @@
 						{@const { href, name, color } = link}
 						{#if href === currentPage}
 							<a
-								class="p-2 hover:text-red-500 font-medium"
-								class:text-red-500={color === 'orange'}
+								class="p-2 hover:text-brand font-medium"
+								class:text-brand={color === 'orange'}
 								{href}
 								bind:clientWidth={barWidth}
 								aria-current={currentPage === href}>{name}</a
 							>
 						{:else}
 							<a
-								class="p-2 duration-100 ease-in-out hover:text-red-500 font-medium"
+								class="p-2 duration-100 ease-in-out hover:text-brand font-medium"
 								{href}
-								class:text-red-500={color === 'orange'}>{name}</a
+								class:text-brand={color === 'orange'}>{name}</a
 							>
 						{/if}
 					{/each}
@@ -114,7 +114,7 @@
 </div>
 <button
 	class="fixed right-2 top-2 z-50 {open
-		? 'text-orange-500'
+		? 'text-brand'
 		: 'text-white bg-dark rounded-full shadow-lg shadow-gray-900'} md:hidden"
 	onclick={() => (open = !open)}
 >
@@ -138,7 +138,7 @@
 						class="block px-3 py-2 text-4xl font-medium text-center uppercase underline-offset-4"
 						{href}
 						aria-current={currentPage === href}
-						class:text-red-500={color === 'orange'}
+						class:text-brand={color === 'orange'}
 						class:underline={currentPage === href}
 						onclick={() => (open = false)}>{name}</a
 					>
