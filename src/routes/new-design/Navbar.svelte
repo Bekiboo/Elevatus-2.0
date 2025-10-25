@@ -54,7 +54,8 @@
 {#if mounted}
 	<nav
 		in:fade={{ duration: 300, delay: 1000 }}
-		class="hidden w-full px-12 py-1 font-bold text-white uppercase backdrop-blur-sm bg-dark/90 shadow-2xl md:block fixed z-50 duration-300"
+		class="hidden w-full px-12 py-1 font-bold text-white uppercase backdrop-blur-sm bg-dark/90 md:block fixed z-50 duration-300 {scrolled &&
+			'shadow-2xl'}"
 	>
 		<div class="flex items-center justify-between max-w-6xl px-8 mx-auto">
 			<!-- Logo -->
@@ -86,17 +87,19 @@
 						{@const { href, name, color } = link}
 						{#if href === currentPage}
 							<a
-								class="p-2 hover:text-brand font-medium"
-								class:text-brand={color === 'orange'}
+								class="p-2 hover:text-brand font-light {name == 'Donate' &&
+									'text-brand font-bold!'}"
 								{href}
 								bind:clientWidth={barWidth}
-								aria-current={currentPage === href}>{name}</a
+								aria-current={currentPage === href}
 							>
+								{name}
+							</a>
 						{:else}
 							<a
-								class="p-2 duration-100 ease-in-out hover:text-brand font-medium"
-								{href}
-								class:text-brand={color === 'orange'}>{name}</a
+								class="p-2 duration-100 ease-in-out hover:text-brand font-light {name == 'Donate' &&
+									'text-brand font-bold!'}"
+								{href}>{name}</a
 							>
 						{/if}
 					{/each}

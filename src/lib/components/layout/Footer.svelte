@@ -2,7 +2,7 @@
 	let currentYear = new Date().getFullYear()
 </script>
 
-<footer class="p-4 text-gray-400 bg-gray-900 shadow md:px-6 md:py-8">
+<footer class="p-4 text-light bg-dark shadow md:px-6 md:py-8">
 	<div class="w-full max-w-6xl mx-auto sm:flex sm:items-center sm:justify-between">
 		<a href="/home" class="hidden sm:block"
 			><img
@@ -16,7 +16,7 @@
 			<div class="flex">
 				<a href="https://facebook.com/ElevatusFoundation" target="blank" aria-label="Facebook">
 					<svg
-						class="duration-200 h-14 w-14 hover:fill-orange-500 hover:-translate-y-1 social__facebook"
+						class="duration-200 h-14 w-14 hover:fill-brand hover:-translate-y-1 social__facebook"
 						fill="#fff"
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
@@ -34,7 +34,7 @@
 					aria-label="Instagram"
 				>
 					<svg
-						class="duration-200 h-14 w-14 hover:fill-orange-500 hover:-translate-y-1 social__instagram"
+						class="duration-200 h-14 w-14 hover:fill-brand hover:-translate-y-1 social__instagram"
 						fill="#fff"
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
@@ -52,7 +52,7 @@
 					aria-label="YouTube"
 				>
 					<svg
-						class="duration-200 h-14 w-14 hover:fill-orange-500 hover:-translate-y-1 social__youtube"
+						class="duration-200 h-14 w-14 hover:fill-brand hover:-translate-y-1 social__youtube"
 						fill="#fff"
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"

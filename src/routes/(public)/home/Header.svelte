@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Button from '$lib/components/Button.svelte'
 	let innerWidth: number
 </script>
 
@@ -39,9 +38,11 @@
 			</h1>
 			<div class="mt-8 max-w-fit">
 				<a href="/donate">
-					<Button>
+					<button
+						class="bg-orange-500 text-white rounded-full border-2 drop-shadow-md active:drop-shadow-none duration-100 hover:bg-orange-400"
+					>
 						<p class="px-4 py-2 sm:py-4 sm:px:8 sm:text-xl sm:font-medium">Sponsor a child today</p>
-					</Button>
+					</button>
 				</a>
 			</div>
 		</div>

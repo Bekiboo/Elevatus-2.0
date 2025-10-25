@@ -1,6 +1,7 @@
 <script>
 	import { fade } from 'svelte/transition'
 	import { onMount } from 'svelte'
+	import Button from '$lib/components/UI/Button.svelte'
 
 	let mounted = $state(false)
 	let bgParallax = $state(54)
@@ -13,6 +14,7 @@
 			mounted = true
 		}
 	})
+	let isLoading = $state(false)
 </script>
 
 <div class="relative w-full h-screen bg-dark flex flex-col items-center justify-center">
@@ -34,18 +36,24 @@
 			<div class="tracking-wide">Labor</div>
 		</h1>
 
-		<div in:fade={{ duration: 300, delay: 1000 }} class="absolute bottom-8 flex gap-4 mt-8">
-			<a
-				href="/donate"
-				class="w-40 sm:w-60 py-4 max-sm:text-sm sm:py-6 bg-brand text-white font-semibold rounded-full hover:bg-brand-light transition duration-200 cursor-pointer uppercase flex items-center justify-center"
-			>
-				Donate
-			</a>
-			<button
-				class="w-40 sm:w-60 py-4 max-sm:text-sm sm:py-6 text-white hover:text-dark font-semibold rounded-full hover:bg-gray-200 border transition duration-200 cursor-pointer uppercase"
+		<div
+			in:fade={{ duration: 300, delay: 1000 }}
+			class="absolute bottom-8 flex gap-4 sm:gap-8 mt-8"
+		>
+			<Button
 				onclick={() => {
-					window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })
-				}}>Learn More</button
+					isLoading = true
+					setTimeout(() => {
+						isLoading = false
+					}, 1000)
+				}}
+				{isLoading}>Donate</Button
+			>
+			<Button
+				variant="outline"
+				onclick={() => {
+					window.scrollBy({ top: window.innerHeight - 80, behavior: 'smooth' })
+				}}>Learn More</Button
 			>
 		</div>
 	{/if}
