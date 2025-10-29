@@ -8,7 +8,7 @@
 
 <section id="about-section" class={cn([className, '	flex flex-col items-center'])}>
 	<div
-		class="flex flex-col items-center justify-center max-w-md m-auto text-center sm:max-w-[720px] min-h-96"
+		class="flex flex-col items-center justify-center max-w-md m-auto text-center sm:max-w-[720px] min-h-96 px-4"
 	>
 		<h2 class="text-4xl sm:text-6xl font-black text-dark text-center uppercase mb-4">
 			Our
@@ -51,7 +51,11 @@
 
 	<!-- Education -->
 	<div class="">
-		<div class="w-full h-16 px-8 bg-brand text-6xl font-extrabold text-light">EDUCATION</div>
+		<div
+			class="w-full h-12 sm:h-16 max-sm:py-1 px-8 bg-brand text-4xl sm:text-6xl font-extrabold text-light"
+		>
+			EDUCATION
+		</div>
 		<div class="mx-auto grid md:grid-cols-2 items-center" id="education">
 			<img
 				src="img/group_studying.jpg"
@@ -68,13 +72,15 @@
 				<Button
 					variant="outline"
 					size="small"
-					class="ml-auto mt-4 text-brand outline-brand hover:text-light hover:bg-brand hover:outline-brand"
+					class="mb-4 ml-auto mt-4 text-brand outline-brand hover:text-light hover:bg-brand hover:outline-brand"
 					><span>Learn More</span></Button
 				>
 			</div>
 		</div>
 		<!-- Nutrition -->
-		<div class="w-full h-16 px-8 bg-secondary text-6xl font-extrabold text-light text-end">
+		<div
+			class="w-full h-12 sm:h-16 max-sm:py-1 px-8 bg-secondary text-4xl sm:text-6xl font-extrabold text-light text-end"
+		>
 			NUTRITION
 		</div>
 		<div class="mx-auto grid md:grid-cols-2 items-center" id="nutrition">
@@ -83,7 +89,7 @@
 				alt="Healthy meal for children"
 				class="bg-dark object-cover w-full h-96 order-1 md:order-2"
 			/>
-			<div class="px-8 order-2 md:order-1">
+			<div class="p-4 order-2 md:order-1">
 				<p class="text-lg leading-relaxed">
 					Hungry children can’t learn. Our meal programs ensure that every child receives a healthy,
 					balanced diet at school — reducing absenteeism and improving performance. With over 8,000
@@ -92,20 +98,24 @@
 				<Button
 					variant="outline"
 					size="small"
-					class="mr-auto mt-4 text-secondary outline-secondary hover:text-light hover:bg-secondary hover:outline-secondary"
+					class="mb-4 mr-auto mt-4 text-secondary outline-secondary hover:text-light hover:bg-secondary hover:outline-secondary"
 					><span>Learn More</span></Button
 				>
 			</div>
 		</div>
 		<!-- Skills -->
-		<div class="w-full h-16 px-8 bg-accent text-6xl font-extrabold text-light">SKILLS</div>
+		<div
+			class="w-full h-12 sm:h-16 max-sm:py-1 px-8 bg-accent text-4xl sm:text-6xl font-extrabold text-light"
+		>
+			SKILLS
+		</div>
 		<div class="mx-auto grid md:grid-cols-2 items-center" id="skills">
 			<img
 				src="img/sewing_class.jpeg"
 				alt="Youth vocational training"
 				class="bg-dark object-cover w-full h-96"
 			/>
-			<div class="px-8">
+			<div class="p-4">
 				<p class="text-lg leading-relaxed">
 					At the Youth Center, children discover new talents and learn practical skills such as
 					sewing, cooking, and computer literacy — all in a safe, supportive environment. These
@@ -115,7 +125,7 @@
 				<Button
 					variant="outline"
 					size="small"
-					class="ml-auto mt-4 text-accent outline-accent hover:text-light hover:bg-accent hover:outline-accent"
+					class="mb-4 ml-auto mt-4 text-accent outline-accent hover:text-light hover:bg-accent hover:outline-accent"
 					><span>Learn More</span></Button
 				>
 			</div>
