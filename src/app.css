@@ -22,14 +22,13 @@
 	--font-montserrat: 'Montserrat', sans-serif;
 
 	/* colors */
-	--color-brand: hsl(13, 100%, 63%);
-	--color-secondary: hsl(42, 79%, 63%);
-	--color-accent: hsl(180, 90%, 40%);
+	--color-brand: hsl(13, 100%, 63%); /* #ff6b42 */
+	--color-secondary: hsl(42, 79%, 63%); /* #ebbe56 */
+	--color-accent: hsl(180, 90%, 40%); /* #0ac2c2 */
 	--color-brand-light: hsl(13, 100%, 73%);
 	--color-brand-dark: hsl(13, 100%, 53%);
 	--color-dark: hsl(0, 4%, 13%);
 	--color-light: hsl(0, 0%, 96%);
-	/* old accent 41d7ff */
 
 	/* typography */
 	--color-text: hsl(0, 4%, 18%);

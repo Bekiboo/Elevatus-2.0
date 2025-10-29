@@ -57,6 +57,7 @@
 			>
 			<Button
 				variant="outline"
+				class="hover:bg-light hover:text-dark"
 				onclick={() => {
 					window.scrollBy({ top: window.innerHeight - 80, behavior: 'smooth' })
 				}}>Learn More</Button

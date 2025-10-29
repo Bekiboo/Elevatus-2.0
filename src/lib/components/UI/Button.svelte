@@ -52,7 +52,7 @@
 		primary:
 			'bg-brand text-white font-semibold hover:bg-brand-light duration-200 cursor-pointer uppercase outline outline-2 outline-brand hover:outline-brand-light',
 		outline:
-			'text-light hover:text-dark font-semibold hover:bg-accent hover:outline-accent outline outline-2 outline-light transition duration-200 cursor-pointer uppercase'
+			'text-light hover:text-dark font-semibold hover:bg-light outline outline-2 outline-light transition duration-200 cursor-pointer uppercase'
 	}
 
 	const disabledVariantClasses = {
@@ -66,11 +66,6 @@
 		large: 'min-w-40 sm:min-w-60 px-6 sm:px-12 py-4 sm:py-6 text-lg'
 	}
 
-	// const isActiveVariantClasses = {
-	// 	primary: 'brightness-85 text-dark',
-	// 	outline: 'brightness-90 text-dark'
-	// }
-
 	const classes = $derived({
 		common: cn(
 			'cursor-pointer relative focus-within:ring-0 text-nowrap duration-50 text-base select-none flex items-center justify-center h-min'
@@ -80,7 +75,6 @@
 			: variantClasses[variant],
 		disabled: (disabled || isActive) && 'cursor-not-allowed opacity-100',
 		size: sizeClasses[size] || sizeClasses.large,
-		// isActive: isActive && isActiveVariantClasses[variant],
 		wrapText: 'break-words whitespace-normal sm:whitespace-nowrap'
 	})
 </script>
@@ -96,7 +90,6 @@
 				classes.variant,
 				classes.disabled,
 				classes.size,
-				// classes.isActive,
 				classes.wrapText,
 				restProps.class
 			].join(' ')
@@ -138,7 +131,6 @@
 				classes.variant,
 				classes.disabled,
 				classes.size,
-				// classes.isActive,
 				classes.wrapText,
 				restProps.class
 			].join(' ')

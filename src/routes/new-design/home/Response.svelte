@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from '$lib/components/UI/Button.svelte'
 	import HighlightedText from '$lib/components/UI/HighlightedText.svelte'
 	import { cn } from '$lib/utils'
 
@@ -7,7 +8,7 @@
 
 <section id="about-section" class={cn([className, '	flex flex-col items-center'])}>
 	<div
-		class="flex flex-col items-center justify-center max-w-md m-auto text-center sm:max-w-[720px] min-h-80"
+		class="flex flex-col items-center justify-center max-w-md m-auto text-center sm:max-w-[720px] min-h-96"
 	>
 		<h2 class="text-4xl sm:text-6xl font-black text-dark text-center uppercase mb-4">
 			Our
@@ -40,11 +41,84 @@
 			>
 				<div class="sm:mb-4 text-6xl md:text-7xl lg:text-9xl">Three pillars</div>
 				<div class="flex max-sm:flex-col w-min justify-center mx-auto">
-					<HighlightedText color="accent" text="light">Education</HighlightedText>
+					<HighlightedText color="brand" text="light">Education</HighlightedText>
 					<HighlightedText color="secondary" text="light">Nutrition</HighlightedText>
-					<HighlightedText color="brand" text="light">Skills</HighlightedText>
+					<HighlightedText color="accent" text="light">Skills</HighlightedText>
 				</div>
 			</h3>
+		</div>
+	</div>
+
+	<!-- Education -->
+	<div class="">
+		<div class="w-full h-16 px-8 bg-brand text-6xl font-extrabold text-light">EDUCATION</div>
+		<div class="mx-auto grid md:grid-cols-2 items-center" id="education">
+			<img
+				src="img/group_studying.jpg"
+				alt="Children in class"
+				class="bg-dark object-cover w-full h-96 -scale-x-100"
+			/>
+			<div class="p-4">
+				<p class="text-lg leading-relaxed">
+					Every child deserves access to quality education. Elevatus provides school tuition,
+					tutoring, and mentorship to help children stay in school, develop literacy, and prepare
+					for a brighter future. Through consistent learning support, we’re building the foundations
+					for independence and hope.
+				</p>
+				<Button
+					variant="outline"
+					size="small"
+					class="ml-auto mt-4 text-brand outline-brand hover:text-light hover:bg-brand hover:outline-brand"
+					><span>Learn More</span></Button
+				>
+			</div>
+		</div>
+		<!-- Nutrition -->
+		<div class="w-full h-16 px-8 bg-secondary text-6xl font-extrabold text-light text-end">
+			NUTRITION
+		</div>
+		<div class="mx-auto grid md:grid-cols-2 items-center" id="nutrition">
+			<img
+				src="img/kids_eating.png"
+				alt="Healthy meal for children"
+				class="bg-dark object-cover w-full h-96 order-1 md:order-2"
+			/>
+			<div class="px-8 order-2 md:order-1">
+				<p class="text-lg leading-relaxed">
+					Hungry children can’t learn. Our meal programs ensure that every child receives a healthy,
+					balanced diet at school — reducing absenteeism and improving performance. With over 8,000
+					meals served, we’re not just feeding bodies but fueling futures.
+				</p>
+				<Button
+					variant="outline"
+					size="small"
+					class="mr-auto mt-4 text-secondary outline-secondary hover:text-light hover:bg-secondary hover:outline-secondary"
+					><span>Learn More</span></Button
+				>
+			</div>
+		</div>
+		<!-- Skills -->
+		<div class="w-full h-16 px-8 bg-accent text-6xl font-extrabold text-light">SKILLS</div>
+		<div class="mx-auto grid md:grid-cols-2 items-center" id="skills">
+			<img
+				src="img/sewing_class.jpeg"
+				alt="Youth vocational training"
+				class="bg-dark object-cover w-full h-96"
+			/>
+			<div class="px-8">
+				<p class="text-lg leading-relaxed">
+					At the Youth Center, children discover new talents and learn practical skills such as
+					sewing, cooking, and computer literacy — all in a safe, supportive environment. These
+					opportunities nurture creativity, build confidence, and open doors to future self-reliance
+					and friendship.
+				</p>
+				<Button
+					variant="outline"
+					size="small"
+					class="ml-auto mt-4 text-accent outline-accent hover:text-light hover:bg-accent hover:outline-accent"
+					><span>Learn More</span></Button
+				>
+			</div>
 		</div>
 	</div>
 </section>
