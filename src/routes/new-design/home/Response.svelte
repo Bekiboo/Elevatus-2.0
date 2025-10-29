@@ -36,11 +36,11 @@
 		<div
 			class="absolute top-1/5 lg:top-1/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-light p-4 w-full text-center"
 		>
-			<h3
-				class="text-5xl md:text-5xl lg:text-6xl font-bold mb-2 uppercase font-saira tracking-widest"
-			>
-				<div class="sm:mb-4 text-6xl md:text-7xl lg:text-9xl">Three pillars</div>
-				<div class="flex max-sm:flex-col w-min justify-center mx-auto">
+			<h3 class="font-bold mb-2 uppercase font-saira tracking-widest">
+				<div class="sm:mb-4 text-5xl md:text-7xl lg:text-9xl">Three pillars</div>
+				<div
+					class="flex max-sm:flex-col w-min justify-center mx-auto text-4xl md:text-5xl lg:text-6xl"
+				>
 					<HighlightedText color="brand" text="light">Education</HighlightedText>
 					<HighlightedText color="secondary" text="light">Nutrition</HighlightedText>
 					<HighlightedText color="accent" text="light">Skills</HighlightedText>

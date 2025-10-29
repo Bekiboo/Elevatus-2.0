@@ -50,7 +50,9 @@
 	class={cn([className, 'bg-brand py-8 sm:py-16 text-dark flex flex-col items-center px-4'])}
 	use:intersectObs={intersectorOptions}
 >
-	<h2 class="text-4xl sm:text-6xl font-black text-dark text-center uppercase mb-4">
+	<h2
+		class="text-4xl sm:text-6xl font-black text-dark text-center uppercase mb-4 leading-12 sm:leading-20"
+	>
 		Your
 		<HighlightedText color="light" text="brand">Impact</HighlightedText>in 2024
 	</h2>

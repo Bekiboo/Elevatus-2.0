@@ -53,7 +53,7 @@
 	id="challenges-section"
 	class={cn([className, 'flex flex-col items-center justify-center px-4 bg-dark text-light'])}
 >
-	<h2 class="text-4xl sm:text-6xl font-black text-center uppercase mb-4">
+	<h2 class="text-4xl sm:text-6xl font-black text-center uppercase mb-4 leading-12 sm:leading-20">
 		The <HighlightedText color="light" text="dark">Challenges</HighlightedText>
 	</h2>
 	<p class="max-w-3xl text-center mb-8 sm:mb-16">
