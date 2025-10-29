@@ -50,9 +50,9 @@
 
 	const variantClasses = {
 		primary:
-			'bg-brand text-white font-semibold rounded-none hover:bg-brand-light duration-200 cursor-pointer uppercase outline outline-2 outline-brand hover:outline-brand-light',
+			'bg-brand text-white font-semibold hover:bg-brand-light duration-200 cursor-pointer uppercase outline outline-2 outline-brand hover:outline-brand-light',
 		outline:
-			'text-light hover:text-dark font-semibold rounded-none hover:bg-accent hover:outline-accent outline outline-2 outline-light transition duration-200 cursor-pointer uppercase'
+			'text-light hover:text-dark font-semibold hover:bg-accent hover:outline-accent outline outline-2 outline-light transition duration-200 cursor-pointer uppercase'
 	}
 
 	const disabledVariantClasses = {
