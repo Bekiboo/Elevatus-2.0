@@ -26,7 +26,5 @@
 
 	<Challenges className="min-h-[60vh] py-16!" />
 
-	<Response className="min-h-[60vh] py-16!" />
-
-	<Donations />
+	<Response className="min-h-[60vh] pt-16!" />
 </div>

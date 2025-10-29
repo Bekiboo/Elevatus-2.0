@@ -1,4 +1,5 @@
 <script lang="ts">
+	import HighlightedText from '$lib/components/UI/HighlightedText.svelte'
 	import { cn } from '$lib/utils'
 	import { onMount, onDestroy } from 'svelte'
 	import { slide } from 'svelte/transition'
@@ -52,8 +53,8 @@
 	id="challenges-section"
 	class={cn([className, 'flex flex-col items-center justify-center px-4 bg-dark text-light'])}
 >
-	<h2 class="text-4xl sm:text-6xl font-extrabold text-center uppercase mb-4">
-		The <span class="text-brand">Challenges</span>
+	<h2 class="text-4xl sm:text-6xl font-black text-center uppercase mb-4">
+		The <HighlightedText color="light" text="dark">Challenges</HighlightedText>
 	</h2>
 	<p class="max-w-3xl text-center mb-8 sm:mb-16">
 		Child labor remains a pervasive issue in Madagascar, with many children forced to work in
