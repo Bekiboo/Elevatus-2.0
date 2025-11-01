@@ -24,12 +24,9 @@
 			</a>, global benchmarks for ending poverty and building a better future for every child.
 		</p>
 	</div>
-	<div class="relative h-[80vh] overflow-hidden bg-dark">
-		<img
-			src="img/party_youth_center.png"
-			class="blur-[0px] object-cover opacity-100 w-screen h-full"
-			alt="Party Youth Center"
-		/>
+	<div
+		class="relative h-[80vh] overflow-hidden bg-dark bg-[url('img/party_youth_center.jpg')] bg-cover bg-center opacity-100 w-full"
+	>
 		<!-- Overlay -->
 		<div class="absolute inset-0 bg-linear-to-t from-transparent from-50% to-dark to-120%"></div>
 
@@ -50,36 +47,36 @@
 	</div>
 
 	<!-- Education -->
-	<div class="">
-		<div
-			class="w-full h-12 sm:h-16 max-sm:py-1 px-8 bg-brand text-4xl sm:text-6xl font-extrabold text-light"
-		>
-			EDUCATION
-		</div>
-		<div class="mx-auto grid md:grid-cols-2 items-center" id="education">
-			<img
-				src="img/group_studying.jpg"
-				alt="Children in class"
-				class="bg-dark object-cover w-full h-96 -scale-x-100"
-			/>
-			<div class="p-4">
-				<p class="text-lg leading-relaxed">
-					Every child deserves access to quality education. Elevatus provides school tuition,
-					tutoring, and mentorship to help children stay in school, develop literacy, and prepare
-					for a brighter future. Through consistent learning support, we’re building the foundations
-					for independence and hope.
-				</p>
-				<Button
-					variant="outline"
-					size="small"
-					class="mb-4 ml-auto mt-4 text-brand outline-brand hover:text-light hover:bg-brand hover:outline-brand"
-					><span>Learn More</span></Button
-				>
+	<div class="w-full space-y-12">
+		<div class="p-8">
+			<div class="text-4xl w-min mx-auto sm:text-6xl font-extrabold text-light uppercase mb-8">
+				<HighlightedText color="brand" text="light">Education</HighlightedText>
+			</div>
+			<div class="mx-auto grid md:grid-cols-2 items-center" id="education">
+				<img
+					src="img/group_studying.jpg"
+					alt="Children in class"
+					class="bg-dark object-cover w-full h-96 -scale-x-100"
+				/>
+				<div class="p-4">
+					<p class="text-lg leading-relaxed font-medium">
+						Every child deserves access to quality education. Elevatus provides school tuition,
+						tutoring, and mentorship to help children stay in school, develop literacy, and prepare
+						for a brighter future. Through consistent learning support, we’re building the
+						foundations for independence and hope.
+					</p>
+					<Button
+						variant="outline"
+						size="small"
+						class="mb-4 ml-auto mt-4 text-light outline-light hover:text-brand hover:bg-light hover:outline-light"
+						><span>Learn More</span></Button
+					>
+				</div>
 			</div>
 		</div>
 		<!-- Nutrition -->
 		<div
-			class="w-full h-12 sm:h-16 max-sm:py-1 px-8 bg-secondary text-4xl sm:text-6xl font-extrabold text-light text-end"
+			class="mt-80 w-full h-12 sm:h-16 max-sm:py-1 px-8 bg-secondary text-4xl sm:text-6xl font-extrabold text-light text-end"
 		>
 			NUTRITION
 		</div>

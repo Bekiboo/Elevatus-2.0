@@ -96,7 +96,9 @@
 			<div class="absolute w-full left-4 h-2.5 bottom-0 bg-secondary mt-auto"></div>
 		</div>
 	</div>
-	<Button href="/impact" size="small" variant="outline" class="mt-8">See more impacts</Button>
+	<Button href="/impact" size="small" variant="outline" class="mt-8 hover:text-brand"
+		>See more impacts</Button
+	>
 </section>
 
 {#snippet Stat()}
