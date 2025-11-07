@@ -33,10 +33,10 @@
 		<div
 			class="absolute top-1/5 lg:top-1/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-light p-4 w-full text-center"
 		>
-			<h3 class="font-bold mb-2 uppercase font-saira tracking-widest">
-				<div class="sm:mb-4 text-5xl md:text-7xl lg:text-9xl">Three pillars</div>
+			<h3 class="font-bold mb-2 uppercase tracking-widest">
+				<div class="mt-8 mb-4 text-6xl md:text-7xl lg:text-9xl font-saira">Three pillars</div>
 				<div
-					class="flex max-sm:flex-col w-min justify-center mx-auto text-4xl md:text-5xl lg:text-6xl"
+					class="flex max-md:flex-col w-min justify-center mx-auto text-4xl lg:text-5xl xl:text-6xl font-black"
 				>
 					<HighlightedText color="brand" text="light">Education</HighlightedText>
 					<HighlightedText color="secondary" text="light">Nutrition</HighlightedText>
@@ -46,83 +46,186 @@
 		</div>
 	</div>
 
-	<!-- Education -->
-	<div class="w-full space-y-12">
-		<div class="p-8">
-			<div class="text-4xl w-min mx-auto sm:text-6xl font-extrabold text-light uppercase mb-8">
-				<HighlightedText color="brand" text="light">Education</HighlightedText>
-			</div>
-			<div class="mx-auto grid md:grid-cols-2 items-center" id="education">
-				<img
-					src="img/group_studying.jpg"
-					alt="Children in class"
-					class="bg-dark object-cover w-full h-96 -scale-x-100"
-				/>
-				<div class="p-4">
-					<p class="text-lg leading-relaxed font-medium">
-						Every child deserves access to quality education. Elevatus provides school tuition,
-						tutoring, and mentorship to help children stay in school, develop literacy, and prepare
-						for a brighter future. Through consistent learning support, we’re building the
-						foundations for independence and hope.
-					</p>
-					<Button
-						variant="outline"
-						size="small"
-						class="mb-4 ml-auto mt-4 text-light outline-light hover:text-brand hover:bg-light hover:outline-light"
-						><span>Learn More</span></Button
-					>
-				</div>
-			</div>
-		</div>
-		<!-- Nutrition -->
-		<div
-			class="mt-80 w-full h-12 sm:h-16 max-sm:py-1 px-8 bg-secondary text-4xl sm:text-6xl font-extrabold text-light text-end"
-		>
-			NUTRITION
-		</div>
-		<div class="mx-auto grid md:grid-cols-2 items-center" id="nutrition">
+	<div class="max-lg:bg-dark py-6 lg:py-16 flex-col flex gap-6 lg:gap-16">
+		<div class="relative w-full flex flex-col lg:gap-16 lg:p-16">
 			<img
-				src="img/kids_eating.png"
-				alt="Healthy meal for children"
-				class="bg-dark object-cover w-full h-96 order-1 md:order-2"
+				src="img/group_studying.jpg"
+				alt="Children in class"
+				class="lg:absolute min-h-96 top-0 right-0 z-0 object-cover lg:w-8/12 lg:h-full"
 			/>
-			<div class="p-4 order-2 md:order-1">
-				<p class="text-lg leading-relaxed">
-					Hungry children can’t learn. Our meal programs ensure that every child receives a healthy,
-					balanced diet at school — reducing absenteeism and improving performance. With over 8,000
-					meals served, we’re not just feeding bodies but fueling futures.
+
+			<div class="absolute max-lg:top-6 max-lg:left-1/2 max-lg:translate-x-[-50%] lg:relative z-10">
+				<div
+					class="font-light text-2xl -mb-2 pt-1 bg-light w-min max-lg:px-4 text-nowrap text-neutral-600"
+				>
+					First Pillar
+				</div>
+				<h2 class="text-7xl bg-light w-min max-lg:px-4 lg:text-dark font-black font-saira">
+					EDUCATION
+				</h2>
+			</div>
+
+			<div class="relative lg:w-1/2 bg-brand z-10 text-black p-6">
+				<p class="text-lg leading-relaxed font-medium">
+					Every child deserves access to quality education. Elevatus provides school tuition,
+					tutoring, and mentorship to help children stay in school, develop literacy, and prepare
+					for a brighter future. Through consistent learning support, we’re building the foundations
+					for independence and hope.
 				</p>
+				<div class="flex flex-col gap-4 mt-6">
+					<span class="text-sm uppercase font-semibold tracking-widest"> Aligned with: </span>
+					<div class="flex flex-wrap items-center gap-2">
+						<div class="relative w-32 h-32">
+							<img
+								src="/img/icons/SDG-01.png"
+								alt="SDG 4 - No Poverty"
+								title="SDG 4 – No Poverty"
+								class="absolute h-32 w-32"
+							/>
+							<!-- <img
+								src="/img/icons/SDG-01-white.png"
+								alt="SDG 4 - No Poverty"
+								title="SDG 4 – No Poverty"
+								class="absolute h-32 w-32 opacity-0 hover:opacity-100 transition-opacity"
+							/> -->
+						</div>
+						<img
+							src="/img/icons/SDG-04.png"
+							alt="SDG 4 - Quality Education"
+							title="SDG 4 – Quality Education"
+							class="h-32 w-32"
+						/>
+						<img
+							src="/img/icons/SDG-08.png"
+							alt="SDG 4 - Decent Work and Economic Growth"
+							title="SDG 4 – Decent Work and Economic Growth"
+							class="h-32 w-32"
+						/>
+						<img
+							src="/img/icons/SDG-10.png"
+							alt="SDG 4 - Reduced Inequalities"
+							title="SDG 4 – Reduced Inequalities"
+							class="h-32 w-32"
+						/>
+					</div>
+				</div>
 				<Button
 					variant="outline"
 					size="small"
-					class="mb-4 mr-auto mt-4 text-secondary outline-secondary hover:text-light hover:bg-secondary hover:outline-secondary"
+					class="mb-4 ml-auto mt-4 text-light font-bold outline-3 outline-light hover:text-brand hover:bg-light hover:outline-light"
 					><span>Learn More</span></Button
 				>
 			</div>
 		</div>
-		<!-- Skills -->
-		<div
-			class="w-full h-12 sm:h-16 max-sm:py-1 px-8 bg-accent text-4xl sm:text-6xl font-extrabold text-light"
-		>
-			SKILLS
+
+		<div class="relative w-full flex flex-col lg:items-end lg:justify-end lg:gap-16 lg:p-16">
+			<img
+				src="img/kids_eating.png"
+				alt="Healthy meal for children"
+				class="lg:absolute min-h-96 top-0 left-0 z-0 object-cover lg:w-8/12 lg:h-full"
+			/>
+			<div
+				class="absolute max-lg:top-6 max-lg:left-1/2 max-lg:translate-x-[-50%] lg:relative z-10 lg:text-end"
+			>
+				<div
+					class="font-light text-2xl -mb-2 pt-1 bg-light w-min max-lg:px-4 text-nowrap text-neutral-600"
+				>
+					Second Pillar
+				</div>
+				<h2 class="text-7xl bg-light w-min max-lg:px-4 lg:text-dark font-black font-saira">
+					NUTRITION
+				</h2>
+			</div>
+			<div class="relative lg:w-1/2 bg-secondary z-10 text-black p-6">
+				<p class="text-lg leading-relaxed font-medium">
+					Hungry children can’t learn. Our meal programs ensure that every child receives a healthy,
+					balanced diet at school — reducing absenteeism and improving performance. With over 8,000
+					meals served, we’re not just feeding bodies but fueling futures.
+				</p>
+				<div class="flex flex-col gap-4 mt-6">
+					<span class="text-sm uppercase font-semibold tracking-widest"> Aligned with: </span>
+					<div class="flex flex-wrap items-center gap-2">
+						<img
+							src="/img/icons/SDG-02.png"
+							alt="SDG 4 - Zero Hunger"
+							title="SDG 4 – Zero Hunger"
+							class="h-32 w-32"
+						/>
+						<img
+							src="/img/icons/SDG-03.png"
+							alt="SDG 4 - Good Health and Well-Being"
+							title="SDG 4 – Good Health and Well-Being"
+							class="h-32 w-32"
+						/>
+						<img
+							src="/img/icons/SDG-04.png"
+							alt="SDG 4 - Quality Education"
+							title="SDG 4 – Quality Education"
+							class="h-32 w-32"
+						/>
+					</div>
+				</div>
+				<Button
+					variant="outline"
+					size="small"
+					class="mb-4 ml-auto mt-4 text-light font-bold outline-3 outline-light hover:text-secondary hover:bg-light hover:outline-light"
+					><span>Learn More</span></Button
+				>
+			</div>
 		</div>
-		<div class="mx-auto grid md:grid-cols-2 items-center" id="skills">
+
+		<div class="relative w-full flex flex-col lg:gap-16 lg:p-16">
 			<img
 				src="img/sewing_class.jpeg"
-				alt="Youth vocational training"
-				class="bg-dark object-cover w-full h-96"
+				alt="Children in class"
+				class="lg:absolute min-h-96 top-0 right-0 z-0 object-cover lg:w-8/12 lg:h-full"
 			/>
-			<div class="p-4">
-				<p class="text-lg leading-relaxed">
+
+			<div class="absolute max-lg:top-6 max-lg:left-1/2 max-lg:translate-x-[-50%] lg:relative z-10">
+				<div
+					class="font-light text-2xl -mb-2 pt-1 bg-light w-min max-lg:px-4 text-nowrap text-neutral-600"
+				>
+					Third Pillar
+				</div>
+				<h2 class="text-7xl bg-light w-min max-lg:px-4 lg:text-dark font-black font-saira">
+					SKILLS
+				</h2>
+			</div>
+
+			<div class="relative lg:w-1/2 bg-accent z-10 text-black p-6">
+				<p class="text-lg leading-relaxed font-medium">
 					At the Youth Center, children discover new talents and learn practical skills such as
 					sewing, cooking, and computer literacy — all in a safe, supportive environment. These
 					opportunities nurture creativity, build confidence, and open doors to future self-reliance
 					and friendship.
 				</p>
+				<div class="flex flex-col gap-4 mt-6">
+					<span class="text-sm uppercase font-semibold tracking-widest"> Aligned with: </span>
+					<div class="flex flex-wrap items-center gap-2">
+						<img
+							src="/img/icons/SDG-04.png"
+							alt="SDG 4 - Quality Education"
+							title="SDG 4 – Quality Education"
+							class="h-32 w-32"
+						/>
+						<img
+							src="/img/icons/SDG-08.png"
+							alt="SDG 4 - Decent Work and Economic Growth"
+							title="SDG 4 – Decent Work and Economic Growth"
+							class="h-32 w-32"
+						/>
+						<img
+							src="/img/icons/SDG-16.png"
+							alt="SDG 4 - Peace, Justice and Strong Institutions"
+							title="SDG 4 – Peace, Justice and Strong Institutions"
+							class="h-32 w-32"
+						/>
+					</div>
+				</div>
 				<Button
 					variant="outline"
 					size="small"
-					class="mb-4 ml-auto mt-4 text-accent outline-accent hover:text-light hover:bg-accent hover:outline-accent"
+					class="mb-4 ml-auto mt-4 text-light font-bold outline-3 outline-light hover:text-accent hover:bg-light hover:outline-light"
 					><span>Learn More</span></Button
 				>
 			</div>
