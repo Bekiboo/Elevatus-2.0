@@ -25,7 +25,7 @@
 		</p>
 	</div>
 	<div
-		class="relative h-[80vh] overflow-hidden bg-dark bg-[url('img/party_youth_center.jpg')] bg-cover bg-center opacity-100 w-full"
+		class="relative h-[80vh] overflow-hidden bg-dark bg-[url('/img/party_youth_center.jpg')] bg-cover bg-center opacity-100 w-full"
 	>
 		<!-- Overlay -->
 		<div class="absolute inset-0 bg-linear-to-t from-transparent from-50% to-dark to-120%"></div>
