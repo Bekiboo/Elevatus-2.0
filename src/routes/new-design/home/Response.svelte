@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Button from '$lib/components/UI/Button.svelte'
-	import HighlightedText from '$lib/components/UI/HighlightedText.svelte'
 	import { cn } from '$lib/utils'
 
 	const { className }: { className?: string } = $props()
@@ -12,7 +11,7 @@
 	>
 		<h2 class="text-4xl sm:text-6xl font-black text-dark text-center uppercase mb-4">
 			Our
-			<HighlightedText color="dark" text="light">Response</HighlightedText>
+			<div class="uppercase bg-dark text-light px-2 py-1">Response</div>
 		</h2>
 
 		<p class="max-w-3xl text-center mb-8 sm:mb-16">
@@ -36,11 +35,11 @@
 			<h3 class="font-bold mb-2 uppercase tracking-widest">
 				<div class="mt-8 mb-4 text-6xl md:text-7xl lg:text-9xl font-saira">Three pillars</div>
 				<div
-					class="flex max-md:flex-col w-min justify-center mx-auto text-4xl lg:text-5xl xl:text-6xl font-black"
+					class="flex gap-4 max-md:flex-col w-min justify-center mx-auto text-4xl lg:text-5xl xl:text-6xl font-black"
 				>
-					<HighlightedText color="brand" text="light">Education</HighlightedText>
-					<HighlightedText color="secondary" text="light">Nutrition</HighlightedText>
-					<HighlightedText color="accent" text="light">Skills</HighlightedText>
+					<div class="uppercase bg-brand px-2 py-1">Education</div>
+					<div class="uppercase bg-secondary px-2 py-1">Nutrition</div>
+					<div class="uppercase bg-accent px-2 py-1">Skills</div>
 				</div>
 			</h3>
 		</div>
