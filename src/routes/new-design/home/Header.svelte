@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { fade } from 'svelte/transition'
+	import { fade, fly } from 'svelte/transition'
 	import { onMount } from 'svelte'
 	import Button from '$lib/components/UI/Button.svelte'
 	import { Tween } from 'svelte/motion'
+	import { intersectObs } from '$lib/intersectObs.svelte'
 
 	let mounted = $state(false)
 	let bgParallax = $state(54)
@@ -13,6 +14,24 @@
 		easing: (t: number) => 1 - Math.pow(2, -10 * t)
 	})
 
+	let isScrolled = $state(false)
+
+	const intersectorOptions = {
+		root: null,
+		threshold: 0.2,
+		unobserveOnEnter: false,
+		onLeave: (entry: any) => {
+			if (!entry.isIntersecting) {
+				isScrolled = true
+			}
+		},
+		onIntersect: (entry: any) => {
+			if (entry.isIntersecting) {
+				isScrolled = false
+			}
+		}
+	}
+
 	onMount(() => {
 		const img = new Image()
 		img.src = bgUrl
@@ -21,10 +40,12 @@
 			mounted = true
 		}
 	})
-	let isLoading = $state(false)
 </script>
 
-<div class="relative w-full h-screen bg-dark flex flex-col items-center justify-center">
+<div
+	use:intersectObs={intersectorOptions}
+	class="relative w-full h-screen bg-dark flex flex-col items-center justify-center"
+>
 	{#if mounted}
 		<h1
 			in:fade={{ duration: 300, delay: 500 }}
@@ -46,15 +67,7 @@
 			in:fade={{ duration: 300, delay: 1000 }}
 			class="absolute bottom-8 flex gap-4 sm:gap-8 mt-8"
 		>
-			<Button
-				onclick={() => {
-					isLoading = true
-					setTimeout(() => {
-						isLoading = false
-					}, 1000)
-				}}
-				{isLoading}>Donate</Button
-			>
+			<Button href="/donate">Donate</Button>
 			<Button
 				variant="outline"
 				class="hover:bg-light hover:text-dark"
@@ -65,6 +78,17 @@
 		</div>
 	{/if}
 </div>
+
+{#if isScrolled}
+	<div
+		in:fade={{ duration: 100 }}
+		out:fade={{ duration: 100 }}
+		class="fixed z-50 bottom-8 right-16"
+	>
+		<Button href="/donate" size="medium" class="shadow-[0_12px_30px_rgba(0,0,0,0.5)]">Donate</Button
+		>
+	</div>
+{/if}
 
 <svelte:window
 	on:scroll={() => {

@@ -127,7 +127,7 @@
 				class="absolute max-lg:top-6 max-lg:left-1/2 max-lg:translate-x-[-50%] lg:relative z-10 lg:text-end"
 			>
 				<div
-					class="font-light text-2xl -mb-2 pt-1 bg-light w-min max-lg:px-4 text-nowrap text-neutral-600"
+					class="font-light text-2xl -mb-2 pt-1 bg-light w-min max-lg:px-4 text-nowrap text-neutral-600 lg:ml-auto"
 				>
 					Second Pillar
 				</div>

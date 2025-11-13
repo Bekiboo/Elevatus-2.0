@@ -10,6 +10,11 @@ type Options = {
 		node: HTMLElement,
 		observer: IntersectionObserver
 	) => void
+	onLeave?: (
+		entry: IntersectionObserverEntry,
+		node: HTMLElement,
+		observer: IntersectionObserver
+	) => void
 }
 
 const defaultOptions: Options = {
@@ -17,7 +22,8 @@ const defaultOptions: Options = {
 	rootMargin: '0px',
 	threshold: 0,
 	unobserveOnEnter: false,
-	onIntersect: () => {}
+	onIntersect: () => {},
+	onLeave: () => {}
 }
 
 /**
@@ -28,7 +34,7 @@ const defaultOptions: Options = {
  * @returns {Object} - An object containing a `destroy` method to clean up the observer.
  */
 export const intersectObs: Action<HTMLElement, Options> = (node, options = {}) => {
-	const { root, rootMargin, threshold, unobserveOnEnter, onIntersect } = {
+	const { root, rootMargin, threshold, unobserveOnEnter, onIntersect, onLeave } = {
 		...defaultOptions,
 		...options
 	}
@@ -37,9 +43,10 @@ export const intersectObs: Action<HTMLElement, Options> = (node, options = {}) =
 		(entries) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
-					// Appel de la callback passée
 					onIntersect?.(entry, node, observer)
 					if (unobserveOnEnter) observer.disconnect()
+				} else {
+					onLeave?.(entry, node, observer)
 				}
 			})
 		},
