@@ -109,10 +109,11 @@
 					</div>
 				</div>
 				<Button
+					href="/programs"
 					variant="outline"
 					size="small"
-					class="mb-4 ml-auto mt-4 text-light font-bold outline-3 outline-light hover:text-brand hover:bg-light hover:outline-light"
-					><span>Learn More</span></Button
+					class="mb-4 mt-4 w-min text-light font-bold outline-3 outline-light hover:text-brand hover:bg-light hover:outline-light"
+					>Learn More</Button
 				>
 			</div>
 		</div>
@@ -165,10 +166,11 @@
 					</div>
 				</div>
 				<Button
+					href="/programs"
 					variant="outline"
 					size="small"
-					class="mb-4 ml-auto mt-4 text-light font-bold outline-3 outline-light hover:text-secondary hover:bg-light hover:outline-light"
-					><span>Learn More</span></Button
+					class="mb-4 mt-4 w-min text-light font-bold outline-3 outline-light hover:text-secondary hover:bg-light hover:outline-light"
+					>Learn More</Button
 				>
 			</div>
 		</div>
@@ -222,10 +224,11 @@
 					</div>
 				</div>
 				<Button
+					href="/programs"
 					variant="outline"
 					size="small"
-					class="mb-4 ml-auto mt-4 text-light font-bold outline-3 outline-light hover:text-accent hover:bg-light hover:outline-light"
-					><span>Learn More</span></Button
+					class="mb-4 mt-4 w-min text-light font-bold outline-3 outline-light hover:text-accent hover:bg-light hover:outline-light"
+					>Learn More</Button
 				>
 			</div>
 		</div>
