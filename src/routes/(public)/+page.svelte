@@ -1,10 +1,11 @@
 <script lang="ts">
-	import Header from './home/Header.svelte'
-	import Mission from './home/Mission.svelte'
-	import Programs from './home/Programs.svelte'
-	import Donations from './home/Donations.svelte'
-	import Impact from './home/Impact.svelte'
-	import ProblemSolution from './home/ProblemSolution.svelte'
+	import Mission from '../(public)/home/Mission.svelte'
+	import Response from '../(public)/home/Response.svelte'
+	import Donations from '../(public)/home/Donations.svelte'
+	import Impact from '../(public)/home/Impact.svelte'
+	import Challenges from '../(public)/home/Challenges.svelte'
+	import { onMount } from 'svelte'
+	import Header from '../(public)/home/Header.svelte'
 	import { MetaTags } from 'svelte-meta-tags'
 </script>
 
@@ -34,16 +35,12 @@
 
 <Header />
 
-<div
-	class="container flex flex-col justify-center max-w-6xl gap-12 px-4 mx-auto my-12 sm:my-24 sm:gap-24"
->
-	<Mission />
+<div class="flex flex-col justify-center">
+	<Mission className="min-h-[60vh] py-16!" />
 
-	<Impact />
+	<Impact className="min-h-[60vh] py-16!" />
 
-	<ProblemSolution />
+	<Challenges className="min-h-[60vh] py-16!" />
 
-	<Programs />
-
-	<Donations />
+	<Response className="min-h-[60vh] pt-16!" />
 </div>

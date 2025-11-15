@@ -1,62 +1,97 @@
 <script lang="ts">
-	let innerWidth: number
+	import { fade, fly } from 'svelte/transition'
+	import { onMount } from 'svelte'
+	import Button from '$lib/components/UI/Button.svelte'
+	import { Tween } from 'svelte/motion'
+	import { intersectObs } from '$lib/intersectObs.svelte'
+
+	let mounted = $state(false)
+	let bgParallax = $state(54)
+	const bgUrl = 'http://www.elevatus-foundation.org/img/child_labor.jpg'
+
+	const blurTween = new Tween(1, {
+		duration: 6000,
+		easing: (t: number) => 1 - Math.pow(2, -10 * t)
+	})
+
+	let isScrolled = $state(false)
+
+	const intersectorOptions = {
+		root: null,
+		threshold: 0.2,
+		unobserveOnEnter: false,
+		onLeave: (entry: any) => {
+			if (!entry.isIntersecting) {
+				isScrolled = true
+			}
+		},
+		onIntersect: (entry: any) => {
+			if (entry.isIntersecting) {
+				isScrolled = false
+			}
+		}
+	}
+
+	onMount(() => {
+		const img = new Image()
+		img.src = bgUrl
+		blurTween.target = 0
+		img.onload = () => {
+			mounted = true
+		}
+	})
 </script>
 
-<svelte:window bind:innerWidth />
-
-<div class="relative flex flex-col items-center justify-end w-full overflow-hidden text-white">
-	<!-- Desktop Hero -->
-	{#if innerWidth > 640}
-		<div class="texture smm:hidden h-[80vh] sm:min-h-[400px] w-full absolute z-10"></div>
-		<video
-			class="smm:hidden object-cover h-[80vh] sm:min-h-[400px] w-full brightness-50"
-			loop
-			muted
-			autoplay
+<div
+	use:intersectObs={intersectorOptions}
+	class="relative w-full h-screen bg-dark flex flex-col items-center justify-center"
+>
+	{#if mounted}
+		<h1
+			in:fade={{ duration: 300, delay: 500 }}
+			class="mx-auto mb-16 text-[10rem] sm:text-[30vh] font-light uppercase
+			bg-clip-text text-transparent bg-cover bg-center leading-[75%] text-center font-saira"
+			style="
+				background-image: linear-gradient(rgba(255,255,255,{blurTween.current}), rgba(255,255,255,{blurTween.current})), url('{bgUrl}');
+				background-size: 100%;
+				background-position: 100% {bgParallax}%;
+			"
 		>
-			<source src="img/Elevatus_loop_large.mp4" type="video/mp4" />
-			<div class="texture top-0 left-0 w-[100vw] h-[100vh]"></div>
-		</video>
-	{/if}
+			<span class="tracking-tight">Ending</span>
+			<br />
+			<div>Child</div>
+			<div class="tracking-wide">Labor</div>
+		</h1>
 
-	<!-- Mobile Hero -->
-	<img
-		class="object-cover h-[80vh] w-full brightness-[35%] sm:hidden"
-		src="img/child_redhood_breaking_rocks.jpg"
-		alt="Malagasy child wearing a red hood breaking rocks"
-	/>
-
-	<!-- Caption -->
-	<div class="absolute z-20 flex flex-col justify-end w-full max-w-6xl px-8 mx-auto">
-		<div class="flex flex-col mb-16">
-			<h4 class="mb-1 text-lg font-thin sm:text-2xl">Fighting Child Labor in Madagascar</h4>
-			<h1 class="max-w-md text-3xl font-extrabold text-left uppercase sm:text-5xl sm:max-w-2xl">
-				Because they deserve their <em
-					class="text-black/0"
-					style="font-style: unset; -webkit-text-stroke: 1px white;">childhood</em
-				> back
-			</h1>
-			<div class="mt-8 max-w-fit">
-				<a href="/donate">
-					<button
-						class="bg-orange-500 text-white rounded-full border-2 drop-shadow-md active:drop-shadow-none duration-100 hover:bg-orange-400"
-					>
-						<p class="px-4 py-2 sm:py-4 sm:px:8 sm:text-xl sm:font-medium">Sponsor a child today</p>
-					</button>
-				</a>
-			</div>
+		<div
+			in:fade={{ duration: 300, delay: 1000 }}
+			class="absolute bottom-8 flex gap-4 sm:gap-8 mt-8"
+		>
+			<Button href="/donate">Donate</Button>
+			<Button
+				variant="outline"
+				class="hover:bg-light hover:text-dark"
+				onclick={() => {
+					window.scrollBy({ top: window.innerHeight - 80, behavior: 'smooth' })
+				}}>Learn More</Button
+			>
 		</div>
-	</div>
+	{/if}
 </div>
 
-<style>
-	.texture {
-		/* background: url('/img/misc/diagonal.png'); */
-		background: rgba(0, 0, 0, 0.25);
-		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-		backdrop-filter: blur(4px);
-		-webkit-backdrop-filter: blur(2px);
-		border-radius: 10px;
-		border: 1px solid rgba(255, 255, 255, 0.18);
-	}
-</style>
+{#if isScrolled}
+	<div
+		in:fade={{ duration: 100 }}
+		out:fade={{ duration: 100 }}
+		class="fixed z-50 bottom-8 right-16"
+	>
+		<Button href="/donate" size="medium" class="shadow-[0_12px_30px_rgba(0,0,0,0.5)]">Donate</Button
+		>
+	</div>
+{/if}
+
+<svelte:window
+	on:scroll={() => {
+		bgParallax = 54 - window.scrollY * 0.33
+	}}
+/>
