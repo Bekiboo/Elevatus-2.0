@@ -118,8 +118,8 @@
 							<div class="relative">
 								{#if href === currentPage}
 									<button
-										class="p-2 hover:text-brand uppercase font-light {name == 'Donate' &&
-											'text-brand font-bold!'}"
+										class="p-2 hover:text-brand uppercase font-light cursor-pointer
+										 {name == 'Donate' && 'text-brand font-bold!'}"
 										bind:clientWidth={barWidth}
 										aria-current={currentPage === href}
 										onclick={() => toggleDropdown(name)}
@@ -128,8 +128,8 @@
 									</button>
 								{:else}
 									<button
-										class="p-2 duration-100 ease-in-out hover:text-brand uppercase font-light {name ==
-											'Donate' && 'text-brand font-bold!'}"
+										class="p-2 duration-100 ease-in-out hover:text-brand uppercase font-light cursor-pointer
+										 {name == 'Donate' && 'text-brand font-bold!'}"
 										onclick={() => toggleDropdown(name)}
 									>
 										{name}

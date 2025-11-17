@@ -84,11 +84,11 @@
 
 	<div class="flex flex-col basis-1/2">
 		<div
-			class="relative flex items-center w-64 h-16 mx-auto mb-5 text-lg text-gray-500 cursor-pointer outline-2 outline-gray-300 overflow-hidden"
+			class="relative flex items-center w-64 h-16 mx-auto mb-5 text-lg text-gray-500 cursor-pointer outline-2 outline-gray-300"
 		>
 			<div
 				class="bg-brand absolute top-0 left-0 w-32 h-16 duration-150
-                  ease-in-out {monthly ? '' : 'translate-x-32'}"
+                  ease-in-out outline-2 outline-brand {monthly ? '' : 'translate-x-32'}"
 			></div>
 			<button
 				class="relative z-10 grid items-center w-32 h-full text-center cursor-pointer"
