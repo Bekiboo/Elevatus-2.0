@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores'
-	import { fade } from 'svelte/transition'
+	import { fade, slide } from 'svelte/transition'
 	import Hamburger from './Hamburger.svelte'
 	import { onMount } from 'svelte'
 	let scrolled = $state(false)
@@ -25,6 +25,7 @@
 
 	let open = $state(false)
 	let activeDropdown = $state<string | null>(null)
+	let mobileActiveDropdown = $state<string | null>(null)
 
 	const LINKS = [
 		{ name: 'Home', href: '/', color: 'white' },
@@ -50,6 +51,15 @@
 
 	function closeDropdown() {
 		activeDropdown = null
+	}
+
+	function toggleMobileDropdown(linkName: string) {
+		mobileActiveDropdown = mobileActiveDropdown === linkName ? null : linkName
+	}
+
+	function closeMobileMenu() {
+		open = false
+		mobileActiveDropdown = null
 	}
 
 	$effect(() => {
@@ -197,17 +207,47 @@
 		aria-labelledby="mobile-menu"
 	>
 		<div class="px-8 py-4">
-			<div class="mt-6">
+			<div class="mt-6 space-y-4">
 				{#each LINKS as link}
 					{@const { href, name, color } = link}
-					<a
-						class="block px-3 py-2 text-4xl font-medium text-center uppercase underline-offset-4"
-						{href}
-						aria-current={currentPage === href}
-						class:text-brand={color === 'orange'}
-						class:underline={currentPage === href}
-						onclick={() => (open = false)}>{name}</a
-					>
+					{#if link.sublinks}
+						<div class="text-center">
+							<button
+								class="block w-full px-3 py-2 text-4xl font-medium uppercase underline-offset-4 {color ===
+								'orange'
+									? 'text-brand'
+									: 'text-dark'}"
+								class:underline={currentPage.startsWith(href) && href !== '/'}
+								onclick={() => toggleMobileDropdown(name)}
+							>
+								{name}
+							</button>
+							{#if mobileActiveDropdown === name}
+								<div in:slide out:slide class="mt-2 space-y-2">
+									{#each link.sublinks as sublink}
+										<a
+											href={sublink.href}
+											class="block px-6 py-2 text-2xl font-medium text-dark hover:text-brand uppercase"
+											class:text-brand={currentPage === sublink.href}
+											class:underline={currentPage === sublink.href}
+											onclick={closeMobileMenu}
+										>
+											{sublink.name}
+										</a>
+									{/each}
+								</div>
+							{/if}
+						</div>
+					{:else}
+						<a
+							class="block px-3 py-2 text-4xl font-medium text-center uppercase underline-offset-4"
+							{href}
+							aria-current={currentPage === href}
+							class:text-brand={color === 'orange'}
+							class:underline={currentPage === href}
+							onclick={closeMobileMenu}>{name}</a
+						>
+					{/if}
 				{/each}
 			</div>
 		</div>
