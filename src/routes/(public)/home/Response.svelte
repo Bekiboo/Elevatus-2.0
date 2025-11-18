@@ -11,7 +11,7 @@
 	>
 		<h2 class="text-4xl sm:text-6xl font-black text-dark text-center uppercase mb-4">
 			Our
-			<div class="uppercase bg-dark text-light px-2 py-1">Response</div>
+			<span class="uppercase bg-dark text-light px-2 pb-1.5">Response</span>
 		</h2>
 
 		<p class="max-w-3xl text-center mb-8 sm:mb-16">
@@ -37,9 +37,9 @@
 				<div
 					class="flex gap-4 max-md:flex-col w-min justify-center mx-auto text-4xl lg:text-5xl xl:text-6xl font-black"
 				>
-					<div class="uppercase bg-brand px-2 py-1">Education</div>
-					<div class="uppercase bg-secondary px-2 py-1">Nutrition</div>
-					<div class="uppercase bg-accent px-2 py-1">Skills</div>
+					<span class="uppercase bg-brand px-2 pb-1.5">Education</span>
+					<span class="uppercase bg-secondary px-2 pb-1.5">Nutrition</span>
+					<span class="uppercase bg-accent px-2 pb-1.5">Skills</span>
 				</div>
 			</h3>
 		</div>
@@ -109,7 +109,7 @@
 					</div>
 				</div>
 				<Button
-					href="/programs"
+					href="/programs/education"
 					variant="outline"
 					size="small"
 					class="mb-4 mt-4 w-min text-light font-bold outline-3 outline-light hover:text-brand hover:bg-light hover:outline-light"
@@ -166,7 +166,7 @@
 					</div>
 				</div>
 				<Button
-					href="/programs"
+					href="/programs/nutrition"
 					variant="outline"
 					size="small"
 					class="mb-4 mt-4 w-min text-light font-bold outline-3 outline-light hover:text-secondary hover:bg-light hover:outline-light"
@@ -224,7 +224,7 @@
 					</div>
 				</div>
 				<Button
-					href="/programs"
+					href="/programs/skills"
 					variant="outline"
 					size="small"
 					class="mb-4 mt-4 w-min text-light font-bold outline-3 outline-light hover:text-accent hover:bg-light hover:outline-light"

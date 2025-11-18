@@ -53,7 +53,7 @@
 	class={cn([className, 'flex flex-col items-center justify-center px-4 bg-dark text-light'])}
 >
 	<h2 class="text-4xl sm:text-6xl font-black text-center uppercase mb-4 leading-12 sm:leading-20">
-		The <span class="uppercase bg-light text-dark px-2 py-1">Challenges</span>
+		The <span class="uppercase bg-light text-dark px-2 pb-1.5">Challenges</span>
 	</h2>
 	<p class="max-w-3xl text-center mb-8 sm:mb-16">
 		Child labor remains a pervasive issue in Madagascar, with many children forced to work in

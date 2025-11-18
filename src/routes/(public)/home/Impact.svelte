@@ -53,7 +53,7 @@
 		class="text-4xl sm:text-6xl font-black text-dark text-center uppercase mb-4 leading-12 sm:leading-20"
 	>
 		Your
-		<span class="uppercase bg-light text-brand px-2 py-1">Impact</span>
+		<span class="uppercase bg-light text-brand px-2 pb-1.5">Impact</span>
 		in 2024
 	</h2>
 	<p class="mb-6 sm:mb-12 text-center max-w-2xl mx-auto text-lg">
@@ -96,9 +96,6 @@
 			<div class="absolute w-full left-4 h-2.5 bottom-0 bg-secondary mt-auto"></div>
 		</div>
 	</div>
-	<Button href="/impact" size="small" variant="outline" class="mt-8 hover:text-brand"
-		>See more impacts</Button
-	>
 </section>
 
 {#snippet Stat()}
