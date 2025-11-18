@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<div class="flex flex-col items-center w-1/2 sm:mb-auto">
-		<div class="flex flex-col font-semibold text-blue-900 sm:text-xl">
+		<div class="flex flex-col font-semibold text-dark sm:text-xl">
 			<div class="-mb-1">
 				{member.firstName}
 			</div>
@@ -47,6 +47,6 @@
 				{member.lastName}
 			</div>
 		</div>
-		<h4 class="font-thin text-blue-900">{member.role}</h4>
+		<h4 class="font-thin text-dark">{member.role}</h4>
 	</div>
 </button>
