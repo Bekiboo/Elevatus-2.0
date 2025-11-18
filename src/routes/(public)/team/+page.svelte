@@ -19,6 +19,13 @@
 		currentMember = index
 		showModal = true
 	}
+
+	const groupColors: Record<string, string> = {
+		board: 'brand',
+		executive: 'secondary',
+		education: 'accent',
+		logistics: 'dark'
+	}
 </script>
 
 <svelte:head>
@@ -37,13 +44,19 @@
 
 {#snippet section(group: string, title: string)}
 	<section>
-		<h2 class="m-auto mb-4 text-2xl font-bold uppercase sm:text-4xl text-sky-700 w-fit">{title}</h2>
+		<h2
+			class="m-auto mb-8 px-4 py-1 text-2xl font-bold uppercase sm:text-4xl text-light bg-{groupColors[
+				group
+			]} w-fit"
+		>
+			{title}
+		</h2>
 		<div
 			class="flex flex-col justify-center w-full gap-4 sm:flex-row sm:flex-wrap sm:w-auto max-w-72 sm:max-w-none"
 		>
 			{#each members as member, i}
 				{#if member.group === group}
-					<Member {member} displayMemberModal={() => displayMemberByIndex(i)} />
+					<Member {groupColors} {member} displayMemberModal={() => displayMemberByIndex(i)} />
 				{/if}
 			{/each}
 		</div>

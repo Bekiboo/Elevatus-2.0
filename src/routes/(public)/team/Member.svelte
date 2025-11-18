@@ -1,5 +1,14 @@
 <script lang="ts">
-	let { member, displayMemberModal } = $props()
+	import { cn } from '$lib/utils'
+
+	let { member, displayMemberModal, groupColors } = $props()
+
+	const outlines: Record<string, string> = {
+		board: 'outline-brand',
+		executive: 'outline-secondary',
+		education: 'outline-accent',
+		logistics: 'outline-dark'
+	}
 </script>
 
 <button
@@ -7,18 +16,23 @@
 	class="flex items-center justify-between w-full gap-2 mb-4 sm:w-40 sm:flex-col"
 >
 	<div
-		class="relative w-32 h-32 duration-150 ease-in-out rounded-full sm:w-36 sm:h-36 outline-4 outline-brand outline-offset-4 group hover:outline-offset-0 hover:outline-transparent"
+		class={cn([
+			'relative w-32 h-32 duration-300 ease-in-out rounded-full sm:w-36 sm:h-36 outline-4  outline-offset-4 group hover:outline-offset-0 hover:outline-transparent',
+			outlines[member.group]
+		])}
 	>
 		<div
 			class="absolute bottom-0 w-full h-40 overflow-hidden rounded-bl-full rounded-br-full sm:h-40 sm:w-full"
 		>
+			<!-- Background Image -->
 			<img
-				class="absolute bottom-0 object-cover w-32 h-32 duration-150 ease-in-out border-transparent rounded-full sm:w-36 sm:h-36"
+				class="absolute bottom-0 object-cover w-32 h-32 duration-300 ease-in-out border-transparent rounded-full sm:w-36 sm:h-36"
 				src={member.src + '_bg.png'}
 				alt="Background of {member.firstName} {member.lastName}"
 			/>
+			<!-- Profile Image -->
 			<img
-				class="absolute bottom-0 object-cover w-32 h-32 duration-150 ease-in-out border-transparent rounded-full group-hover:scale-110 group-hover:-translate-y-2 sm:w-36 sm:h-36"
+				class="absolute bottom-0 object-cover w-32 h-32 duration-300 ease-in-out border-transparent rounded-full group-hover:scale-110 group-hover:-translate-y-2 sm:w-36 sm:h-36"
 				src={member.src + '.png'}
 				alt="Picture of {member.firstName} {member.lastName}"
 			/>
