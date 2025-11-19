@@ -1,51 +1,54 @@
 <script lang="ts">
+	import ExternalLink from '$lib/components/icons/ExternalLink.svelte'
 	import { cn } from '$lib/utils'
-	import { onMount, onDestroy } from 'svelte'
-	import { slide } from 'svelte/transition'
+	import { intersectObs } from '$lib/intersectObs.svelte'
 
 	const { className }: { className?: string } = $props()
 
-	let selectedImage: number = $state(0)
-	let autoCycle: boolean = $state(true)
-	let intervalId: ReturnType<typeof setInterval> | null = null
+	// Track visibility state for each challenge card
+	let visibleCards: boolean[] = $state([false, false, false, false])
 
-	const totalImages = 4
-	const cycleDelay = 4000
-
-	function startCycle() {
-		stopCycle()
-		intervalId = setInterval(() => {
-			if (autoCycle) {
-				selectedImage = (selectedImage + 1) % totalImages
-			}
-		}, cycleDelay)
-	}
-
-	function stopCycle() {
-		if (intervalId) clearInterval(intervalId)
-	}
-
-	onMount(() => {
-		startCycle()
-	})
-
-	onDestroy(() => {
-		stopCycle()
-	})
-
-	function handleOutsideClick(event: MouseEvent) {
-		const section = document.getElementById('challenges-section')
-		if (section && !section.contains(event.target as Node)) {
-			autoCycle = true
-			startCycle()
+	const challenges = [
+		{
+			image: '/img/child_redhood_breaking_rocks-l.jpg',
+			title: 'Child Labor',
+			statistic: '47%',
+			statisticLabel: 'of children ages 5-17',
+			description:
+				'According to the U.S. Department of Labor, 47% of children ages 5 to 17 in Madagascar are engaged in child labor, including 32% in hazardous work. Children mainly work in the informal sector and agriculture, with hazardous tasks in agriculture, mining, and fishing. A recent study in Antananarivo reported that nearly half of street children rely on begging for survival.',
+			source:
+				'https://www.dol.gov/sites/dolgov/files/ILAB/child_labor_reports/tda2021/Madagascar.pdf'
+		},
+		{
+			image: '/img/kids_on_cart.jpg',
+			title: 'Chronic Malnutrition',
+			statistic: '40%',
+			statisticLabel: 'of children affected',
+			description:
+				'The World Food Programme reports that nearly 40% of children suffer from chronic malnutrition, in a country where over 90% of the population lives on less than US$3.10 per day. Food insecurity is driven by limited crop diversification, reliance on rain-fed agriculture, low incomes, and rising food prices. Increasing climate shocks further damage agriculture, infrastructure, and livelihoods.',
+			source: 'https://www.wfp.org/countries/madagascar'
+		},
+		{
+			image: '/img/education_problem.jpg',
+			title: 'Barriers to Education',
+			statistic: '95%',
+			statisticLabel: 'cannot read proficiently',
+			description:
+				'According to the World Bank (2025), only 63.3% of girls and 57.6% of boys complete primary school. By the end of primary school, 95% of children cannot read proficiently. The education system faces high repetition rates—25.3% in public schools, double the Sub-Saharan Africa average.',
+			source:
+				'https://www.worldbank.org/en/news/press-release/2025/07/22/madagascar-to-boost-learning-outcomes-for-4-7-million-students'
+		},
+		{
+			image: '/img/kids_waiting_in_school_uniforms.jpg',
+			title: 'Failing Education System',
+			statistic: '2.5%',
+			statisticLabel: 'of GDP on education',
+			description:
+				'The World Bank (2025) highlights systemic challenges: 63% of primary teachers are underqualified community teachers (FRAM), fully financed by parents. Infrastructure is severely inadequate, with 1,000–2,000 classrooms destroyed by cyclones each year. National investment in education is low at 2.5% of GDP, below the regional average of 3.7%.',
+			source:
+				'https://www.worldbank.org/en/news/press-release/2025/07/22/madagascar-to-boost-learning-outcomes-for-4-7-million-students'
 		}
-	}
-
-	// réactive la détection du clic à l’extérieur
-	onMount(() => {
-		document.addEventListener('click', handleOutsideClick)
-		return () => document.removeEventListener('click', handleOutsideClick)
-	})
+	]
 </script>
 
 <section
@@ -55,77 +58,82 @@
 	<h2 class="text-4xl sm:text-6xl font-black text-center uppercase mb-4 leading-12 sm:leading-20">
 		The <span class="uppercase bg-light text-dark px-2 pb-1.5">Challenges</span>
 	</h2>
-	<p class="max-w-3xl text-center mb-8 sm:mb-16">
-		Child labor remains a pervasive issue in Madagascar, with many children forced to work in
-		hazardous conditions instead of attending school. At Elevatus, we are dedicated to breaking this
-		cycle by providing education, resources, and support to these children and their families.
+	<p class="max-w-3xl text-center mb-8 sm:mb-16 text-lg">
+		Madagascar faces critical challenges that trap children in cycles of poverty and exploitation.
+		These stark realities demand urgent action and sustained support.
 	</p>
 
-	<!-- Challenge Cards -->
-	<div class="flex max-sm:flex-col w-[90vw] h-[800px] sm:h-[600px] overflow-hidden">
-		{@render Challenge(
-			'/img/child_redhood_breaking_rocks-l.jpg',
-			'Child Labor',
-			'Many children in Madagascar are forced to work in hazardous conditions, depriving them of their childhood and education.',
-			0
-		)}
-		{@render Challenge(
-			'/img/kids_on_cart.jpg',
-			'Chronic Malnutrition',
-			'Over 50% of children under five in Madagascar suffer from chronic malnutrition, impacting their growth and cognitive development.',
-			1
-		)}
-		{@render Challenge(
-			'/img/child_labor.jpg',
-			'Barriers to Education',
-			'Only 63% of children finish primary school, and 95% leave without basic reading skills.',
-			2
-		)}
-		{@render Challenge(
-			'/img/kids_waiting_in_school_uniforms.jpg',
-			'Failing Education System',
-			'The nation invests just 2.5% of GDP in education, far below regional averages. Underqualified community teachers (FRAM) make up 63 percent of the primary teaching workforce.',
-			3
-		)}
+	<!-- Challenge Cards Grid -->
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-7xl">
+		{#each challenges as challenge, index}
+			<div
+				class="relative overflow-hidden rounded-lg shadow-2xl min-h-[500px] lg:min-h-[600px]"
+				use:intersectObs={{
+					root: null,
+					threshold: 0.8,
+					onIntersect: (entry) => {
+						visibleCards[index] = entry.isIntersecting
+					},
+					onLeave: () => {
+						visibleCards[index] = false
+					}
+				}}
+			>
+				<!-- Background Image -->
+				<div
+					class="absolute inset-0 bg-cover bg-center transition-transform duration-700"
+					style="background-image: url({challenge.image})"
+				></div>
+
+				<!-- Content Overlay with fade effect -->
+				<div
+					class="relative z-10 h-full flex flex-col p-8 lg:p-12 transition-all duration-1000 ease-out {visibleCards[
+						index
+					]
+						? 'opacity-100 translate-y-0 backdrop-blur-xs'
+						: 'opacity-0 translate-y-8 backdrop-blur-none'}"
+				>
+					<div class="bg-black/60 rounded-lg mb-6 flex-1 flex flex-col p-4">
+						<!-- Statistic - Large Impact Number -->
+						<div class="mb-4">
+							<div
+								class="text-8xl lg:text-9xl font-black font-saira text-brand leading-none drop-shadow-2xl"
+							>
+								{challenge.statistic}
+							</div>
+							<div class="text-xl lg:text-2xl font-semibold text-secondary mt-2 drop-shadow-lg">
+								{challenge.statisticLabel}
+							</div>
+						</div>
+						<!-- Title -->
+						<h3 class="text-3xl lg:text-4xl font-black text-light mb-4 uppercase drop-shadow-lg">
+							{challenge.title}
+						</h3>
+						<!-- Description with enhanced backdrop -->
+						<div class="mb-6">
+							<p class="text-lg lg:text-xl text-light leading-relaxed max-w-2xl">
+								{challenge.description}
+							</p>
+						</div>
+					</div>
+
+					<!-- Source Link -->
+					<a
+						href={challenge.source}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="inline-flex items-center gap-2 text-secondary hover:text-brand transition-colors duration-300 font-semibold px-4 py-2 w-fit bg-black/60 backdrop-blur rounded-lg"
+					>
+						<span>View Source</span>
+						<ExternalLink size="4" color="currentColor" />
+					</a>
+				</div>
+
+				<!-- Accent Border -->
+				<div
+					class="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-brand to-secondary"
+				></div>
+			</div>
+		{/each}
 	</div>
 </section>
-
-{#snippet Challenge(image: string, title: string, content: string, index: number)}
-	<button
-		onclick={() => {
-			selectedImage = index
-			autoCycle = false
-			stopCycle()
-		}}
-		class="relative duration-500 ease-in-out h-[600px] overflow-hidden {selectedImage != index
-			? `hover:opacity-100 max-sm:h-[36.6%] sm:w-[17%]`
-			: `w-full h-full sm:w-1/2`} "
-		aria-label={title}
-	>
-		<!-- Fixed-size image -->
-		<div
-			class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-			w-full sm:w-[50vw] sm:h-full h-[600px]"
-			style="
-				background-image: url({image});
-				background-size: cover;
-				background-position: top center;
-				filter: grayscale({selectedImage != index ? '100%' : '0%'}) blur({selectedImage != index
-				? '1px'
-				: '0px'});
-				transition: all 700ms cubic-bezier(0.4,0,0.2,1);
-			"
-		>
-			<!-- Overlay -->
-			<div class="absolute inset-0 bg-linear-to-b from-transparent from-0% to-dark"></div>
-		</div>
-
-		<!-- Text -->
-		<div class="relative z-20 h-full w-full flex flex-col justify-end p-4">
-			<h3 class="text-2xl text-left font-bold text-brand mb-2 sm:max-w-[16.6%]">{title}</h3>
-			{#if selectedImage === index}
-				<p in:slide={{ delay: 300 }} out:slide class="sm:w-[40vw] text-left">{content}</p>
-			{/if}
-		</div>
-	</button>
-{/snippet}
