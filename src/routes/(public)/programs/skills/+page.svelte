@@ -71,7 +71,7 @@
 		</div>
 		<div class="flex flex-col justify-center">
 			<img
-				src="/img/party_youth_center.jpg"
+				src="/img/program/programs_sewing_classes.jpg"
 				alt="Children participating in activities at the Elevatus Youth Center"
 				class="w-full h-full mon-h-80 object-cover rounded-lg shadow-lg mb-4"
 			/>
@@ -279,7 +279,7 @@
 		<div class="grid gap-12 lg:grid-cols-2 items-center max-w-5xl">
 			<div class="order-2 lg:order-1 h-full min-h-80">
 				<img
-					src="/img/volunteer_running_with_kids.jpg"
+					src="/img/program/computer_literacy.png"
 					alt="Children and volunteers enjoying activities at the Youth Center"
 					class="w-full h-full object-cover rounded-lg shadow-lg"
 				/>
