@@ -2,6 +2,8 @@
 	import Hero from '$lib/components/layout/Hero.svelte'
 	import Button from '$lib/components/UI/Button.svelte'
 	import { MetaTags } from 'svelte-meta-tags'
+	import SDGCard from '../SDGcard.svelte'
+	import ApproachCard from '../ApproachCard.svelte'
 
 	const hero = {
 		src: '/img/kids_eating.png',
@@ -124,94 +126,54 @@
 		</div>
 
 		<div class="grid gap-8 md:grid-cols-2 lg:gap-12">
-			<!-- Approach Item 1 with integrated image -->
-			<div class="p-8 bg-white rounded-lg shadow-lg">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						1
-					</div>
-					<h3 class="text-2xl font-bold">Daily Nutritious Meals</h3>
-				</div>
-				<p class="mb-4 text-lg">
-					We provide meals designed to support healthy growth and sustained concentration. This
-					improves:
-				</p>
-				<ul class="space-y-2 text-lg list-disc list-inside">
-					<li>Attendance rates</li>
-					<li>Energy levels throughout the day</li>
-					<li>Classroom engagement</li>
-					<li>Academic performance</li>
-				</ul>
-				<p class="mt-4 text-lg font-medium text-brand">
-					For many children, this is their most reliable meal of the day.
-				</p>
-			</div>
+			<ApproachCard
+				number={1}
+				title="Daily Nutritious Meals"
+				description="We provide meals designed to support healthy growth and sustained concentration. This improves:"
+				listItems={[
+					'Attendance rates',
+					'Energy levels throughout the day',
+					'Classroom engagement',
+					'Academic performance'
+				]}
+				conclusion="For many children, this is their most reliable meal of the day."
+			/>
 
-			<!-- Approach Item 2 -->
-			<div class="p-8 bg-white rounded-lg shadow-lg">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						2
-					</div>
-					<h3 class="text-2xl font-bold">Supporting School Retention</h3>
-				</div>
-				<p class="mb-4 text-lg">When children receive food at school:</p>
-				<ul class="space-y-2 text-lg list-disc list-inside">
-					<li>Families are more motivated to keep them enrolled</li>
-					<li>Dropout rates decrease significantly</li>
-					<li>The incentive to send children to work is reduced</li>
-				</ul>
-				<p class="mt-4 text-lg font-medium text-brand">
-					Nutrition becomes a powerful driver of education.
-				</p>
-			</div>
+			<ApproachCard
+				number={2}
+				title="Supporting School Retention"
+				description="When children receive food at school:"
+				listItems={[
+					'Families are more motivated to keep them enrolled',
+					'Dropout rates decrease significantly',
+					'The incentive to send children to work is reduced'
+				]}
+				conclusion="Nutrition becomes a powerful driver of education."
+			/>
 
-			<!-- Approach Item 3 -->
-			<div class="p-8 bg-white rounded-lg shadow-lg">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						3
-					</div>
-					<h3 class="text-2xl font-bold">Identifying At-Risk Children</h3>
-				</div>
-				<p class="mb-4 text-lg">We work directly with schools to:</p>
-				<ul class="space-y-2 text-lg list-disc list-inside">
-					<li>Identify children who show signs of undernutrition</li>
-					<li>Monitor progress and development</li>
-					<li>Connect them to additional support when needed</li>
-				</ul>
-				<p class="mt-4 text-lg font-medium text-brand">
-					This approach lets us intervene early and prevent long-term developmental harm.
-				</p>
-			</div>
+			<ApproachCard
+				number={3}
+				title="Identifying At-Risk Children"
+				description="We work directly with schools to:"
+				listItems={[
+					'Identify children who show signs of undernutrition',
+					'Monitor progress and development',
+					'Connect them to additional support when needed'
+				]}
+				conclusion="This approach lets us intervene early and prevent long-term developmental harm."
+			/>
 
-			<!-- Approach Item 4 -->
-			<div class="p-8 bg-white rounded-lg shadow-lg">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						4
-					</div>
-					<h3 class="text-2xl font-bold">Focus on Primary Students</h3>
-				</div>
-				<p class="mb-4 text-lg">
-					<strong>Protecting Younger Children (Ages 5–12)</strong>
-				</p>
-				<p class="text-lg">
-					The nutrition program focuses on primary school students — those at the highest risk of
-					dropping out and entering child labor.
-				</p>
-				<p class="mt-4 text-lg font-medium text-brand">
-					Proper nutrition during these years is essential for lifelong health and learning.
-				</p>
-			</div>
+			<ApproachCard
+				number={4}
+				title="Focus on Primary Students"
+				description="The nutrition program focuses on primary school students — those at the highest risk of dropping out and entering child labor."
+				listItems={[
+					'Protecting Younger Children (Ages 5–12) from malnutrition',
+					'Ensuring proper nutrition during critical developmental years',
+					'Building foundation for lifelong health and learning'
+				]}
+				conclusion="Proper nutrition during these years is essential for lifelong health and learning."
+			/>
 		</div>
 	</div>
 </section>
@@ -239,97 +201,45 @@
 		</div>
 
 		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-			<a
+			<SDGCard
+				sdgNumber="SDG 2.1"
+				title="End Hunger"
+				quote="By 2030, end hunger and ensure access by all people to safe, nutritious and sufficient food"
+				description="Providing reliable daily food access for vulnerable children in Madagascar's most at-risk communities."
 				href="https://sdgs.un.org/goals/goal2#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 2.1
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">End Hunger</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"By 2030, end hunger and ensure access by all people to safe, nutritious and sufficient
-					food"
-				</p>
-				<p>
-					Providing reliable daily food access for vulnerable children in Madagascar's most at-risk
-					communities.
-				</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 2.2"
+				title="End All Forms of Malnutrition"
+				quote="End all forms of malnutrition, including achieving targets on stunting and wasting in children under 5"
+				description="Helping prevent stunting, wasting, and other long-term effects of childhood undernutrition."
 				href="https://sdgs.un.org/goals/goal2#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 2.2
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">End All Forms of Malnutrition</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"End all forms of malnutrition, including achieving targets on stunting and wasting in
-					children under 5"
-				</p>
-				<p>
-					Helping prevent stunting, wasting, and other long-term effects of childhood
-					undernutrition.
-				</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 3.2"
+				title="Reduce Child Mortality"
+				quote="End preventable deaths of newborns and children under 5 years of age"
+				description="Improved nutrition strengthens immunity and reduces preventable illnesses among young children."
 				href="https://sdgs.un.org/goals/goal3#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 3.2
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">Reduce Child Mortality</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"End preventable deaths of newborns and children under 5 years of age"
-				</p>
-				<p>
-					Improved nutrition strengthens immunity and reduces preventable illnesses among young
-					children.
-				</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 4.1"
+				title="Quality Primary Education"
+				quote="Ensure that all girls and boys complete free, equitable and quality primary education"
+				description="Nutrition improves attendance, attention, learning outcomes, and school completion rates."
 				href="https://sdgs.un.org/goals/goal4#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 4.1
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">Quality Primary Education</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"Ensure that all girls and boys complete free, equitable and quality primary education"
-				</p>
-				<p>
-					Nutrition improves attendance, attention, learning outcomes, and school completion rates.
-				</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 8.7"
+				title="End Child Labor"
+				quote="Take immediate and effective measures to eradicate forced labour and end child labour in all its forms"
+				description="By increasing school retention, we reduce the likelihood that children will enter hazardous labor environments."
 				href="https://sdgs.un.org/goals/goal8#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 8.7
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">End Child Labor</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"Take immediate and effective measures to eradicate forced labour and end child labour in
-					all its forms"
-				</p>
-				<p>
-					By increasing school retention, we reduce the likelihood that children will enter
-					hazardous labor environments.
-				</p>
-			</a>
+			/>
 		</div>
 	</div>
 </section>

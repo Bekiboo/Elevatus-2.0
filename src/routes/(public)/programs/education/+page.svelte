@@ -2,6 +2,8 @@
 	import Hero from '$lib/components/layout/Hero.svelte'
 	import Button from '$lib/components/UI/Button.svelte'
 	import { MetaTags } from 'svelte-meta-tags'
+	import SDGCard from '../SDGcard.svelte'
+	import ApproachCard from '../ApproachCard.svelte'
 
 	const hero = {
 		src: '/img/hero/four_kids.jpg',
@@ -124,98 +126,55 @@
 		</div>
 
 		<div class="grid gap-8 md:grid-cols-2 lg:gap-12">
-			<!-- Approach Item 1 -->
-			<div class="p-8 bg-white rounded-lg shadow-lg">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						1
-					</div>
-					<h3 class="text-2xl font-bold">Tuition and School Supplies</h3>
-				</div>
-				<p class="mb-4 text-lg">We cover:</p>
-				<ul class="space-y-2 text-lg list-disc list-inside">
-					<li>School enrollment fees</li>
-					<li>Uniforms and shoes</li>
-					<li>Textbooks, notebooks, and essential materials</li>
-				</ul>
-				<p class="mt-4 text-lg font-medium text-brand">
-					This removes the financial pressure on families and allows children to attend school
-					consistently.
-				</p>
-			</div>
+			<ApproachCard
+				number={1}
+				title="Tuition and School Supplies"
+				description="We cover:"
+				listItems={[
+					'School enrollment fees',
+					'Uniforms and shoes',
+					'Textbooks, notebooks, and essential materials'
+				]}
+				conclusion="This removes the financial pressure on families and allows children to attend school consistently."
+			/>
 
-			<!-- Approach Item 2 -->
-			<div class="p-8 bg-white rounded-lg shadow-lg">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						2
-					</div>
-					<h3 class="text-2xl font-bold">Weekly Tutoring Support</h3>
-				</div>
-				<p class="mb-4 text-lg">
-					At the Elevatus Youth Center, students attend tutoring sessions every:
-				</p>
-				<div class="flex gap-4 mb-4">
-					<span class="px-4 py-2 font-semibold text-white rounded-full bg-secondary">Wednesday</span
-					>
-					<span class="px-4 py-2 font-semibold text-white rounded-full bg-secondary">Saturday</span>
-				</div>
-				<p class="text-lg">
-					They receive help with homework, literacy support, exam preparation, and one-on-one
-					academic guidance. This allows struggling students to catch up and confident students to
-					excel.
-				</p>
-			</div>
+			<ApproachCard
+				number={2}
+				title="Weekly Tutoring Support"
+				description="At the Elevatus Youth Center, students attend tutoring sessions every Wednesday and Saturday. They receive:"
+				listItems={[
+					'Help with homework and exam preparation',
+					'Literacy support and academic guidance',
+					'One-on-one mentorship for individual needs',
+					'Support for struggling students to catch up'
+				]}
+				conclusion="This allows struggling students to catch up and confident students to excel."
+			/>
 
-			<!-- Approach Item 3 -->
-			<div class="p-8 bg-white rounded-lg shadow-lg">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						3
-					</div>
-					<h3 class="text-2xl font-bold">Mentorship & Monitoring</h3>
-				</div>
-				<p class="mb-4 text-lg">
-					Our team maintains close communication with schools and families. We:
-				</p>
-				<ul class="space-y-2 text-lg list-disc list-inside">
-					<li>Track grades and attendance</li>
-					<li>Identify students at risk of falling behind</li>
-					<li>Provide tailor-made assistance when needed</li>
-				</ul>
-				<p class="mt-4 text-lg font-medium text-brand">
-					Every child receives individualized support, ensuring no one is left alone with their
-					difficulties.
-				</p>
-			</div>
+			<ApproachCard
+				number={3}
+				title="Mentorship & Monitoring"
+				description="Our team maintains close communication with schools and families. We:"
+				listItems={[
+					'Track grades and attendance',
+					'Identify students at risk of falling behind',
+					'Provide tailor-made assistance when needed'
+				]}
+				conclusion="Every child receives individualized support, ensuring no one is left alone with their difficulties."
+			/>
 
-			<!-- Approach Item 4 -->
-			<div class="p-8 bg-white rounded-lg shadow-lg">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						4
-					</div>
-					<h3 class="text-2xl font-bold">Focus on Vulnerable Youth</h3>
-				</div>
-				<p class="mb-4 text-lg">
-					<strong>Serving Junior High and High School Youth (Ages 10–18)</strong>
-				</p>
-				<p class="text-lg">
-					This program focuses on adolescents—those most at risk of dropping out, entering child
-					labor, or becoming victims of exploitation.
-				</p>
-				<p class="mt-4 text-lg font-medium text-brand">
-					Keeping teens in school protects them today and empowers them for tomorrow.
-				</p>
-			</div>
+			<ApproachCard
+				number={4}
+				title="Focus on Vulnerable Youth"
+				description="This program focuses on adolescents—those most at risk of dropping out, entering child labor, or becoming victims of exploitation."
+				listItems={[
+					'Serving Junior High and High School Youth (Ages 10–18)',
+					'Protecting teens from child labor and exploitation',
+					'Providing pathways to future employment and independence',
+					'Building confidence and academic skills for success'
+				]}
+				conclusion="Keeping teens in school protects them today and empowers them for tomorrow."
+			/>
 		</div>
 	</div>
 </section>
@@ -243,116 +202,53 @@
 		</div>
 
 		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-			<a
+			<SDGCard
+				sdgNumber="SDG 1.2"
+				title="Reduce Poverty"
+				quote="By 2030, reduce at least by half the proportion of men, women and children of all ages living in poverty"
+				description="By covering school costs, we remove financial barriers and increase long-term opportunities for vulnerable youth."
 				href="https://sdgs.un.org/goals/goal1#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 1.2
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">Reduce Poverty</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"By 2030, reduce at least by half the proportion of men, women and children of all ages
-					living in poverty"
-				</p>
-				<p>
-					By covering school costs, we remove financial barriers and increase long-term
-					opportunities for vulnerable youth.
-				</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 4.1"
+				title="Quality Primary & Secondary Education"
+				quote="Ensure that all girls and boys complete free, equitable and quality primary and secondary education"
+				description="Our comprehensive support ensures students complete their education with relevant learning outcomes."
 				href="https://sdgs.un.org/goals/goal4#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 4.1
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">Quality Primary & Secondary Education</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"Ensure that all girls and boys complete free, equitable and quality primary and secondary
-					education"
-				</p>
-				<p>
-					Our comprehensive support ensures students complete their education with relevant learning
-					outcomes.
-				</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 4.5"
+				title="Equal Access to Education"
+				quote="Eliminate gender disparities in education and ensure equal access for the vulnerable"
+				description="Supporting girls and vulnerable youth so they have the same educational opportunities as others."
 				href="https://sdgs.un.org/goals/goal4#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 4.5
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">Equal Access to Education</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"Eliminate gender disparities in education and ensure equal access for the vulnerable"
-				</p>
-				<p>
-					Supporting girls and vulnerable youth so they have the same educational opportunities as
-					others.
-				</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 8.6"
+				title="Reduce Youth Not in Education"
+				quote="Substantially reduce the proportion of youth not in employment, education or training"
+				description="Keeping vulnerable adolescents in school and providing skills needed for future employment."
 				href="https://sdgs.un.org/goals/goal8#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 8.6
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">Reduce Youth Not in Education</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"Substantially reduce the proportion of youth not in employment, education or training"
-				</p>
-				<p>
-					Keeping vulnerable adolescents in school and providing skills needed for future
-					employment.
-				</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 8.7"
+				title="End Child Labor"
+				quote="Take immediate and effective measures to eradicate forced labour and end child labour in all its forms"
+				description="Education provides the most effective pathway away from child labor toward safety and opportunity."
 				href="https://sdgs.un.org/goals/goal8#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 8.7
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">End Child Labor</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"Take immediate and effective measures to eradicate forced labour and end child labour in
-					all its forms"
-				</p>
-				<p>
-					Education provides the most effective pathway away from child labor toward safety and
-					opportunity.
-				</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 10.2"
+				title="Social & Economic Inclusion"
+				quote="Empower and promote the social, economic and political inclusion of all"
+				description="Bringing vulnerable children into safe, supportive educational environments where they can thrive."
 				href="https://sdgs.un.org/goals/goal10#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 10.2
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">Social & Economic Inclusion</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"Empower and promote the social, economic and political inclusion of all"
-				</p>
-				<p>
-					Bringing vulnerable children into safe, supportive educational environments where they can
-					thrive.
-				</p>
-			</a>
+			/>
 		</div>
 	</div>
 </section>

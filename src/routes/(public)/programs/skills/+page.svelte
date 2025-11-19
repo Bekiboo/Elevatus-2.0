@@ -2,6 +2,8 @@
 	import Hero from '$lib/components/layout/Hero.svelte'
 	import Button from '$lib/components/UI/Button.svelte'
 	import { MetaTags } from 'svelte-meta-tags'
+	import SDGCard from '../SDGcard.svelte'
+	import ApproachCard from '../ApproachCard.svelte'
 
 	const hero = {
 		src: '/img/sewing_classes.jpg',
@@ -123,125 +125,69 @@
 		</div>
 
 		<div class="grid gap-8 md:grid-cols-2 lg:gap-12">
-			<!-- Approach Item 1 -->
-			<div class="p-8 bg-white rounded-lg shadow-lg">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						1
-					</div>
-					<h3 class="text-2xl font-bold">Safe, Supervised Environment</h3>
-				</div>
-				<p class="mb-4 text-lg">The Youth Center offers:</p>
-				<ul class="space-y-2 text-lg list-disc list-inside">
-					<li>A secure place to spend time after school</li>
-					<li>Supervision by trained staff</li>
-					<li>Protection from street risks, exploitation, or hazardous work</li>
-				</ul>
-				<p class="mt-4 text-lg font-medium text-brand">
-					This ensures children are protected during the hours when they are most vulnerable.
-				</p>
-			</div>
+			<ApproachCard
+				number={1}
+				title="Safe, Supervised Environment"
+				description="The Youth Center offers:"
+				listItems={[
+					'A secure place to spend time after school',
+					'Supervision by trained staff',
+					'Protection from street risks, exploitation, or hazardous work'
+				]}
+				conclusion="This ensures children are protected during the hours when they are most vulnerable."
+			/>
 
-			<!-- Approach Item 2 with integrated image -->
-			<div class="p-8 bg-white rounded-lg shadow-lg">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						2
-					</div>
-					<h3 class="text-2xl font-bold">Skill-Building Workshops</h3>
-				</div>
-				<p class="mb-4 text-lg">
-					We offer hands-on classes that give children a chance to discover new interests:
-				</p>
-				<ul class="space-y-2 text-lg list-disc list-inside">
-					<li>Computer literacy</li>
-					<li>Sewing and tailoring</li>
-					<li>Cooking and nutrition</li>
-					<li>Art and creative expression</li>
-					<li>Basic trades and handicrafts</li>
-				</ul>
-				<p class="mt-4 text-lg font-medium text-brand">
-					These activities foster confidence, creativity, and early career exploration.
-				</p>
-			</div>
+			<ApproachCard
+				number={2}
+				title="Skill-Building Workshops"
+				description="We offer hands-on classes that give children a chance to discover new interests:"
+				listItems={[
+					'Computer literacy',
+					'Sewing and tailoring',
+					'Cooking and nutrition',
+					'Art and creative expression',
+					'Basic trades and handicrafts'
+				]}
+				conclusion="These activities foster confidence, creativity, and early career exploration."
+			/>
 
-			<!-- Approach Item 3 -->
-			<div class="p-8 bg-white rounded-lg shadow-lg">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						3
-					</div>
-					<h3 class="text-2xl font-bold">Personal Development & Mentorship</h3>
-				</div>
-				<p class="mb-4 text-lg">
-					Children receive encouragement, positive role models, and emotional support. We help them:
-				</p>
-				<ul class="space-y-2 text-lg list-disc list-inside">
-					<li>Build confidence and self-esteem</li>
-					<li>Develop social and communication skills</li>
-					<li>Strengthen resilience and coping abilities</li>
-					<li>Set personal goals and future aspirations</li>
-				</ul>
-				<p class="mt-4 text-lg font-medium text-brand">
-					This mentorship plays a critical role in preventing school dropout and risky behavior.
-				</p>
-			</div>
+			<ApproachCard
+				number={3}
+				title="Personal Development & Mentorship"
+				description="Children receive encouragement, positive role models, and emotional support. We help them:"
+				listItems={[
+					'Build confidence and self-esteem',
+					'Develop social and communication skills',
+					'Strengthen resilience and coping abilities',
+					'Set personal goals and future aspirations'
+				]}
+				conclusion="This mentorship plays a critical role in preventing school dropout and risky behavior."
+			/>
 
-			<!-- Approach Item 4 -->
-			<div class="p-8 bg-white rounded-lg shadow-lg">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						4
-					</div>
-					<h3 class="text-2xl font-bold">Community Events & Activities</h3>
-				</div>
-				<p class="mb-4 text-lg">The Youth Center hosts:</p>
-				<ul class="space-y-2 text-lg list-disc list-inside">
-					<li>Christmas celebrations and holiday events</li>
-					<li>Summer camps and educational trips</li>
-					<li>Workshops with local professionals</li>
-					<li>Cultural and recreational activities</li>
-				</ul>
-				<p class="mt-4 text-lg font-medium text-brand">
-					These events expand children's horizons and strengthen their sense of belonging.
-				</p>
-			</div>
+			<ApproachCard
+				number={4}
+				title="Community Events & Activities"
+				description="The Youth Center hosts:"
+				listItems={[
+					'Christmas celebrations and holiday events',
+					'Summer camps and educational trips',
+					'Workshops with local professionals',
+					'Cultural and recreational activities'
+				]}
+				conclusion="These events expand children's horizons and strengthen their sense of belonging."
+			/>
 
-			<!-- Approach Item 5 -->
-			<div class="p-8 bg-white rounded-lg shadow-lg md:col-span-2">
-				<div class="flex items-center mb-4">
-					<div
-						class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
-					>
-						5
-					</div>
-					<h3 class="text-2xl font-bold">Serving Children Ages 7–18</h3>
-				</div>
-				<div class="grid gap-6 md:grid-cols-2">
-					<div>
-						<h4 class="text-xl font-semibold mb-2 text-brand">Younger Children (7-12)</h4>
-						<p class="text-lg">
-							Benefit from safety, structured activities, and supervised learning time that keeps
-							them engaged and protected.
-						</p>
-					</div>
-					<div>
-						<h4 class="text-xl font-semibold mb-2 text-brand">Older Children (13-18)</h4>
-						<p class="text-lg">
-							Gain practical skills, career exposure, and leadership opportunities that prepare them
-							for adulthood.
-						</p>
-					</div>
-				</div>
-			</div>
+			<ApproachCard
+				number={5}
+				title="Serving Children Ages 7–18"
+				description="We serve children across different age groups, each with tailored approaches:"
+				listItems={[
+					'Younger Children (7-12): Benefit from safety, structured activities, and supervised learning time that keeps them engaged and protected',
+					'Older Children (13-18): Gain practical skills, career exposure, and leadership opportunities that prepare them for adulthood'
+				]}
+				conclusion="This age-appropriate approach ensures every child receives the support they need for their developmental stage."
+				className="md:col-span-2"
+			/>
 		</div>
 	</div>
 </section>
@@ -269,102 +215,53 @@
 		</div>
 
 		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-			<a
+			<SDGCard
+				sdgNumber="SDG 4.4"
+				title="Youth Skills for Employment"
+				quote="Substantially increase the number of youth and adults who have relevant skills for employment"
+				description="Providing early vocational exposure, digital literacy, and practical skills training."
 				href="https://sdgs.un.org/goals/goal4#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 4.4
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">Youth Skills for Employment</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"Substantially increase the number of youth and adults who have relevant skills for
-					employment"
-				</p>
-				<p>Providing early vocational exposure, digital literacy, and practical skills training.</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 4.5"
+				title="Equal Access to Training"
+				quote="Eliminate gender disparities and ensure equal access to education and vocational training for the vulnerable"
+				description="Ensuring girls and vulnerable children have equal access to skill-building opportunities."
 				href="https://sdgs.un.org/goals/goal4#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 4.5
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">Equal Access to Training</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"Eliminate gender disparities and ensure equal access to education and vocational training
-					for the vulnerable"
-				</p>
-				<p>
-					Ensuring girls and vulnerable children have equal access to skill-building opportunities.
-				</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 8.6"
+				title="Reduce Youth NEET"
+				quote="Substantially reduce the proportion of youth not in employment, education or training"
+				description="Keeping children engaged in learning and structured activities with future pathways."
 				href="https://sdgs.un.org/goals/goal8#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 8.6
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">Reduce Youth NEET</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"Substantially reduce the proportion of youth not in employment, education or training"
-				</p>
-				<p>Keeping children engaged in learning and structured activities with future pathways.</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 8.7"
+				title="End Child Labor"
+				quote="Take immediate and effective measures to eradicate forced labour and end child labour in all its forms"
+				description="Offering a structured, safe environment instead of unsafe work or unsupervised time."
 				href="https://sdgs.un.org/goals/goal8#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 8.7
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">End Child Labor</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"Take immediate and effective measures to eradicate forced labour and end child labour in
-					all its forms"
-				</p>
-				<p>Offering a structured, safe environment instead of unsafe work or unsupervised time.</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 10.2"
+				title="Social & Economic Inclusion"
+				quote="Empower and promote the social, economic and political inclusion of all"
+				description="Empowering children from low-income families with equal access to learning and growth."
 				href="https://sdgs.un.org/goals/goal10#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 10.2
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">Social & Economic Inclusion</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"Empower and promote the social, economic and political inclusion of all"
-				</p>
-				<p>
-					Empowering children from low-income families with equal access to learning and growth.
-				</p>
-			</a>
+			/>
 
-			<a
+			<SDGCard
+				sdgNumber="SDG 16.2"
+				title="End Violence Against Children"
+				quote="End abuse, exploitation, trafficking and all forms of violence against children"
+				description="Providing a safe space and protective oversight during vulnerable afternoon hours."
 				href="https://sdgs.un.org/goals/goal16#targets_and_indicators"
-				target="_blank"
-				class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors duration-200"
-			>
-				<h3 class="mb-2 text-2xl font-black text-dark px-2 rounded-sm bg-light w-min text-nowrap">
-					SDG 16.2
-				</h3>
-				<h4 class="mb-3 text-xl font-semibold">End Violence Against Children</h4>
-				<p class="text-sm mb-2 text-gray-200 italic">
-					"End abuse, exploitation, trafficking and all forms of violence against children"
-				</p>
-				<p>Providing a safe space and protective oversight during vulnerable afternoon hours.</p>
-			</a>
+			/>
 		</div>
 	</div>
 </section>
