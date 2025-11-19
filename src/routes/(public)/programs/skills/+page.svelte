@@ -92,23 +92,23 @@
 
 		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
 			<div class="text-center">
-				<div class="text-8xl font-black font-saira text-light">120+</div>
-				<p class="text-xl font-semibold">children receive safe afternoons weekly</p>
+				<div class="text-8xl font-black font-saira text-light">1</div>
+				<p class="text-xl font-semibold">new Computer Literacy class opened in 2025</p>
 			</div>
 
 			<div class="text-center">
-				<div class="text-8xl font-black font-saira text-light">6</div>
-				<p class="text-xl font-semibold">hands-on skill-building workshops offered</p>
+				<div class="text-8xl font-black font-saira text-light">3</div>
+				<p class="text-xl font-semibold">classrooms available for skill-building workshops</p>
 			</div>
 
 			<div class="text-center">
-				<div class="text-8xl font-black font-saira text-light">95%</div>
-				<p class="text-xl font-semibold">improved school engagement through structured routines</p>
+				<div class="text-8xl font-black font-saira text-light">720+</div>
+				<p class="text-xl font-semibold">hours of workshops delivered in 2024</p>
 			</div>
 
 			<div class="text-center">
-				<div class="text-8xl font-black font-saira text-light">100%</div>
-				<p class="text-xl font-semibold">reduced exposure to child labor risks and exploitation</p>
+				<div class="text-8xl font-black font-saira text-light">55%</div>
+				<p class="text-xl font-semibold">of participants are girls</p>
 			</div>
 		</div>
 	</div>
@@ -171,7 +171,6 @@
 				listItems={[
 					'Christmas celebrations and holiday events',
 					'Summer camps and educational trips',
-					'Workshops with local professionals',
 					'Cultural and recreational activities'
 				]}
 				conclusion="These events expand children's horizons and strengthen their sense of belonging."
@@ -182,8 +181,9 @@
 				title="Serving Children Ages 7–18"
 				description="We serve children across different age groups, each with tailored approaches:"
 				listItems={[
-					'Younger Children (7-12): Benefit from safety, structured activities, and supervised learning time that keeps them engaged and protected',
-					'Older Children (13-18): Gain practical skills, career exposure, and leadership opportunities that prepare them for adulthood'
+					'Younger Children (6-10): Participate in summer camps and Christmas celebrations that offer safe, structured activities',
+					'Older Children (11-14): Enjoy the same events, with added access to hands-on workshops that build curiosity and confidence',
+					'Youth (15-18): Benefit from all activities, including computer literacy classes that strengthen their readiness for future opportunities'
 				]}
 				conclusion="This age-appropriate approach ensures every child receives the support they need for their developmental stage."
 				className="md:col-span-2"

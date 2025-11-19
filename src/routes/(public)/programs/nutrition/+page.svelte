@@ -89,15 +89,15 @@
 			<div class="w-24 h-1 mx-auto mt-4 bg-light"></div>
 		</h2>
 
-		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 			<div class="text-center">
-				<div class="text-8xl font-black font-saira text-light">200+</div>
-				<p class="text-xl font-semibold">daily meals served to primary school students</p>
+				<div class="text-8xl font-black font-saira text-light">70</div>
+				<p class="text-xl font-semibold">primary school students currently receiving meals</p>
 			</div>
 
 			<div class="text-center">
-				<div class="text-8xl font-black font-saira text-light">85%</div>
-				<p class="text-xl font-semibold">attendance improvement on feeding days</p>
+				<div class="text-8xl font-black font-saira text-light">8000+</div>
+				<p class="text-xl font-semibold">meals served in 2024</p>
 			</div>
 
 			<div class="text-center">
@@ -105,11 +105,6 @@
 				<p class="text-xl font-semibold">
 					early identification of children at risk of malnutrition
 				</p>
-			</div>
-
-			<div class="text-center">
-				<div class="text-8xl font-black font-saira text-light">50%</div>
-				<p class="text-xl font-semibold">reduced dropout risk for participating schools</p>
 			</div>
 		</div>
 	</div>

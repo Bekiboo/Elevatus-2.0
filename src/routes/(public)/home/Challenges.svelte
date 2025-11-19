@@ -70,7 +70,7 @@
 			0
 		)}
 		{@render Challenge(
-			'/img/chronic_malnutrition.png',
+			'/img/kids_on_cart.jpg',
 			'Chronic Malnutrition',
 			'Over 50% of children under five in Madagascar suffer from chronic malnutrition, impacting their growth and cognitive development.',
 			1
@@ -82,7 +82,7 @@
 			2
 		)}
 		{@render Challenge(
-			'/img/education_problem.jpg',
+			'/img/kids_waiting_in_school_uniforms.jpg',
 			'Failing Education System',
 			'The nation invests just 2.5% of GDP in education, far below regional averages. Underqualified community teachers (FRAM) make up 63 percent of the primary teaching workforce.',
 			3

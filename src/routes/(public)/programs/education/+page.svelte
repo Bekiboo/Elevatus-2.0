@@ -101,10 +101,8 @@
 			</div>
 
 			<div class="text-center">
-				<div class="text-8xl font-black font-saira text-light">100%</div>
-				<p class="text-xl font-semibold">
-					of enrolled students remained in school last academic year
-				</p>
+				<div class="text-8xl font-black font-saira text-light">80%</div>
+				<p class="text-xl font-semibold">high school success rate vs. national 56%</p>
 			</div>
 
 			<div class="text-center">
