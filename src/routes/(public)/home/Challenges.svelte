@@ -20,7 +20,7 @@
 				'https://www.dol.gov/sites/dolgov/files/ILAB/child_labor_reports/tda2021/Madagascar.pdf'
 		},
 		{
-			image: '/img/kids_on_cart.jpg',
+			image: '/img/girl_with_soccer_ball.jpg',
 			title: 'Chronic Malnutrition',
 			statistic: '40%',
 			statisticLabel: 'of children affected',
@@ -29,7 +29,7 @@
 			source: 'https://www.wfp.org/countries/madagascar'
 		},
 		{
-			image: '/img/education_problem.jpg',
+			image: '/img/kids_on_cart.jpg',
 			title: 'Barriers to Education',
 			statistic: '95%',
 			statisticLabel: 'cannot read proficiently',
@@ -87,13 +87,13 @@
 
 				<!-- Content Overlay with fade effect -->
 				<div
-					class="relative z-10 h-full flex flex-col p-8 lg:p-12 transition-all duration-1000 ease-out {visibleCards[
+					class="relative z-10 flex flex-col m-4 lg:m-12 transition-all duration-300 ease-out {visibleCards[
 						index
 					]
-						? 'opacity-100 translate-y-0 backdrop-blur-xs'
+						? 'opacity-100 translate-y-0 backdrop-blur-sm'
 						: 'opacity-0 translate-y-8 backdrop-blur-none'}"
 				>
-					<div class="bg-black/60 rounded-lg mb-6 flex-1 flex flex-col p-4">
+					<div class="bg-black/60 rounded-lg flex-1 flex flex-col p-4">
 						<!-- Statistic - Large Impact Number -->
 						<div class="mb-4">
 							<div
@@ -111,22 +111,21 @@
 						</h3>
 						<!-- Description with enhanced backdrop -->
 						<div class="mb-6">
-							<p class="text-lg lg:text-xl text-light leading-relaxed max-w-2xl">
+							<p class="text-md lg:text-xl text-light leading-relaxed max-w-2xl">
 								{challenge.description}
 							</p>
 						</div>
+						<!-- Source Link -->
+						<a
+							href={challenge.source}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center gap-2 text-secondary hover:text-brand transition-colors duration-300 font-semibold px-4 py-2 w-fit bg-black/60 backdrop-blur rounded-lg"
+						>
+							<span>View Source</span>
+							<ExternalLink size="4" color="currentColor" />
+						</a>
 					</div>
-
-					<!-- Source Link -->
-					<a
-						href={challenge.source}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="inline-flex items-center gap-2 text-secondary hover:text-brand transition-colors duration-300 font-semibold px-4 py-2 w-fit bg-black/60 backdrop-blur rounded-lg"
-					>
-						<span>View Source</span>
-						<ExternalLink size="4" color="currentColor" />
-					</a>
 				</div>
 
 				<!-- Accent Border -->
