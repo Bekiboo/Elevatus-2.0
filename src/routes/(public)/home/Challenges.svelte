@@ -70,9 +70,12 @@
 				class="relative overflow-hidden rounded-lg shadow-2xl min-h-[500px] lg:min-h-[600px]"
 				use:intersectObs={{
 					root: null,
-					threshold: 0.8,
+					threshold: Array.from({ length: 21 }, (_, i) => i / 20),
 					onIntersect: (entry) => {
-						visibleCards[index] = entry.isIntersecting
+						const visiblePx = entry.intersectionRect.height
+						const viewportHeight = window.innerHeight
+
+						visibleCards[index] = visiblePx >= viewportHeight * 0.7
 					},
 					onLeave: () => {
 						visibleCards[index] = false
