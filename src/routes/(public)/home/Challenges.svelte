@@ -73,7 +73,7 @@
 					threshold: Array.from({ length: 21 }, (_, i) => i / 20),
 					onIntersect: (entry) => {
 						// Show text only when 70% or more of the card itself is visible
-						visibleCards[index] = entry.intersectionRatio >= 0.7
+						visibleCards[index] = entry.intersectionRatio >= 0.8
 					},
 					onLeave: () => {
 						visibleCards[index] = false
