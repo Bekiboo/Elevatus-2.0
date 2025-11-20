@@ -11,10 +11,10 @@
 	let { number, title, description, listItems = [], conclusion, className = '' }: Props = $props()
 </script>
 
-<div class="p-8 bg-white rounded-lg shadow-lg {className}">
+<div class="p-6 lg:p-8 bg-white rounded-lg shadow-lg {className}">
 	<div class="flex items-center mb-4">
 		<div
-			class="flex items-center justify-center w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
+			class="flex items-center justify-center min-w-12 w-12 h-12 mr-4 text-2xl font-bold text-white rounded-full bg-brand"
 		>
 			{number}
 		</div>
