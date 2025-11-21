@@ -54,7 +54,7 @@
 								alt={title}
 							/>
 						</a>
-						<div class="flex flex-col p-8 leading-relaxed">
+						<div class="flex flex-col px-8 leading-relaxed">
 							<a href="/blog/{post.id}">
 								<h5
 									class="mb-4 text-4xl font-black tracking-tight text-dark hover:text-brand transition-colors duration-300 uppercase"
@@ -97,7 +97,7 @@
 									alt={title}
 								/>
 							</a>
-							<div class="flex flex-col p-6 leading-relaxed flex-grow">
+							<div class="flex flex-col py-6 leading-relaxed flex-grow">
 								<a href="/blog/{id}">
 									<h5
 										class="mb-3 text-2xl font-black tracking-tight text-dark hover:text-brand transition-colors duration-300 uppercase line-clamp-2"
