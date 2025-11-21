@@ -184,17 +184,20 @@
 {/if}
 
 <!-- Mobile Nav -->
-<div class="absolute z-50 m-2 md:hidden">
-	<a href="/"><img class="h-16" src="../img/icons/Phoenix-white-stroke-heavy.png" alt="logo" /></a>
-</div>
-<button
-	class="fixed right-2 top-2 z-50 {open
-		? 'text-brand'
-		: 'text-white bg-dark rounded-full shadow-lg shadow-gray-900'} md:hidden"
-	onclick={() => (open = !open)}
+<nav
+	class="fixed top-0 left-0 right-0 z-50 md:hidden duration-300 {scrolled &&
+		'shadow-2xl bg-dark/85 backdrop-blur-sm'} {!scrolled && 'bg-dark/50'}"
 >
-	<Hamburger {open} />
-</button>
+	<div class="flex items-center justify-between px-4">
+		<a href="/">
+			<img class="h-10 ml-2" src="../img/icons/white_logo.png" alt="logo" />
+		</a>
+		<button class="z-50 {open ? 'text-brand' : 'text-white'}" onclick={() => (open = !open)}>
+			<Hamburger {open} />
+		</button>
+	</div>
+</nav>
+
 {#if open}
 	<div
 		class="fixed inset-0 top-0 z-30 w-full h-full bg-white/95 md:hidden"

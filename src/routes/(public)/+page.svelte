@@ -52,7 +52,7 @@
 		<div
 			in:fade={{ duration: 200 }}
 			out:fade={{ duration: 200 }}
-			class="sticky bottom-8 z-50 flex justify-end pointer-events-none -mb-16 lg:-mb-8"
+			class="sticky bottom-8 z-[25] flex justify-end pointer-events-none -mb-16 lg:-mb-8"
 		>
 			<div class="pointer-events-auto mr-8">
 				<Button href="/donate" size="medium" class="shadow-[0_12px_30px_rgba(0,0,0,0.5)]"
