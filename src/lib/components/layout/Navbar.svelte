@@ -41,7 +41,6 @@
 		},
 		{ name: 'Team', href: '/team', color: 'white' },
 		{ name: 'Blog', href: '/blog', color: 'white' },
-		{ name: 'Contact', href: '/contact', color: 'white' },
 		{ name: 'Donate', href: '/donate', color: 'orange' }
 	]
 

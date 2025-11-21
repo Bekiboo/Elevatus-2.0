@@ -17,9 +17,9 @@
 
 <div class="max-w-6xl px-8 py-12 mx-auto text-center">
 	<p>
-		If you encountered a problem, please reach out through our <a
-			href="/contact"
-			class="text-orange-800 underline hover:text-orange-600">Contact Form</a
+		If you encountered a problem, please reach out to us at <a
+			href="mailto:correspondence.elevatus@gmail.com"
+			class="text-orange-800 underline hover:text-orange-600">correspondence.elevatus@gmail.com</a
 		>.
 	</p>
 </div>

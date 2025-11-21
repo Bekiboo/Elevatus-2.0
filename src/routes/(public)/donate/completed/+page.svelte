@@ -17,9 +17,10 @@
 
 <div class="max-w-6xl px-8 py-12 mx-auto text-center">
 	<p>
-		Thank you infinitely for your generous donation. Please, use our <a
-			href="/contact"
-			class="text-orange-800 underline hover:text-orange-600">Contact Form</a
-		> if you have any question.
+		Thank you infinitely for your generous donation. If you have any questions, please reach out to
+		us at <a
+			href="mailto:correspondence.elevatus@gmail.com"
+			class="text-orange-800 underline hover:text-orange-600">correspondence.elevatus@gmail.com</a
+		>.
 	</p>
 </div>
