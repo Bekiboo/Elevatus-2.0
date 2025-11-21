@@ -65,37 +65,49 @@
 
 <Modal bind:showModal>
 	{#snippet header()}
-		<h2 class="m-auto mb-2 text-2xl font-bold uppercase text-sky-700">
-			{members[currentMember].firstName}
-			{members[currentMember].lastName}
+		<h2 class="text-3xl font-black uppercase">
+			<span class="text-brand">{members[currentMember].firstName}</span>
+			<span class="text-dark">{members[currentMember].lastName}</span>
 		</h2>
 	{/snippet}
 
 	{#snippet children()}
-		<div class="flex flex-col items-center gap-4">
-			<div class="flex justify-between w-full">
+		<div class="flex flex-col items-center gap-6">
+			<div class="flex justify-between items-center w-full gap-4">
 				<button
-					class="mt-2 text-orange-500 bg-orange-50 hover:bg-orange-100"
+					class="p-3 rounded-lg bg-brand/10 text-brand hover:bg-brand/20 transition-all duration-200"
 					onclick={() => {
 						currentMember = currentMember === 0 ? members.length - 1 : currentMember - 1
-					}}><ChevronIcon rotation={180} /></button
+					}}
+					aria-label="Previous member"
 				>
+					<ChevronIcon rotation={180} />
+				</button>
 				<img
-					class="w-40 h-40 rounded-full"
+					class="w-48 h-48 rounded-full shadow-xl ring-4 ring-brand"
 					src={members[currentMember].src + '.png'}
 					alt="Picture of {members[currentMember].firstName} {members[currentMember].lastName}"
 				/>
 				<button
-					class="mt-2 text-orange-500 bg-orange-50 hover:bg-orange-100"
+					class="p-3 rounded-lg bg-brand/10 text-brand hover:bg-brand/20 transition-all duration-200"
 					onclick={() => {
 						currentMember = currentMember === members.length - 1 ? 0 : currentMember + 1
-					}}><ChevronIcon /></button
+					}}
+					aria-label="Next member"
 				>
+					<ChevronIcon />
+				</button>
 			</div>
-			<h3 class="text-xl font-semibold text-blue-900">{members[currentMember].role}</h3>
-			{#each members[currentMember].bio as paragraph}
-				<p class="text-blue-900">{paragraph}</p>
-			{/each}
+			<div class="bg-brand/10 rounded-lg px-4 py-2 w-fit">
+				<h3 class="text-xl font-bold text-brand select-none">
+					{members[currentMember].role}
+				</h3>
+			</div>
+			<div class="flex flex-col gap-4 text-dark leading-relaxed">
+				{#each members[currentMember].bio as paragraph}
+					<p>{paragraph}</p>
+				{/each}
+			</div>
 		</div>
 	{/snippet}
 </Modal>
