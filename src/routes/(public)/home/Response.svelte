@@ -84,7 +84,7 @@
 					href="/programs/education"
 					variant="outline"
 					size="small"
-					class="mb-4 mt-4 w-min text-light font-bold whitespace-nowrap outline-3 outline-light hover:text-brand hover:bg-light hover:outline-light"
+					class="mb-4 mt-4 w-32 text-light font-bold whitespace-nowrap border-2 border-light hover:text-brand hover:bg-light hover:outline-light"
 					>Learn More</Button
 				>
 			</div>
@@ -126,7 +126,7 @@
 					href="/programs/nutrition"
 					variant="outline"
 					size="small"
-					class="mb-4 mt-4 w-min text-light font-bold whitespace-nowrap outline-3 outline-light hover:text-secondary hover:bg-light hover:outline-light"
+					class="mb-4 mt-4 w-32 text-light font-bold whitespace-nowrap border-2 border-light hover:text-secondary hover:bg-light hover:outline-light"
 					>Learn More</Button
 				>
 			</div>
@@ -172,7 +172,7 @@
 					href="/programs/skills"
 					variant="outline"
 					size="small"
-					class="mb-4 mt-4 w-min text-light font-bold whitespace-nowrap outline-3 outline-light hover:text-accent hover:bg-light hover:outline-light"
+					class="mb-4 mt-4 w-32 text-light font-bold whitespace-nowrap border-2 border-light hover:text-accent hover:bg-light hover:outline-light"
 					>Learn More</Button
 				>
 			</div>
