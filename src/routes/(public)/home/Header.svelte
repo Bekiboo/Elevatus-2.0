@@ -5,6 +5,8 @@
 	import { Tween } from 'svelte/motion'
 	import { intersectObs } from '$lib/intersectObs.svelte'
 
+	let { onScrollChange }: { onScrollChange?: (scrolled: boolean) => void } = $props()
+
 	let mounted = $state(false)
 	let bgParallax = $state(54)
 	const bgUrl = 'http://www.elevatus-foundation.org/img/child_labor.jpg'
@@ -15,6 +17,10 @@
 	})
 
 	let isScrolled = $state(false)
+
+	$effect(() => {
+		onScrollChange?.(isScrolled)
+	})
 
 	const intersectorOptions = {
 		root: null,
@@ -78,17 +84,6 @@
 		</div>
 	{/if}
 </div>
-
-{#if isScrolled}
-	<div
-		in:fade={{ duration: 100 }}
-		out:fade={{ duration: 100 }}
-		class="fixed z-50 bottom-8 right-16"
-	>
-		<Button href="/donate" size="medium" class="shadow-[0_12px_30px_rgba(0,0,0,0.5)]">Donate</Button
-		>
-	</div>
-{/if}
 
 <svelte:window
 	on:scroll={() => {
