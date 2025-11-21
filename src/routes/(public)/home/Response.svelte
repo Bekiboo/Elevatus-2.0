@@ -74,38 +74,10 @@
 				<div class="flex flex-col gap-4 mt-6">
 					<span class="text-sm uppercase font-semibold tracking-widest"> Aligned with: </span>
 					<div class="flex flex-wrap items-center gap-2">
-						<div class="relative w-32 h-32">
-							<img
-								src="/img/icons/SDG-01.png"
-								alt="SDG 4 - No Poverty"
-								title="SDG 4 – No Poverty"
-								class="absolute h-32 w-32"
-							/>
-							<!-- <img
-								src="/img/icons/SDG-01-white.png"
-								alt="SDG 4 - No Poverty"
-								title="SDG 4 – No Poverty"
-								class="absolute h-32 w-32 opacity-0 hover:opacity-100 transition-opacity"
-							/> -->
-						</div>
-						<img
-							src="/img/icons/SDG-04.png"
-							alt="SDG 4 - Quality Education"
-							title="SDG 4 – Quality Education"
-							class="h-32 w-32"
-						/>
-						<img
-							src="/img/icons/SDG-08.png"
-							alt="SDG 4 - Decent Work and Economic Growth"
-							title="SDG 4 – Decent Work and Economic Growth"
-							class="h-32 w-32"
-						/>
-						<img
-							src="/img/icons/SDG-10.png"
-							alt="SDG 4 - Reduced Inequalities"
-							title="SDG 4 – Reduced Inequalities"
-							class="h-32 w-32"
-						/>
+						{@render SDGicon('SDG 4 – No Poverty', '/img/icons/SDG-01.png')}
+						{@render SDGicon('SDG 4 – Quality Education', '/img/icons/SDG-04.png')}
+						{@render SDGicon('SDG 4 – Decent Work and Economic Growth', '/img/icons/SDG-08.png')}
+						{@render SDGicon('SDG 4 – Reduced Inequalities', '/img/icons/SDG-10.png')}
 					</div>
 				</div>
 				<Button
@@ -145,24 +117,9 @@
 				<div class="flex flex-col gap-4 mt-6">
 					<span class="text-sm uppercase font-semibold tracking-widest"> Aligned with: </span>
 					<div class="flex flex-wrap items-center gap-2">
-						<img
-							src="/img/icons/SDG-02.png"
-							alt="SDG 4 - Zero Hunger"
-							title="SDG 4 – Zero Hunger"
-							class="h-32 w-32"
-						/>
-						<img
-							src="/img/icons/SDG-03.png"
-							alt="SDG 4 - Good Health and Well-Being"
-							title="SDG 4 – Good Health and Well-Being"
-							class="h-32 w-32"
-						/>
-						<img
-							src="/img/icons/SDG-04.png"
-							alt="SDG 4 - Quality Education"
-							title="SDG 4 – Quality Education"
-							class="h-32 w-32"
-						/>
+						{@render SDGicon('SDG 4 – Zero Hunger', '/img/icons/SDG-02.png')}
+						{@render SDGicon('SDG 4 – Good Health and Well-Being', '/img/icons/SDG-03.png')}
+						{@render SDGicon('SDG 4 – Quality Education', '/img/icons/SDG-04.png')}
 					</div>
 				</div>
 				<Button
@@ -203,24 +160,12 @@
 				<div class="flex flex-col gap-4 mt-6">
 					<span class="text-sm uppercase font-semibold tracking-widest"> Aligned with: </span>
 					<div class="flex flex-wrap items-center gap-2">
-						<img
-							src="/img/icons/SDG-04.png"
-							alt="SDG 4 - Quality Education"
-							title="SDG 4 – Quality Education"
-							class="h-32 w-32"
-						/>
-						<img
-							src="/img/icons/SDG-08.png"
-							alt="SDG 4 - Decent Work and Economic Growth"
-							title="SDG 4 – Decent Work and Economic Growth"
-							class="h-32 w-32"
-						/>
-						<img
-							src="/img/icons/SDG-16.png"
-							alt="SDG 4 - Peace, Justice and Strong Institutions"
-							title="SDG 4 – Peace, Justice and Strong Institutions"
-							class="h-32 w-32"
-						/>
+						{@render SDGicon('SDG 4 – Quality Education', '/img/icons/SDG-04.png')}
+						{@render SDGicon('SDG 4 – Decent Work and Economic Growth', '/img/icons/SDG-08.png')}
+						{@render SDGicon(
+							'SDG 4 – Peace, Justice and Strong Institutions',
+							'/img/icons/SDG-16.png'
+						)}
 					</div>
 				</div>
 				<Button
@@ -234,3 +179,7 @@
 		</div>
 	</div>
 </section>
+
+{#snippet SDGicon(title: string, src: string)}
+	<img {src} alt={title} {title} class="h-32 w-32" />
+{/snippet}
