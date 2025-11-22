@@ -8,6 +8,24 @@
 	}
 
 	let { children }: Props = $props()
+
+	// Compute canonical URL dynamically
+	$effect(() => {
+		const baseUrl = 'https://www.elevatus-foundation.org'
+		const canonicalUrl = `${baseUrl}${$page.url.pathname}`
+
+		// Remove any existing canonical link
+		const existingCanonical = document.querySelector('link[rel="canonical"]')
+		if (existingCanonical) {
+			existingCanonical.remove()
+		}
+
+		// Add new canonical link
+		const link = document.createElement('link')
+		link.setAttribute('rel', 'canonical')
+		link.setAttribute('href', canonicalUrl)
+		document.head.appendChild(link)
+	})
 </script>
 
 <ViewTransition />

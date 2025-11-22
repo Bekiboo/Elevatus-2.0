@@ -15,6 +15,68 @@
 
 <svelte:head>
 	<title>Elevatus | Home Page</title>
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "NGO",
+		"name": "Elevatus Foundation",
+		"alternateName": "Elevatus",
+		"url": "https://www.elevatus-foundation.org",
+		"logo": "https://www.elevatus-foundation.org/img/icons/white_logo.png",
+		"description": "We give children in Madagascar the tools they need to avoid being trafficked and to be successful in life through education, nutrition, and skills development programs.",
+		"foundingDate": "2015",
+		"address": {
+			"@type": "PostalAddress",
+			"addressCountry": "Madagascar"
+		},
+		"sameAs": [
+			"https://www.facebook.com/ElevatusFoundation",
+			"https://www.instagram.com/elevatus_foundation"
+		],
+		"contactPoint": {
+			"@type": "ContactPoint",
+			"email": "correspondence.elevatus@gmail.com",
+			"contactType": "Customer Service"
+		},
+		"areaServed": {
+			"@type": "Country",
+			"name": "Madagascar"
+		},
+		"knowsAbout": [
+			"Child Labor Prevention",
+			"Education Support",
+			"Nutrition Programs",
+			"Skills Development",
+			"Youth Empowerment"
+		],
+		"makesOffer": [
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Education Support Program",
+					"description": "Sponsorship program ensuring financial hardship never becomes a barrier to learning"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "School Nutrition Program",
+					"description": "Daily nutritious meals to keep children healthy and engaged in learning"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Youth Center Skills Program",
+					"description": "Safe environment for children to learn practical skills and receive mentorship"
+				}
+			}
+		]
+	}
+	</script>`}
 </svelte:head>
 
 <MetaTags

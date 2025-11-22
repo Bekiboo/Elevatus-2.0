@@ -19,24 +19,64 @@
 		title: title,
 		subtitle: caption
 	}
-	console.log(hero)
+
+	// Get first paragraph for article body preview
+	const firstParagraph = elements.find((el: any) => el.type === 'paragraph')?.value || caption || ''
+	const articleBody = firstParagraph.substring(0, 200)
 </script>
 
 <svelte:head>
-	<title>Elevatus | Blog</title>
+	<title>{title} - Elevatus Foundation</title>
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Article",
+		"headline": "${title}",
+		"description": "${caption}",
+		"image": "${elements[0].value}",
+		"datePublished": "${created_at}",
+		"dateModified": "${created_at}",
+		"author": {
+			"@type": "Person",
+			"name": "${author?.firstName ? `${author.firstName} ${author.lastName}` : 'Elevatus Foundation'}",
+			"jobTitle": "${author?.title || 'Staff Writer'}"
+		},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Elevatus Foundation",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "https://www.elevatus-foundation.org/img/icons/white_logo.png"
+			}
+		},
+		"mainEntityOfPage": {
+			"@type": "WebPage",
+			"@id": "https://www.elevatus-foundation.org/blog/${id}"
+		},
+		"articleBody": "${articleBody.replace(/"/g, '\\"').replace(/\n/g, ' ')}"
+	}
+	</script>`}
 </svelte:head>
 
 <MetaTags
+	title={`${title} - Elevatus Foundation`}
+	description={caption}
 	openGraph={{
-		type: 'website',
+		type: 'article',
 		url: `https://www.elevatus-foundation.org/blog/${id}`,
 		title: title,
 		description: caption,
+		article: {
+			publishedTime: created_at,
+			authors: author?.firstName
+				? [`${author.firstName} ${author.lastName}`]
+				: ['Elevatus Foundation']
+		},
 		images: [
 			{
 				url: elements[0].value,
-				width: 800,
-				height: 600,
+				width: 1200,
+				height: 630,
 				alt: caption
 			}
 		],

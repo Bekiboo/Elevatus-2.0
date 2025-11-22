@@ -2,6 +2,7 @@
 	import type { PageData } from './$types'
 	import Hero from '$lib/components/layout/Hero.svelte'
 	import { DateTime } from 'luxon'
+	import { MetaTags } from 'svelte-meta-tags'
 
 	interface Props {
 		data: PageData
@@ -32,8 +33,28 @@
 </script>
 
 <svelte:head>
-	<title>Elevatus | Blog</title>
+	<title>Blog - Elevatus Foundation</title>
 </svelte:head>
+
+<MetaTags
+	title="Blog - Elevatus Foundation"
+	description="Read stories and updates about our work fighting child labor in Madagascar through education support, nutrition programs, and youth skills development."
+	openGraph={{
+		url: 'https://www.elevatus-foundation.org/blog',
+		title: 'Blog - Elevatus Foundation',
+		description:
+			'Read stories and updates about our work fighting child labor in Madagascar through education support, nutrition programs, and youth skills development.',
+		images: [
+			{
+				url: 'https://www.elevatus-foundation.org/img/hero/group_picture_zoo.jpg',
+				width: 1200,
+				height: 630,
+				alt: 'Elevatus Foundation Blog'
+			}
+		],
+		siteName: 'Elevatus'
+	}}
+/>
 
 <Hero {...hero} />
 

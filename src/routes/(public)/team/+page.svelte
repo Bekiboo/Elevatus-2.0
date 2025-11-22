@@ -4,6 +4,7 @@
 	import Modal from '$lib/components/Modal.svelte'
 	import Member from './Member.svelte'
 	import members from './members'
+	import { MetaTags } from 'svelte-meta-tags'
 
 	let showModal = $state(false)
 	let currentMember = $state(0)
@@ -29,8 +30,28 @@
 </script>
 
 <svelte:head>
-	<title>Elevatus | Team</title>
+	<title>Our Team - Elevatus Foundation</title>
 </svelte:head>
+
+<MetaTags
+	title="Our Team - Elevatus Foundation"
+	description="Meet the dedicated team behind Elevatus Foundation working to fight child labor in Madagascar through education, nutrition, and youth empowerment programs."
+	openGraph={{
+		url: 'https://www.elevatus-foundation.org/team',
+		title: 'Our Team - Elevatus Foundation',
+		description:
+			'Meet the dedicated team behind Elevatus Foundation working to fight child labor in Madagascar through education, nutrition, and youth empowerment programs.',
+		images: [
+			{
+				url: 'https://www.elevatus-foundation.org/img/hero/hero_team.jpg',
+				width: 1200,
+				height: 630,
+				alt: 'Elevatus Foundation Team'
+			}
+		],
+		siteName: 'Elevatus'
+	}}
+/>
 
 <Hero {...hero} />
 

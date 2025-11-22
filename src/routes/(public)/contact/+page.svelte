@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Hero from '$lib/components/layout/Hero.svelte'
+	import { MetaTags } from 'svelte-meta-tags'
 
 	const hero = {
 		src: 'img/hero/contact.jpg',
@@ -10,8 +11,28 @@
 </script>
 
 <svelte:head>
-	<title>Elevatus | Contact Us</title>
+	<title>Contact Us - Elevatus Foundation</title>
 </svelte:head>
+
+<MetaTags
+	title="Contact Us - Elevatus Foundation"
+	description="Get in touch with the Elevatus Foundation. We'd love to hear from you about our work fighting child labor in Madagascar through education, nutrition, and skills programs."
+	openGraph={{
+		url: 'https://www.elevatus-foundation.org/contact',
+		title: 'Contact Us - Elevatus Foundation',
+		description:
+			"Get in touch with the Elevatus Foundation. We'd love to hear from you about our work fighting child labor in Madagascar.",
+		images: [
+			{
+				url: 'https://www.elevatus-foundation.org/img/hero/contact.jpg',
+				width: 1200,
+				height: 630,
+				alt: 'Contact Elevatus Foundation'
+			}
+		],
+		siteName: 'Elevatus'
+	}}
+/>
 
 <Hero {...hero} />
 

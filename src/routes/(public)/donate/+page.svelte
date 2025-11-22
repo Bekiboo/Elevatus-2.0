@@ -2,6 +2,7 @@
 	import { fade } from 'svelte/transition'
 	import PaymentButton from './PaymentButton.svelte'
 	import Hero from '$lib/components/layout/Hero.svelte'
+	import { MetaTags } from 'svelte-meta-tags'
 
 	const hero = {
 		src: 'img/hero/donate.jpg',
@@ -51,8 +52,40 @@
 </script>
 
 <svelte:head>
-	<title>Elevatus | Donate</title>
+	<title>Donate - Elevatus Foundation</title>
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "DonateAction",
+		"recipient": {
+			"@type": "NGO",
+			"name": "Elevatus Foundation",
+			"url": "https://www.elevatus-foundation.org"
+		},
+		"description": "Support children in Madagascar by sponsoring their education, nutrition, and skills development to prevent child labor and trafficking."
+	}
+	</script>`}
 </svelte:head>
+
+<MetaTags
+	title="Donate - Elevatus Foundation"
+	description="Support children in Madagascar through monthly sponsorship or one-time donations. Help provide education, nutrition, and skills development to prevent child labor."
+	openGraph={{
+		url: 'https://www.elevatus-foundation.org/donate',
+		title: 'Donate - Elevatus Foundation',
+		description:
+			'Support children in Madagascar through monthly sponsorship or one-time donations. Help provide education, nutrition, and skills development to prevent child labor.',
+		images: [
+			{
+				url: 'https://www.elevatus-foundation.org/img/hero/donate.jpg',
+				width: 1200,
+				height: 630,
+				alt: 'Donate to Elevatus Foundation'
+			}
+		],
+		siteName: 'Elevatus'
+	}}
+/>
 
 <Hero {...hero} />
 
