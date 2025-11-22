@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css'
+	import { injectAnalytics } from '@vercel/analytics/sveltekit'
 	import { page } from '$app/state'
 	import ViewTransition from '$lib/components/ViewTransition.svelte'
 	interface Props {
@@ -7,6 +8,8 @@
 	}
 
 	let { children }: Props = $props()
+
+	injectAnalytics()
 </script>
 
 <ViewTransition />
