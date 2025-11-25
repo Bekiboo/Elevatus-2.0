@@ -92,7 +92,7 @@
 
 		<div class="relative w-full flex flex-col lg:items-end lg:justify-end lg:gap-16 lg:p-16">
 			<img
-				src="img/kids_eating.png"
+				src="img/kids_eating_in_class.jpg"
 				alt="Healthy meal for children"
 				class="lg:absolute min-h-96 top-0 left-0 z-0 object-cover lg:w-8/12 lg:h-full"
 			/>
