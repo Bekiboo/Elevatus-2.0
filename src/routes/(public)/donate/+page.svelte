@@ -25,7 +25,10 @@
 			const response = await fetch('/api/create-checkout-session', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ amount: amount * 100 }) // Stripe uses cents
+				body: JSON.stringify({
+					amount: amount * 100, // Stripe uses cents
+					isRecurring: monthly
+				})
 			})
 
 			const { url, error: apiError } = await response.json()
