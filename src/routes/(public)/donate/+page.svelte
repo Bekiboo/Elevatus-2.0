@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition'
-	import PaymentButton from './PaymentButton.svelte'
+	import Button from '$lib/components/UI/Button.svelte'
 	import Hero from '$lib/components/layout/Hero.svelte'
 	import { MetaTags } from 'svelte-meta-tags'
 
@@ -11,44 +11,39 @@
 		subtitle: 'Contribute to saving children in Madagascar from trafficking'
 	}
 
-	const plans = {
-		sponsor25: {
-			url: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KAC88B2QR7UEL',
-			buttonText: 'Sponsor for $25/month'
-		},
-		sponsor50: {
-			url: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=J6NP7D9JU64CN',
-			buttonText: 'Sponsor for $50/month'
-		},
-		sponsor100: {
-			url: 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BP6QD3CLJKRY8',
-			buttonText: 'Sponsor for $100/month'
-		},
-		oneTime50: {
-			url: 'https://www.paypal.com/donate/?hosted_button_id=NLMM5KDFBTM9W',
-			buttonText: 'Donate $50'
-		},
-		oneTime100: {
-			url: 'https://www.paypal.com/donate/?hosted_button_id=JXVJJTN8TU3FN',
-			buttonText: 'Donate $100'
-		},
-		oneTime200: {
-			url: 'https://www.paypal.com/donate/?hosted_button_id=5GV8WKTD3MR7L',
-			buttonText: 'Donate $200'
-		},
-		sponsorOther: {
-			url: 'https://www.paypal.com/donate/?hosted_button_id=A7L2N5TC4QV5E',
-			buttonText: 'Customize your sponsor'
-		},
-		oneTimeOther: {
-			url: 'https://www.paypal.com/donate/?hosted_button_id=A7L2N5TC4QV5E',
-			buttonText: 'Customize your donation'
+	let amount = $state(25)
+	let loading = $state(false)
+	let customAmount = $state('')
+	let monthly = $state(true)
+
+	const monthlyPresets = [25, 50, 100]
+	const oneTimePresets = [50, 100, 200]
+
+	async function handleDonation() {
+		loading = true
+		try {
+			const response = await fetch('/api/create-checkout-session', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ amount: amount * 100 }) // Stripe uses cents
+			})
+
+			const { url, error: apiError } = await response.json()
+
+			if (apiError) {
+				throw new Error(apiError)
+			}
+
+			if (url) {
+				// Redirect to Stripe Checkout
+				window.location.href = url
+			}
+		} catch (error) {
+			console.error('Payment error:', error)
+			alert('Payment failed. Please try again.')
+			loading = false
 		}
 	}
-
-	let monthly = $state(true)
-	let sponsorPlan = $state(plans.sponsor25)
-	let oneTimePlan = $state(plans.oneTime50)
 </script>
 
 <svelte:head>
@@ -148,7 +143,11 @@
 				class="relative z-10 grid items-center w-1/2 h-full text-center cursor-pointer transition-colors duration-300 uppercase tracking-wide"
 				class:text-light={monthly}
 				class:text-dark={!monthly}
-				onclick={() => (monthly = true)}
+				onclick={() => {
+					monthly = true
+					amount = monthlyPresets[0]
+					customAmount = ''
+				}}
 			>
 				Monthly Sponsor
 			</button>
@@ -157,7 +156,11 @@
 				class="relative z-10 grid items-center w-1/2 h-full text-center cursor-pointer transition-colors duration-300 uppercase tracking-wide"
 				class:text-light={!monthly}
 				class:text-dark={monthly}
-				onclick={() => (monthly = false)}
+				onclick={() => {
+					monthly = false
+					amount = oneTimePresets[0]
+					customAmount = ''
+				}}
 			>
 				One Time Donation
 			</button>
@@ -169,80 +172,60 @@
 					Choose an amount to give each month
 				</p>
 
-				<div class="flex mb-5 items-start">
-					<div class="flex items-center h-6 mt-0.5">
-						<input
-							bind:group={sponsorPlan}
-							value={plans.sponsor25}
-							checked
-							id="sponsor-radio-1"
-							name="sponsor-radio"
-							type="radio"
-							class="w-5 h-5 text-brand bg-light border-2 border-dark/20 cursor-pointer focus:ring-brand focus:ring-2 accent-brand"
-						/>
+				{#each monthlyPresets as preset, i}
+					<div class="flex mb-5 items-start">
+						<div class="flex items-center h-6 mt-0.5">
+							<input
+								checked={amount === preset}
+								onchange={() => {
+									amount = preset
+									customAmount = ''
+								}}
+								id="monthly-radio-{i}"
+								name="monthly-radio"
+								type="radio"
+								class="w-5 h-5 text-brand bg-light border-2 border-dark/20 cursor-pointer focus:ring-brand focus:ring-2 accent-brand"
+							/>
+						</div>
+						<div class="ml-4">
+							<label
+								for="monthly-radio-{i}"
+								class="text-xl font-black text-dark cursor-pointer block">${preset}/Month</label
+							>
+							<p class="text-sm text-dark/60">
+								Sponsor {preset === 25 ? 'One' : preset === 50 ? 'Two' : 'Four'}
+								{preset === 25 ? 'Child' : 'Children'}
+							</p>
+						</div>
 					</div>
-					<div class="ml-4">
-						<label for="sponsor-radio-1" class="text-xl font-black text-dark cursor-pointer block"
-							>$25/Month</label
-						>
-						<p class="text-sm text-dark/60">Sponsor One Child</p>
-					</div>
-				</div>
+				{/each}
 
 				<div class="flex mb-5 items-start">
 					<div class="flex items-center h-6 mt-0.5">
 						<input
-							bind:group={sponsorPlan}
-							value={plans.sponsor50}
-							id="sponsor-radio-2"
-							name="sponsor-radio"
+							checked={customAmount !== '' && !monthlyPresets.includes(amount)}
+							onchange={() => {}}
+							id="monthly-radio-custom"
+							name="monthly-radio"
 							type="radio"
 							class="w-5 h-5 text-brand bg-light border-2 border-dark/20 cursor-pointer focus:ring-brand focus:ring-2 accent-brand"
 						/>
 					</div>
-					<div class="ml-4">
-						<label for="sponsor-radio-2" class="text-xl font-black text-dark cursor-pointer block"
-							>$50/Month</label
+					<div class="ml-4 flex-1">
+						<label
+							for="monthly-radio-custom"
+							class="text-xl font-black text-dark cursor-pointer block">Other Amount</label
 						>
-						<p class="text-sm text-dark/60">Sponsor Two Children</p>
-					</div>
-				</div>
-
-				<div class="flex mb-5 items-start">
-					<div class="flex items-center h-6 mt-0.5">
 						<input
-							bind:group={sponsorPlan}
-							value={plans.sponsor100}
-							id="sponsor-radio-3"
-							name="sponsor-radio"
-							type="radio"
-							class="w-5 h-5 text-brand bg-light border-2 border-dark/20 cursor-pointer focus:ring-brand focus:ring-2 accent-brand"
+							type="number"
+							bind:value={customAmount}
+							oninput={() => {
+								amount = Number(customAmount) || 0
+							}}
+							placeholder="Enter custom amount"
+							class="w-full p-2 mt-2 border-2 border-gray-300 rounded-lg"
+							min="1"
 						/>
-					</div>
-					<div class="ml-4">
-						<label for="sponsor-radio-3" class="text-xl font-black text-dark cursor-pointer block"
-							>$100/Month</label
-						>
-						<p class="text-sm text-dark/60">Sponsor Four Children</p>
-					</div>
-				</div>
-
-				<div class="flex mb-5 items-start">
-					<div class="flex items-center h-6 mt-0.5">
-						<input
-							bind:group={sponsorPlan}
-							value={plans.sponsorOther}
-							id="sponsor-radio-4"
-							name="sponsor-radio"
-							type="radio"
-							class="w-5 h-5 text-brand bg-light border-2 border-dark/20 cursor-pointer focus:ring-brand focus:ring-2 accent-brand"
-						/>
-					</div>
-					<div class="ml-4">
-						<label for="sponsor-radio-4" class="text-xl font-black text-dark cursor-pointer block"
-							>Other Amount</label
-						>
-						<p class="text-sm text-dark/60">Choose how much you want to donate each month</p>
 					</div>
 				</div>
 			</div>
@@ -257,9 +240,11 @@
 				<div class="flex mb-5 items-start">
 					<div class="flex items-center h-6 mt-0.5">
 						<input
-							bind:group={oneTimePlan}
-							value={plans.oneTime50}
-							checked
+							checked={amount === oneTimePresets[0]}
+							onchange={() => {
+								amount = oneTimePresets[0]
+								customAmount = ''
+							}}
 							id="onetime-radio-1"
 							name="onetime-radio"
 							type="radio"
@@ -277,8 +262,11 @@
 				<div class="flex mb-5 items-start">
 					<div class="flex items-center h-6 mt-0.5">
 						<input
-							bind:group={oneTimePlan}
-							value={plans.oneTime100}
+							checked={amount === oneTimePresets[1]}
+							onchange={() => {
+								amount = oneTimePresets[1]
+								customAmount = ''
+							}}
 							id="onetime-radio-2"
 							name="onetime-radio"
 							type="radio"
@@ -296,8 +284,11 @@
 				<div class="flex mb-5 items-start">
 					<div class="flex items-center h-6 mt-0.5">
 						<input
-							bind:group={oneTimePlan}
-							value={plans.oneTime200}
+							checked={amount === oneTimePresets[2]}
+							onchange={() => {
+								amount = oneTimePresets[2]
+								customAmount = ''
+							}}
 							id="onetime-radio-3"
 							name="onetime-radio"
 							type="radio"
@@ -315,33 +306,44 @@
 				<div class="flex mb-5 items-start">
 					<div class="flex items-center h-6 mt-0.5">
 						<input
-							bind:group={oneTimePlan}
-							value={plans.oneTimeOther}
-							id="onetime-radio-4"
+							checked={customAmount !== '' && !oneTimePresets.includes(amount)}
+							onchange={() => {}}
+							id="onetime-radio-custom"
 							name="onetime-radio"
 							type="radio"
 							class="w-5 h-5 text-brand bg-light border-2 border-dark/20 cursor-pointer focus:ring-brand focus:ring-2 accent-brand"
 						/>
 					</div>
-					<div class="ml-4">
-						<label for="onetime-radio-4" class="text-xl font-black text-dark cursor-pointer block"
-							>Other Amount</label
+					<div class="ml-4 flex-1">
+						<label
+							for="onetime-radio-custom"
+							class="text-xl font-black text-dark cursor-pointer block">Other Amount</label
 						>
-						<p class="text-sm text-dark/60">Custom Donation</p>
+						<input
+							type="number"
+							bind:value={customAmount}
+							oninput={() => {
+								amount = Number(customAmount) || 0
+							}}
+							placeholder="Enter custom amount"
+							class="w-full p-2 mt-2 border-2 border-gray-300 rounded-lg"
+							min="1"
+						/>
 					</div>
 				</div>
 			</div>
 		{/if}
 
-		<div class="flex flex-col mx-auto mt-6">
-			{#if monthly}
-				<PaymentButton url={sponsorPlan?.url} text={sponsorPlan?.buttonText} />
-			{/if}
-			{#if !monthly}
-				<PaymentButton url={oneTimePlan?.url} text={oneTimePlan?.buttonText} />
-			{/if}
+		<div class="flex flex-col mx-auto mt-6 w-full max-w-md">
+			<Button
+				onclick={handleDonation}
+				disabled={loading || amount <= 0}
+				class="w-full py-4 text-lg font-bold"
+			>
+				{loading ? 'Processing...' : `Donate $${amount}${monthly ? '/month' : ''}`}
+			</Button>
 			<span class="text-xs text-center text-dark/60 mt-4 uppercase tracking-wider"
-				>Clicking on this button will redirect you <br /> to a secured PayPal checkout page</span
+				>Secure payment processing powered by Stripe</span
 			>
 		</div>
 	</div>
