@@ -75,12 +75,22 @@
 
 		<!-- Bottom Section -->
 		<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm">
-			<span class="text-light/60">
-				© {currentYear}
-				<a href="/" class="text-light hover:text-brand transition-colors duration-300 font-semibold"
-					>Elevatus Foundation</a
-				>. All Rights Reserved.
-			</span>
+			<div class="flex flex-col sm:flex-row gap-4 sm:items-center">
+				<span class="text-light/60">
+					© {currentYear}
+					<a
+						href="/"
+						class="text-light hover:text-brand transition-colors duration-300 font-semibold"
+						>Elevatus Foundation</a
+					>. All Rights Reserved.
+				</span>
+				<a
+					href="/manage-subscription"
+					class="text-light/80 hover:text-brand transition-colors duration-300 text-xs uppercase tracking-wider"
+				>
+					Manage Subscription
+				</a>
+			</div>
 			<a
 				href="/contact"
 				class="font-black text-light hover:text-brand transition-colors duration-300 uppercase tracking-wider"

@@ -29,7 +29,9 @@ export const POST: RequestHandler = async ({ request, url }) => {
 				],
 				mode: 'subscription',
 				success_url: `${url.origin}/donate/success?session_id={CHECKOUT_SESSION_ID}`,
-				cancel_url: `${url.origin}/donate/cancelled`
+				cancel_url: `${url.origin}/donate/cancelled`,
+				customer_email: undefined, // Let customer enter email
+				billing_address_collection: 'auto'
 			})
 
 			return json({ url: session.url })
@@ -52,7 +54,9 @@ export const POST: RequestHandler = async ({ request, url }) => {
 				],
 				mode: 'payment',
 				success_url: `${url.origin}/donate/success?session_id={CHECKOUT_SESSION_ID}`,
-				cancel_url: `${url.origin}/donate/cancelled`
+				cancel_url: `${url.origin}/donate/cancelled`,
+				customer_email: undefined, // Let customer enter email
+				billing_address_collection: 'auto'
 			})
 
 			return json({ url: session.url })
