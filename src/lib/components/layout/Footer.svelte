@@ -1,29 +1,97 @@
 <script lang="ts">
 	let currentYear = new Date().getFullYear()
+
+	const navigation = [
+		{ name: 'Home', href: '/home' },
+		{ name: 'Programs', href: '/programs/education' },
+		{ name: 'Team', href: '/team' },
+		{ name: 'Blog', href: '/blog' },
+		{ name: 'Contact', href: '/contact' }
+	]
+
+	const programs = [
+		{ name: 'Education', href: '/programs/education' },
+		{ name: 'Nutrition', href: '/programs/nutrition' },
+		{ name: 'Skills Development', href: '/programs/skills' }
+	]
 </script>
 
-<footer class="p-8 text-light bg-dark md:px-12 md:py-12">
-	<div class="w-full max-w-6xl mx-auto">
-		<!-- Main Footer Content -->
-		<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 mb-8">
-			<!-- Logo -->
-			<a href="/home" class="flex-shrink-0">
-				<img class="h-16 md:h-20" src="../img/icons/white_logo.png" alt="Elevatus Logo" />
-			</a>
+<footer class="bg-dark text-light">
+	<div class="w-full max-w-7xl mx-auto px-6 py-12 lg:px-8 lg:py-16">
+		<!-- Main Footer Grid -->
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+			<!-- Column 1: Logo & Mission -->
+			<div class="lg:col-span-1">
+				<a href="/home" class="inline-block mb-6">
+					<img class="h-20" src="../img/icons/white_logo.png" alt="Elevatus Logo" />
+				</a>
+				<p class="text-light/70 text-sm leading-relaxed mb-6">
+					Empowering children in Madagascar through education, nutrition, and skills development.
+				</p>
+				<a
+					href="/donate"
+					class="inline-flex items-center gap-2 px-6 py-3 bg-brand hover:bg-brand/90 text-white font-semibold rounded-lg transition-all duration-300 group"
+				>
+					<span>Support Our Mission</span>
+					<svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+					</svg>
+				</a>
+			</div>
 
-			<!-- Social Media -->
-			<div class="flex flex-col items-start sm:items-end gap-4">
-				<h5 class="text-sm font-black uppercase tracking-wider text-secondary">Connect With Us</h5>
-				<div class="flex gap-2">
+			<!-- Column 2: Quick Links -->
+			<div>
+				<h3 class="text-secondary font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h3>
+				<ul class="space-y-3">
+					{#each navigation as item}
+						<li>
+							<a href={item.href} class="text-light/70 hover:text-brand transition-colors duration-300 text-sm">
+								{item.name}
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</div>
+
+			<!-- Column 3: Programs -->
+			<div>
+				<h3 class="text-secondary font-bold text-sm uppercase tracking-wider mb-4">Our Programs</h3>
+				<ul class="space-y-3">
+					{#each programs as program}
+						<li>
+							<a href={program.href} class="text-light/70 hover:text-brand transition-colors duration-300 text-sm">
+								{program.name}
+							</a>
+						</li>
+					{/each}
+					<li class="pt-2 border-t border-light/10">
+						<a
+							href="/manage-subscription"
+							class="group flex items-center gap-2 text-light/70 hover:text-brand transition-colors duration-300 text-sm"
+						>
+							<svg class="w-4 h-4 transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+							</svg>
+							<span>Manage Subscription</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Column 4: Connect -->
+			<div>
+				<h3 class="text-secondary font-bold text-sm uppercase tracking-wider mb-4">Connect With Us</h3>
+				<div class="flex gap-3 mb-6">
 					<a
 						href="https://facebook.com/ElevatusFoundation"
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label="Facebook"
-						class="p-2 transition-all duration-300 hover:bg-brand/20 rounded-lg"
+						class="p-3 bg-light/10 hover:bg-brand/20 rounded-lg transition-all duration-300 group"
 					>
 						<svg
-							class="h-10 w-10 fill-light transition-colors duration-300 hover:fill-brand"
+							class="h-6 w-6 fill-light group-hover:fill-brand transition-colors duration-300"
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
 						>
@@ -37,10 +105,10 @@
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label="Instagram"
-						class="p-2 transition-all duration-300 hover:bg-brand/20 rounded-lg"
+						class="p-3 bg-light/10 hover:bg-brand/20 rounded-lg transition-all duration-300 group"
 					>
 						<svg
-							class="h-10 w-10 fill-light transition-colors duration-300 hover:fill-brand"
+							class="h-6 w-6 fill-light group-hover:fill-brand transition-colors duration-300"
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
 						>
@@ -54,10 +122,10 @@
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label="YouTube"
-						class="p-2 transition-all duration-300 hover:bg-brand/20 rounded-lg"
+						class="p-3 bg-light/10 hover:bg-brand/20 rounded-lg transition-all duration-300 group"
 					>
 						<svg
-							class="h-10 w-10 fill-light transition-colors duration-300 hover:fill-brand"
+							class="h-6 w-6 fill-light group-hover:fill-brand transition-colors duration-300"
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
 						>
@@ -67,36 +135,36 @@
 						</svg>
 					</a>
 				</div>
+				<p class="text-light/70 text-sm mb-4">Stay updated on our impact</p>
+				<a
+					href="mailto:contact@elevatus-foundation.org"
+					class="text-brand hover:text-brand/80 transition-colors duration-300 text-sm flex items-center gap-2 group"
+				>
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+					</svg>
+					<span class="group-hover:underline">contact@elevatus-foundation.org</span>
+				</a>
 			</div>
 		</div>
 
 		<!-- Divider -->
-		<div class="w-full h-px bg-light/20 mb-8"></div>
+		<div class="w-full h-px bg-light/20 my-8"></div>
 
-		<!-- Bottom Section -->
-		<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm">
-			<div class="flex flex-col sm:flex-row gap-4 sm:items-center">
-				<span class="text-light/60">
-					© {currentYear}
-					<a
-						href="/"
-						class="text-light hover:text-brand transition-colors duration-300 font-semibold"
-						>Elevatus Foundation</a
-					>. All Rights Reserved.
-				</span>
-				<a
-					href="/manage-subscription"
-					class="text-light/80 hover:text-brand transition-colors duration-300 text-xs uppercase tracking-wider"
-				>
-					Manage Subscription
+		<!-- Bottom Bar -->
+		<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+			<p class="text-light/60 text-sm">
+				© {currentYear} <span class="text-light font-semibold">Elevatus Foundation</span>. All rights reserved.
+			</p>
+			<div class="flex items-center gap-6 text-sm">
+				<a href="/contact" class="text-light/70 hover:text-brand transition-colors duration-300">
+					Privacy Policy
+				</a>
+				<span class="text-light/30">•</span>
+				<a href="/contact" class="text-light/70 hover:text-brand transition-colors duration-300">
+					Terms of Service
 				</a>
 			</div>
-			<a
-				href="/contact"
-				class="font-black text-light hover:text-brand transition-colors duration-300 uppercase tracking-wider"
-			>
-				Contact Us →
-			</a>
 		</div>
 	</div>
 </footer>
