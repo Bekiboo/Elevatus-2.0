@@ -170,7 +170,7 @@
 				</div>
 				<p class="text-light/70 text-sm mb-4">Stay updated on our impact</p>
 				<a
-					href="mailto:contact@elevatus-foundation.org"
+					href="mailto:correspondence.elevatus@gmail.com"
 					class="text-brand hover:text-brand/80 transition-colors duration-300 text-sm flex items-center gap-2 group"
 				>
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -181,7 +181,7 @@
 							d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
 						/>
 					</svg>
-					<span class="group-hover:underline">contact@elevatus-foundation.org</span>
+					<span class="group-hover:underline">correspondence.elevatus@gmail.com</span>
 				</a>
 			</div>
 		</div>
@@ -196,11 +196,11 @@
 				rights reserved.
 			</p>
 			<div class="flex items-center gap-6 text-sm">
-				<a href="/contact" class="text-light/70 hover:text-brand transition-colors duration-300">
+				<a href="/privacy" class="text-light/70 hover:text-brand transition-colors duration-300">
 					Privacy Policy
 				</a>
 				<span class="text-light/30">•</span>
-				<a href="/contact" class="text-light/70 hover:text-brand transition-colors duration-300">
+				<a href="/terms" class="text-light/70 hover:text-brand transition-colors duration-300">
 					Terms of Service
 				</a>
 			</div>

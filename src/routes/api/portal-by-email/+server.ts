@@ -44,7 +44,7 @@ export const POST: RequestHandler = async ({ request, url }) => {
 
 		// Send email with magic link using Resend
 		await resend.emails.send({
-			from: 'Elevatus Foundation <contact@elevatus-foundation.org>',
+			from: 'Elevatus Foundation <correspondence.elevatus@gmail.com>',
 			to: email,
 			subject: 'Manage Your Subscription - Elevatus Foundation',
 			html: `
