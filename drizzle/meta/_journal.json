@@ -15,6 +15,20 @@
       "when": 1781243514509,
       "tag": "0001_app_role_grants",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1781244997195,
+      "tag": "0002_domain_core",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1781244997918,
+      "tag": "0003_seed_school_years",
+      "breakpoints": true
     }
   ]
 }

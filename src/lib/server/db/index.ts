@@ -22,3 +22,11 @@ export function getDb() {
 }
 
 export type Db = ReturnType<typeof getDb>
+
+// drizzle wraps driver errors; the Postgres code (23505 unique violation,
+// 23503 FK violation, …) lives on the cause.
+export function pgErrorCode(e: unknown): string | undefined {
+	if (typeof e !== 'object' || e === null) return undefined
+	const cause = (e as { cause?: { code?: string } }).cause
+	return cause?.code ?? (e as { code?: string }).code
+}
