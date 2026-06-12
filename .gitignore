@@ -10,3 +10,4 @@ node_modules
 portal-admin-credentials.txt
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+.vercel
