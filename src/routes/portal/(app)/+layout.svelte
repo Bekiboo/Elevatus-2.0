@@ -7,14 +7,22 @@
 
 	let { data, children }: { data: LayoutData; children?: Snippet } = $props()
 
-	const links: { href: string; label: string; icon: IconName; exact: boolean }[] = [
-		{ href: '/portal', label: 'Accueil', icon: 'home', exact: true },
+	type NavLink = { href: string; label: string; icon: IconName; exact: boolean }
+
+	// Chacun son accueil : les agents ouvrent sur l'état du jour, les admins
+	// sur le dashboard global (en anglais — Rosa et le board y ont accès).
+	const links: NavLink[] = $derived([
+		data.user.role === 'admin'
+			? { href: '/portal/admin', label: 'Dashboard', icon: 'chart', exact: false }
+			: { href: '/portal', label: 'Accueil', icon: 'home', exact: true },
 		{ href: '/portal/field', label: 'Terrain', icon: 'field', exact: false },
 		{ href: '/portal/children', label: 'Enfants', icon: 'children', exact: false },
 		{ href: '/portal/schools', label: 'Écoles', icon: 'school', exact: false }
-	]
+	])
 
-	function isActive(link: (typeof links)[number]): boolean {
+	const account: NavLink = { href: '/portal/account', label: 'Compte', icon: 'user', exact: false }
+
+	function isActive(link: NavLink): boolean {
 		const { pathname } = page.url
 		return link.exact ? pathname === link.href : pathname.startsWith(link.href)
 	}
@@ -48,27 +56,21 @@
 					{/each}
 				</nav>
 			</div>
-			<div class="flex items-center gap-3">
-				<span class="hidden text-sm text-white/70 sm:inline">
-					{data.user.name}
-					{#if data.user.role === 'admin'}
-						<span class="ml-1.5 rounded-full bg-white/15 px-2 py-0.5 text-xs font-medium text-white">
-							admin
-						</span>
-					{/if}
-				</span>
-				<form method="POST" action="/portal/logout">
-					<button
-						type="submit"
-						title="Déconnexion"
-						class="flex h-9 w-9 items-center justify-center rounded-lg text-white/60 transition
-						hover:bg-white/10 hover:text-white"
-					>
-						<Icon name="logout" size={18} />
-						<span class="sr-only">Déconnexion</span>
-					</button>
-				</form>
-			</div>
+			<!-- La déconnexion vit dans « Mon compte », plus dans la barre -->
+			<a
+				href={account.href}
+				aria-current={isActive(account) ? 'page' : undefined}
+				class="hidden items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition sm:flex
+				{isActive(account) ? 'bg-white/10 text-white' : 'text-white/70 hover:bg-white/10 hover:text-white'}"
+			>
+				<Icon name="user" size={18} />
+				{data.user.name}
+				{#if data.user.role === 'admin'}
+					<span class="rounded-full bg-white/15 px-2 py-0.5 text-xs font-medium text-white">
+						admin
+					</span>
+				{/if}
+			</a>
 		</div>
 	</header>
 
@@ -81,8 +83,8 @@
 		class="fixed inset-x-0 bottom-0 z-40 border-t border-ink/10 bg-white pb-[env(safe-area-inset-bottom)] sm:hidden"
 		aria-label="Navigation mobile"
 	>
-		<div class="grid grid-cols-4">
-			{#each links as link (link.href)}
+		<div class="grid grid-cols-5">
+			{#each [...links, account] as link (link.href)}
 				<a
 					href={link.href}
 					aria-current={isActive(link) ? 'page' : undefined}
