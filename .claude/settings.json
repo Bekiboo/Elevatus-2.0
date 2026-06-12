@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm pnpm-workspace.yaml)",
+      "Bash(node -e ' *)",
+      "Bash(rm -rf node_modules)",
+      "Bash(CI=1 npx -y pnpm@11.5.2 install)",
+      "Bash(echo \"build exit=$?\")",
+      "Bash(git commit -m 'fix\\(deploy\\): make pnpm-workspace.yaml valid for pnpm 9/10/11 *)",
+      "Bash(git commit -m 'fix\\(deploy\\): require Node >=22 — kysely \\(better-auth dep\\) needs it, Vercel was on 20 *)",
+      "Bash(grep -rln 'from .\\\\$lib/server/stripe' src)",
+      "Bash(grep -rln 'from .\\\\$lib/db/supabase' src)",
+      "Bash(sed -n '1,15p' src/routes/api/create-checkout-session/+server.ts)",
+      "Bash(sed -n '1,12p' src/routes/api/customer-portal/+server.ts)",
+      "Bash(git commit -m 'fix\\(deploy\\): no module requires env vars at build time anymore *)",
+      "Bash(npx -y vercel whoami)",
+      "Bash(git commit -m 'fix\\(deploy\\): explicit @sveltejs/adapter-vercel instead of adapter-auto *)",
+      "Bash(curl -s https://www.elevatus-foundation.org/portal)",
+      "Bash(grep -oE \"Internal Error|[A-Z_]+ is not set|Error: [^<]{0,80}\")",
+      "Bash(grep -oE \"export \\\\{[^}]{0,200}\" /Users/julien/dev/Elevatus-2.0/.svelte-kit/output/server/chunks/core.js)",
+      "Bash(git commit -m 'fix\\(portal\\): install @opentelemetry/api — better-auth'\\\\''s optional otel import *)",
+      "Bash(npx -y skills find svelte)",
+      "Bash(npx -y skills add sveltejs/ai-tools@svelte-code-writer -y)",
+      "Bash(npx @sveltejs/mcp svelte-autofixer \"src/routes/portal/\\(app\\)/field/meals/+page.svelte\")",
+      "Bash(git commit -m 'feat\\(portal\\): field data entry module — meals, growth, attendance \\(mobile-first\\) *)"
+    ]
+  }
+}

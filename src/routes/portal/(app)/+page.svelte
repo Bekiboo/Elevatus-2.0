@@ -16,7 +16,8 @@
 		},
 		{
 			title: 'Saisie terrain',
-			description: 'Repas, présences, mesures, enquêtes de confiance (indicateurs 2.x / 3.x).'
+			description: 'Repas, présences, mesures (indicateurs 2.x / 3.x). Pensé pour le téléphone.',
+			href: '/portal/field'
 		},
 		{
 			title: 'Blog',

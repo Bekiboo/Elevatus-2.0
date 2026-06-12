@@ -29,6 +29,20 @@
       "when": 1781244997918,
       "tag": "0003_seed_school_years",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1781253132341,
+      "tag": "0004_field_data",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1781253133138,
+      "tag": "0005_seed_courses",
+      "breakpoints": true
     }
   ]
 }
