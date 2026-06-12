@@ -1,20 +1,14 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
-	import { DateTime } from 'luxon'
+	import { monthLabel } from '$lib/portal/format'
+	import { input, label, labelXs } from '$lib/portal/ui'
 	import type { ActionData, PageData } from './$types'
 
 	let { data, form }: { data: PageData; form: ActionData } = $props()
 
-	function monthLabel(m: string): string {
-		return DateTime.fromFormat(m, 'yyyy-MM').setLocale('fr').toFormat('LLLL yyyy')
-	}
-
 	function occupancy(avg: string | number, capacity: number): number {
 		return Math.round((Number(avg) / capacity) * 100)
 	}
-
-	const input =
-		'h-12 w-full rounded-lg border border-slate-300 px-3 text-base focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500'
 </script>
 
 <svelte:head>
@@ -29,7 +23,7 @@
 
 <form method="GET" class="mt-4 flex items-end gap-2 sm:max-w-md">
 	<div class="flex-1">
-		<label for="mois" class="block text-sm font-medium text-slate-700">Mois</label>
+		<label for="mois" class={label}>Mois</label>
 		<input
 			id="mois"
 			name="mois"
@@ -75,9 +69,7 @@
 
 			<div class="mt-3 space-y-2">
 				<div>
-					<label for="avg-{course.id}" class="block text-xs font-medium text-slate-500">
-						Présence moyenne
-					</label>
+					<label for="avg-{course.id}" class={labelXs}>Présence moyenne</label>
 					<input
 						id="avg-{course.id}"
 						name="averageAttendance"
@@ -90,7 +82,7 @@
 					/>
 				</div>
 				<div>
-					<label for="sess-{course.id}" class="block text-xs font-medium text-slate-500">
+					<label for="sess-{course.id}" class={labelXs}>
 						Séances tenues <span class="font-normal">(facultatif)</span>
 					</label>
 					<input

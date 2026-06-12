@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
+	import { btnPrimary, inputSm, label } from '$lib/portal/ui'
 	import type { ActionData } from './$types'
 
 	let { form }: { form: ActionData } = $props()
 
-	const input =
-		'mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500'
-	const label = 'block text-sm font-medium text-slate-700'
+	const input = `mt-1 ${inputSm}`
 </script>
 
 <svelte:head>
@@ -48,10 +47,5 @@
 		<p class="text-sm text-red-600" role="alert">{form.error}</p>
 	{/if}
 
-	<button
-		type="submit"
-		class="rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
-	>
-		Créer la fiche
-	</button>
+	<button type="submit" class={btnPrimary}>Créer la fiche</button>
 </form>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
+	import { btnPrimary, inputSm, label } from '$lib/portal/ui'
 	import type { ActionData } from './$types'
 
 	let { form }: { form: ActionData } = $props()
@@ -29,7 +30,7 @@
 				}}
 			>
 				<div>
-					<label for="email" class="block text-sm font-medium text-slate-700">Email</label>
+					<label for="email" class={label}>Email</label>
 					<input
 						id="email"
 						name="email"
@@ -37,23 +38,19 @@
 						required
 						autocomplete="email"
 						value={form?.email ?? ''}
-						class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-						focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+						class="mt-1 {inputSm}"
 					/>
 				</div>
 
 				<div>
-					<label for="password" class="block text-sm font-medium text-slate-700">
-						Mot de passe
-					</label>
+					<label for="password" class={label}>Mot de passe</label>
 					<input
 						id="password"
 						name="password"
 						type="password"
 						required
 						autocomplete="current-password"
-						class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
-						focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+						class="mt-1 {inputSm}"
 					/>
 				</div>
 
@@ -61,12 +58,7 @@
 					<p class="text-sm text-red-600" role="alert">{form.error}</p>
 				{/if}
 
-				<button
-					type="submit"
-					disabled={loading}
-					class="w-full rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white
-					transition hover:bg-slate-700 disabled:opacity-50"
-				>
+				<button type="submit" disabled={loading} class="w-full {btnPrimary}">
 					{loading ? 'Connexion…' : 'Se connecter'}
 				</button>
 			</form>

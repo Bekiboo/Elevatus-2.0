@@ -1,6 +1,7 @@
-import { and, asc, desc, eq, ilike, sql } from 'drizzle-orm'
+import { and, asc, eq, ilike, sql } from 'drizzle-orm'
 import { getDb } from '$lib/server/db'
-import { beneficiaries, enrollments, schools, schoolYears } from '$lib/server/db/schema'
+import { beneficiaries, enrollments, schools } from '$lib/server/db/schema'
+import { getCurrentSchoolYear } from '$lib/server/portal'
 import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ url }) => {
@@ -8,11 +9,7 @@ export const load: PageServerLoad = async ({ url }) => {
 	const q = url.searchParams.get('q')?.trim() ?? ''
 	const showArchived = url.searchParams.get('archives') === '1'
 
-	const years = await db.select().from(schoolYears).orderBy(desc(schoolYears.startsOn))
-	const today = new Date().toISOString().slice(0, 10)
-	const currentYear =
-		years.find((y) => y.startsOn && y.endsOn && y.startsOn <= today && today <= y.endsOn) ??
-		years[0]
+	const currentYear = await getCurrentSchoolYear(db)
 
 	const children = await db
 		.select({

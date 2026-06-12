@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
+	import SchoolChips from '$lib/components/portal/SchoolChips.svelte'
+	import { btnPrimaryLg, input, label } from '$lib/portal/ui'
 	import type { ActionData, PageData } from './$types'
 
 	let { data, form }: { data: PageData; form: ActionData } = $props()
@@ -21,19 +23,12 @@
 		Ajoute d'abord une école dans <a href="/portal/schools" class="underline">Écoles</a>.
 	</p>
 {:else}
-	<!-- Choix de l'école : puces défilantes au doigt -->
-	<div class="-mx-4 mt-4 flex gap-2 overflow-x-auto px-4 pb-1">
-		{#each data.schools as school (school.id)}
-			<a
-				href="?ecole={school.id}"
-				class="whitespace-nowrap rounded-full border px-4 py-2 text-sm transition
-				{school.id === data.selectedSchoolId
-					? 'border-slate-800 bg-slate-800 font-medium text-white'
-					: 'border-slate-300 bg-white text-slate-600'}"
-			>
-				{school.name}
-			</a>
-		{/each}
+	<div class="mt-4">
+		<SchoolChips
+			schools={data.schools}
+			selectedId={data.selectedSchoolId}
+			makeHref={(id) => `?ecole=${id}`}
+		/>
 	</div>
 
 	<!-- Saisie du jour -->
@@ -46,7 +41,7 @@
 		<input type="hidden" name="schoolId" value={data.selectedSchoolId} />
 
 		<div>
-			<label for="date" class="block text-sm font-medium text-slate-700">Date</label>
+			<label for="date" class={label}>Date</label>
 			<input
 				id="date"
 				name="date"
@@ -54,8 +49,7 @@
 				value={data.formDate}
 				max={data.today}
 				required
-				class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-base
-				focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+				class="mt-1 {input}"
 			/>
 		</div>
 
@@ -83,7 +77,7 @@
 
 		{#if served === 'yes'}
 			<div>
-				<label for="mealsCount" class="block text-sm font-medium text-slate-700">
+				<label for="mealsCount" class={label}>
 					Nombre de repas <span class="font-normal text-slate-400">(si compté)</span>
 				</label>
 				<input
@@ -94,14 +88,13 @@
 					pattern="[0-9]*"
 					placeholder="ex. 132"
 					value={data.formEntry?.mealsCount ?? ''}
-					class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-base
-					focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+					class="mt-1 {input}"
 				/>
 			</div>
 		{/if}
 
 		<div>
-			<label for="notes" class="block text-sm font-medium text-slate-700">
+			<label for="notes" class={label}>
 				Notes <span class="font-normal text-slate-400">(facultatif)</span>
 			</label>
 			<input
@@ -109,8 +102,7 @@
 				name="notes"
 				value={data.formEntry?.notes ?? ''}
 				placeholder="ex. école fermée, riz manquant…"
-				class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-base
-				focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+				class="mt-1 {input}"
 			/>
 		</div>
 
@@ -118,13 +110,7 @@
 			<p class="text-sm text-red-600" role="alert">{form.error}</p>
 		{/if}
 
-		<button
-			type="submit"
-			class="h-12 w-full rounded-lg bg-slate-800 text-base font-medium text-white transition
-			hover:bg-slate-700 active:bg-slate-900"
-		>
-			Enregistrer
-		</button>
+		<button type="submit" class={btnPrimaryLg}>Enregistrer</button>
 	</form>
 
 	<!-- Les 14 derniers jours -->

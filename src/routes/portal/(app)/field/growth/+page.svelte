@@ -1,28 +1,11 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
-	import { DateTime } from 'luxon'
+	import SchoolChips from '$lib/components/portal/SchoolChips.svelte'
+	import { age, bmi, fmtDate } from '$lib/portal/format'
+	import { input, label, labelXs } from '$lib/portal/ui'
 	import type { ActionData, PageData } from './$types'
 
 	let { data, form }: { data: PageData; form: ActionData } = $props()
-
-	function age(birthDate: string | null): string {
-		if (!birthDate) return ''
-		return `${Math.floor(-DateTime.fromISO(birthDate).diffNow('years').years)} ans`
-	}
-
-	function bmi(heightCm: string, weightKg: string): string {
-		const h = Number(heightCm) / 100
-		const w = Number(weightKg)
-		if (!h || !w) return '—'
-		return (w / (h * h)).toFixed(1)
-	}
-
-	function fmtDate(iso: string): string {
-		return DateTime.fromISO(iso).setLocale('fr').toFormat('d LLL yyyy')
-	}
-
-	const input =
-		'h-12 w-full rounded-lg border border-slate-300 px-3 text-base focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500'
 </script>
 
 <svelte:head>
@@ -42,25 +25,19 @@
 		Ajoute d'abord une école dans <a href="/portal/schools" class="underline">Écoles</a>.
 	</p>
 {:else}
-	<div class="-mx-4 mt-4 flex gap-2 overflow-x-auto px-4 pb-1">
-		{#each data.schools as school (school.id)}
-			<a
-				href="?ecole={school.id}&date={data.measureDate}"
-				class="whitespace-nowrap rounded-full border px-4 py-2 text-sm transition
-				{school.id === data.selectedSchoolId
-					? 'border-slate-800 bg-slate-800 font-medium text-white'
-					: 'border-slate-300 bg-white text-slate-600'}"
-			>
-				{school.name}
-			</a>
-		{/each}
+	<div class="mt-4">
+		<SchoolChips
+			schools={data.schools}
+			selectedId={data.selectedSchoolId}
+			makeHref={(id) => `?ecole=${id}&date=${data.measureDate}`}
+		/>
 	</div>
 
 	<!-- Date de la séance de mesure -->
 	<form method="GET" class="mt-4 flex items-end gap-2 sm:max-w-md">
 		<input type="hidden" name="ecole" value={data.selectedSchoolId} />
 		<div class="flex-1">
-			<label for="date" class="block text-sm font-medium text-slate-700">Date des mesures</label>
+			<label for="date" class={label}>Date des mesures</label>
 			<input id="date" name="date" type="date" value={data.measureDate} max={data.today} class={input} />
 		</div>
 		<button
@@ -105,9 +82,7 @@
 
 					<div class="mt-3 flex items-end gap-2">
 						<div class="flex-1">
-							<label for="h-{child.id}" class="block text-xs font-medium text-slate-500">
-								Taille (cm)
-							</label>
+							<label for="h-{child.id}" class={labelXs}>Taille (cm)</label>
 							<input
 								id="h-{child.id}"
 								name="heightCm"
@@ -120,9 +95,7 @@
 							/>
 						</div>
 						<div class="flex-1">
-							<label for="w-{child.id}" class="block text-xs font-medium text-slate-500">
-								Poids (kg)
-							</label>
+							<label for="w-{child.id}" class={labelXs}>Poids (kg)</label>
 							<input
 								id="w-{child.id}"
 								name="weightKg"

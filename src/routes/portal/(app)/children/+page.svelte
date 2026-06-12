@@ -1,15 +1,10 @@
 <script lang="ts">
-	import { DateTime } from 'luxon'
 	import { GENDER_LABELS } from '$lib/portal/constants'
+	import { age } from '$lib/portal/format'
+	import { btnPrimary, btnSecondary } from '$lib/portal/ui'
 	import type { PageData } from './$types'
 
 	let { data }: { data: PageData } = $props()
-
-	function age(birthDate: string | null): string {
-		if (!birthDate) return '—'
-		const years = Math.floor(-DateTime.fromISO(birthDate).diffNow('years').years)
-		return `${years} ans`
-	}
 </script>
 
 <svelte:head>
@@ -26,13 +21,7 @@
 			{/if}
 		</p>
 	</div>
-	<a
-		href="/portal/children/new"
-		class="rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white transition
-		hover:bg-slate-700"
-	>
-		+ Ajouter un enfant
-	</a>
+	<a href="/portal/children/new" class={btnPrimary}>+ Ajouter un enfant</a>
 </div>
 
 <form method="GET" class="mt-6 flex flex-wrap items-center gap-3">
@@ -48,13 +37,7 @@
 		<input type="checkbox" name="archives" value="1" checked={data.showArchived} />
 		Afficher les archivés
 	</label>
-	<button
-		type="submit"
-		class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-600
-		transition hover:bg-slate-50"
-	>
-		Filtrer
-	</button>
+	<button type="submit" class={btnSecondary}>Filtrer</button>
 </form>
 
 <div class="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-white">

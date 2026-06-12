@@ -1,27 +1,27 @@
 import { fail } from '@sveltejs/kit'
-import { and, asc, desc, eq, inArray } from 'drizzle-orm'
+import { and, asc, desc, eq, inArray, lt } from 'drizzle-orm'
 import { getDb, pgErrorCode } from '$lib/server/db'
-import { beneficiaries, enrollments, growthMeasurements, schools } from '$lib/server/db/schema'
-import { getCurrentSchoolYear, todayInMadagascar } from '$lib/server/portal'
-import { formErrors, growthSchema } from '$lib/portal/validation'
+import { beneficiaries, enrollments, growthMeasurements } from '$lib/server/db/schema'
+import {
+	getActiveSchools,
+	getCurrentSchoolYear,
+	resolveSelectedSchool,
+	todayInMadagascar
+} from '$lib/server/portal'
+import { growthSchema, isIsoDate, parseForm } from '$lib/portal/validation'
 import type { Actions, PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ url }) => {
 	const db = getDb()
-	const allSchools = await db
-		.select()
-		.from(schools)
-		.where(eq(schools.archived, false))
-		.orderBy(asc(schools.name))
+	const [allSchools, currentYear] = await Promise.all([
+		getActiveSchools(db),
+		getCurrentSchoolYear(db)
+	])
 
 	const today = todayInMadagascar()
-	const measureDate = /^\d{4}-\d{2}-\d{2}$/.test(url.searchParams.get('date') ?? '')
-		? url.searchParams.get('date')!
-		: today
-	const selectedSchoolId =
-		allSchools.find((s) => s.id === url.searchParams.get('ecole'))?.id ?? allSchools[0]?.id ?? null
-
-	const currentYear = await getCurrentSchoolYear(db)
+	const dateParam = url.searchParams.get('date')
+	const measureDate = isIsoDate(dateParam) ? dateParam : today
+	const selectedSchoolId = resolveSelectedSchool(allSchools, url)
 
 	let children: {
 		id: string
@@ -52,18 +52,37 @@ export const load: PageServerLoad = async ({ url }) => {
 			.orderBy(asc(beneficiaries.fullName))
 
 		const ids = enrolled.map((c) => c.id)
-		const measurements = ids.length
-			? await db
-					.select()
-					.from(growthMeasurements)
-					.where(inArray(growthMeasurements.beneficiaryId, ids))
-					.orderBy(desc(growthMeasurements.measuredOn))
-			: []
+		// Deux requêtes bornées (2 lignes max par enfant), quel que soit
+		// l'historique accumulé : la mesure du jour sélectionné, et la dernière
+		// mesure STRICTEMENT ANTÉRIEURE (un rattrapage ne doit pas afficher une
+		// mesure future comme référence).
+		const [todaysRows, lastRows] = ids.length
+			? await Promise.all([
+					db
+						.select()
+						.from(growthMeasurements)
+						.where(
+							and(
+								inArray(growthMeasurements.beneficiaryId, ids),
+								eq(growthMeasurements.measuredOn, measureDate)
+							)
+						),
+					db
+						.selectDistinctOn([growthMeasurements.beneficiaryId])
+						.from(growthMeasurements)
+						.where(
+							and(
+								inArray(growthMeasurements.beneficiaryId, ids),
+								lt(growthMeasurements.measuredOn, measureDate)
+							)
+						)
+						.orderBy(growthMeasurements.beneficiaryId, desc(growthMeasurements.measuredOn))
+				])
+			: [[], []]
 
 		children = enrolled.map((c) => {
-			const own = measurements.filter((m) => m.beneficiaryId === c.id)
-			const todaysM = own.find((m) => m.measuredOn === measureDate) ?? null
-			const last = own.find((m) => m.measuredOn !== measureDate) ?? null
+			const todaysM = todaysRows.find((m) => m.beneficiaryId === c.id) ?? null
+			const last = lastRows.find((m) => m.beneficiaryId === c.id) ?? null
 			return {
 				...c,
 				last: last
@@ -86,16 +105,13 @@ export const load: PageServerLoad = async ({ url }) => {
 
 export const actions: Actions = {
 	save: async ({ request, locals }) => {
-		const form = await request.formData()
-		const parsed = growthSchema.safeParse(Object.fromEntries(form))
-		if (!parsed.success) {
-			return fail(400, {
-				formId: `g-${form.get('beneficiaryId')}`,
-				error: formErrors(parsed.error)
-			})
-		}
+		const formData = await request.formData()
+		const fallbackId = String(formData.get('beneficiaryId') ?? 'unknown')
+		const parsed = parseForm(growthSchema, formData, `g-${fallbackId}`)
+		if (!parsed.ok) return parsed.failure
 		const { beneficiaryId, measuredOn, heightCm, weightKg } = parsed.data
 		const db = getDb()
+		const recordedBy = locals.user?.id ?? null
 		try {
 			await db
 				.insert(growthMeasurements)
@@ -104,19 +120,23 @@ export const actions: Actions = {
 					measuredOn,
 					heightCm: String(heightCm),
 					weightKg: String(weightKg),
-					recordedBy: locals.user?.id ?? null
+					recordedBy
 				})
 				.onConflictDoUpdate({
 					target: [growthMeasurements.beneficiaryId, growthMeasurements.measuredOn],
 					set: {
 						heightCm: String(heightCm),
 						weightKg: String(weightKg),
-						recordedBy: locals.user?.id ?? null
+						recordedBy,
+						updatedAt: new Date()
 					}
 				})
 		} catch (e) {
 			if (pgErrorCode(e) === '23503') {
-				return fail(400, { formId: `g-${beneficiaryId}`, error: 'Enfant introuvable — recharge la page.' })
+				return fail(400, {
+					formId: `g-${beneficiaryId}`,
+					error: 'Enfant introuvable — recharge la page.'
+				})
 			}
 			throw e
 		}

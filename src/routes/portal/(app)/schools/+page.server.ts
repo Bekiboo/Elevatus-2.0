@@ -1,8 +1,9 @@
 import { fail } from '@sveltejs/kit'
 import { asc, count, eq } from 'drizzle-orm'
-import { getDb, pgErrorCode } from '$lib/server/db'
+import { getDb, pgConstraint, pgErrorCode } from '$lib/server/db'
 import { enrollments, schools } from '$lib/server/db/schema'
-import { formErrors, schoolSchema } from '$lib/portal/validation'
+import { requireAdmin } from '$lib/server/portal'
+import { isUuid, parseForm, schoolSchema } from '$lib/portal/validation'
 import type { Actions, PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async () => {
@@ -26,11 +27,8 @@ export const load: PageServerLoad = async () => {
 
 export const actions: Actions = {
 	create: async ({ request }) => {
-		const form = await request.formData()
-		const parsed = schoolSchema.safeParse(Object.fromEntries(form))
-		if (!parsed.success) {
-			return fail(400, { formId: 'create', error: formErrors(parsed.error) })
-		}
+		const parsed = parseForm(schoolSchema, await request.formData(), 'create')
+		if (!parsed.ok) return parsed.failure
 		const db = getDb()
 		await db.insert(schools).values(parsed.data)
 		return { formId: 'create', success: true }
@@ -39,30 +37,30 @@ export const actions: Actions = {
 	update: async ({ request }) => {
 		const form = await request.formData()
 		const id = String(form.get('id') ?? '')
-		const parsed = schoolSchema.safeParse(Object.fromEntries(form))
-		if (!id || !parsed.success) {
-			return fail(400, {
-				formId: `row-${id}`,
-				error: parsed.success ? 'École invalide.' : formErrors(parsed.error)
-			})
-		}
+		if (!isUuid(id)) return fail(400, { formId: 'list', error: 'École invalide.' })
+		const parsed = parseForm(schoolSchema, form, `row-${id}`)
+		if (!parsed.ok) return parsed.failure
 		const db = getDb()
 		await db.update(schools).set(parsed.data).where(eq(schools.id, id))
 		return { formId: `row-${id}`, success: true }
 	},
 
-	delete: async ({ request }) => {
+	delete: async ({ request, locals }) => {
+		requireAdmin(locals)
 		const form = await request.formData()
 		const id = String(form.get('id') ?? '')
-		if (!id) return fail(400, { formId: 'list', error: 'École invalide.' })
+		if (!isUuid(id)) return fail(400, { formId: 'list', error: 'École invalide.' })
 		const db = getDb()
 		try {
 			await db.delete(schools).where(eq(schools.id, id))
 		} catch (e) {
 			if (pgErrorCode(e) === '23503') {
+				const blocker = pgConstraint(e)?.startsWith('meal_days')
+					? 'des repas enregistrés référencent'
+					: 'des inscriptions référencent'
 				return fail(400, {
 					formId: `row-${id}`,
-					error: 'Des inscriptions référencent cette école — impossible de la supprimer.'
+					error: `Impossible de supprimer : ${blocker} cette école.`
 				})
 			}
 			throw e

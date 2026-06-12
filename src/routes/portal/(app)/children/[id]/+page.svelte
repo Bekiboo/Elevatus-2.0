@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
 	import { GRADES } from '$lib/portal/constants'
+	import { btnDanger, btnPrimary, btnSecondary, inputSm, label } from '$lib/portal/ui'
 	import type { ActionData, PageData } from './$types'
 
 	let { data, form }: { data: PageData; form: ActionData } = $props()
 
-	const input =
-		'mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500'
-	const label = 'block text-sm font-medium text-slate-700'
+	const input = `mt-1 ${inputSm}`
 	const select =
 		'rounded-lg border border-slate-300 bg-white px-2 py-1 text-sm focus:border-slate-500 focus:outline-none'
+
+	const isAdmin = $derived(data.user.role === 'admin')
 
 	// Années pas encore utilisées pour ce enfant, pour le formulaire d'ajout
 	const availableYears = $derived(
@@ -38,31 +39,24 @@
 	</h1>
 	<div class="flex items-center gap-2">
 		<form method="POST" action="?/toggleArchive" use:enhance>
-			<button
-				type="submit"
-				class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm text-slate-600 transition
-				hover:bg-slate-50"
-			>
+			<button type="submit" class={btnSecondary}>
 				{data.child.archived ? 'Restaurer' : 'Archiver'}
 			</button>
 		</form>
-		<form
-			method="POST"
-			action="?/delete"
-			onsubmit={(e) => {
-				if (!confirm('Supprimer définitivement cette fiche et toute sa scolarité ?')) {
-					e.preventDefault()
-				}
-			}}
-		>
-			<button
-				type="submit"
-				class="rounded-lg border border-red-200 px-3 py-1.5 text-sm text-red-600 transition
-				hover:bg-red-50"
+		<!-- Suppression définitive : action admin (le serveur le garantit aussi) -->
+		{#if isAdmin}
+			<form
+				method="POST"
+				action="?/delete"
+				onsubmit={(e) => {
+					if (!confirm('Supprimer définitivement cette fiche et toute sa scolarité ?')) {
+						e.preventDefault()
+					}
+				}}
 			>
-				Supprimer
-			</button>
-		</form>
+				<button type="submit" class={btnDanger}>Supprimer</button>
+			</form>
+		{/if}
 	</div>
 </div>
 
@@ -121,13 +115,7 @@
 			{/if}
 		{/if}
 
-		<button
-			type="submit"
-			class="rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white transition
-			hover:bg-slate-700"
-		>
-			Enregistrer
-		</button>
+		<button type="submit" class={btnPrimary}>Enregistrer</button>
 	</form>
 
 	<!-- Scolarité -->
@@ -203,19 +191,23 @@
 										</form>
 									</td>
 									<td class="py-2 text-right">
-										<form
-											method="POST"
-											action="?/deleteEnrollment"
-											use:enhance
-											onsubmit={(ev) => {
-												if (!confirm('Supprimer cette inscription ?')) ev.preventDefault()
-											}}
-										>
-											<input type="hidden" name="enrollmentId" value={e.id} />
-											<button type="submit" class="text-xs text-red-500 hover:underline">
-												Suppr.
-											</button>
-										</form>
+										<!-- Avec des résultats saisis, l'inscription fait partie de
+										     l'historique des indicateurs : suppression admin uniquement. -->
+										{#if isAdmin || (e.completedYear === null && e.promoted === null)}
+											<form
+												method="POST"
+												action="?/deleteEnrollment"
+												use:enhance
+												onsubmit={(ev) => {
+													if (!confirm('Supprimer cette inscription ?')) ev.preventDefault()
+												}}
+											>
+												<input type="hidden" name="enrollmentId" value={e.id} />
+												<button type="submit" class="text-xs text-red-500 hover:underline">
+													Suppr.
+												</button>
+											</form>
+										{/if}
 									</td>
 								</tr>
 							{/each}
@@ -277,13 +269,7 @@
 						<input type="checkbox" name="isSponsored" />
 						Parrainé Elevatus
 					</label>
-					<button
-						type="submit"
-						class="mb-0.5 rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white
-						transition hover:bg-slate-700"
-					>
-						Inscrire
-					</button>
+					<button type="submit" class="mb-0.5 {btnPrimary}">Inscrire</button>
 				</div>
 				{#if form?.formId === 'addEnrollment' && 'error' in form && form.error}
 					<p class="mt-2 text-sm text-red-600" role="alert">{form.error}</p>
