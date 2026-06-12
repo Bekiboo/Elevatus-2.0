@@ -1,4 +1,4 @@
-import type { Handle } from '@sveltejs/kit'
+import { redirect, type Handle } from '@sveltejs/kit'
 import { building } from '$app/environment'
 import { svelteKitHandler } from 'better-auth/svelte-kit'
 import { getAuth } from '$lib/server/auth'
@@ -24,6 +24,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 		const session = await getAuth().api.getSession({ headers: event.request.headers })
 		event.locals.user = session?.user ?? null
 		event.locals.session = session?.session ?? null
+
+		// Guard enforced here, not in a layout load: layout guards don't run
+		// for form actions, so a POST to ?/action would otherwise slip through.
+		if (!event.locals.user && pathname !== `${PORTAL_PREFIX}/login`) {
+			redirect(303, `${PORTAL_PREFIX}/login`)
+		}
 	}
 
 	return resolve(event)

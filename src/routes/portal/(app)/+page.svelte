@@ -3,10 +3,16 @@
 
 	let { data }: { data: PageData } = $props()
 
-	const modules = [
+	const modules: { title: string; description: string; href?: string }[] = [
 		{
 			title: 'Enfants & parrainages',
-			description: 'Dossiers élèves, scolarité, progression (indicateurs 1.1–1.3).'
+			description: 'Dossiers élèves, scolarité, progression (indicateurs 1.1–1.3).',
+			href: '/portal/children'
+		},
+		{
+			title: 'Écoles',
+			description: 'Les établissements partenaires où les enfants sont inscrits.',
+			href: '/portal/schools'
 		},
 		{
 			title: 'Saisie terrain',
@@ -37,15 +43,29 @@
 </p>
 
 <div class="mt-8 grid gap-4 sm:grid-cols-2">
-	{#each modules as { title, description } (title)}
-		<div class="rounded-xl border border-slate-200 bg-white p-5 opacity-75">
-			<div class="flex items-center justify-between">
-				<h2 class="font-medium text-slate-800">{title}</h2>
-				<span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">
-					À venir
-				</span>
+	{#each modules as { title, description, href } (title)}
+		{#if href}
+			<a
+				{href}
+				class="rounded-xl border border-slate-200 bg-white p-5 transition hover:border-slate-400
+				hover:shadow-sm"
+			>
+				<div class="flex items-center justify-between">
+					<h2 class="font-medium text-slate-800">{title}</h2>
+					<span class="text-slate-400">→</span>
+				</div>
+				<p class="mt-2 text-sm text-slate-500">{description}</p>
+			</a>
+		{:else}
+			<div class="rounded-xl border border-slate-200 bg-white p-5 opacity-75">
+				<div class="flex items-center justify-between">
+					<h2 class="font-medium text-slate-800">{title}</h2>
+					<span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">
+						À venir
+					</span>
+				</div>
+				<p class="mt-2 text-sm text-slate-500">{description}</p>
 			</div>
-			<p class="mt-2 text-sm text-slate-500">{description}</p>
-		</div>
+		{/if}
 	{/each}
 </div>
