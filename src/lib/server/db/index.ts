@@ -30,3 +30,11 @@ export function pgErrorCode(e: unknown): string | undefined {
 	const cause = (e as { cause?: { code?: string } }).cause
 	return cause?.code ?? (e as { code?: string }).code
 }
+
+// Nom de la contrainte violée (ex. 'meal_days_school_id_schools_id_fk') —
+// permet des messages d'erreur qui désignent la bonne table.
+export function pgConstraint(e: unknown): string | undefined {
+	if (typeof e !== 'object' || e === null) return undefined
+	const cause = (e as { cause?: { constraint_name?: string } }).cause
+	return cause?.constraint_name ?? (e as { constraint_name?: string }).constraint_name
+}

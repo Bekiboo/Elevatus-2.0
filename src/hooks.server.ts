@@ -1,7 +1,7 @@
 import { redirect, type Handle } from '@sveltejs/kit'
 import { building } from '$app/environment'
 import { svelteKitHandler } from 'better-auth/svelte-kit'
-import { getAuth } from '$lib/server/auth'
+import { getAuth, type SessionUser } from '$lib/server/auth'
 
 // Auth only ever runs for these prefixes; the public site never touches
 // the database or better-auth (and keeps working if DATABASE_URL is absent).
@@ -22,7 +22,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	if (pathname === PORTAL_PREFIX || pathname.startsWith(`${PORTAL_PREFIX}/`)) {
 		const session = await getAuth().api.getSession({ headers: event.request.headers })
-		event.locals.user = session?.user ?? null
+		// getSession est typé sans les champs du plugin admin (role, banned…)
+		// alors que l'objet les contient bien — on réaligne le type ici, à la
+		// seule frontière où l'utilisateur entre dans locals.
+		event.locals.user = (session?.user as SessionUser | undefined) ?? null
 		event.locals.session = session?.session ?? null
 
 		// Guard enforced here, not in a layout load: layout guards don't run
