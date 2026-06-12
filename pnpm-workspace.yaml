@@ -1,3 +1,12 @@
+packages:
+  - '.'
+
+# Build-script approvals, readable by every pnpm version Vercel might pick:
+# allowBuilds is the pnpm 11+ format, onlyBuiltDependencies covers pnpm 10,
+# and the packages field keeps pnpm 9 from rejecting this file outright.
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - esbuild
 allowBuilds:
   '@tailwindcss/oxide': true
   esbuild: true
