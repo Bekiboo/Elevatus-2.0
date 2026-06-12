@@ -7,5 +7,6 @@ node_modules
 .env.*
 !.env.example
 /backup
+portal-admin-credentials.txt
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
