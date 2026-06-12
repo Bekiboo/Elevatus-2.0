@@ -10,7 +10,9 @@ et les fichiers Excel pour le suivi MEAL, d'après le cadre d'indicateurs de Ros
 | Module | Route | Ce qu'il fait |
 | --- | --- | --- |
 | Connexion | `/portal/login` | email + mot de passe (better-auth), comptes créés par les admins — pas d'inscription publique |
-| Tableau de bord | `/portal` | l'état du jour (registres saisis / à faire, date de Madagascar) + accès aux modules |
+| Tableau de bord terrain | `/portal` | l'état du jour (registres saisis / à faire, date de Madagascar) + accès aux modules — l'accueil des **agents** ; les admins y sont redirigés vers `/portal/admin` |
+| Dashboard admin | `/portal/admin` | **en anglais** (Rosa, board) : agrégats par année scolaire (1.1–1.2), cantine 90 j (3.2), couverture taille/poids (3.1), occupation du centre 6 mois (2.1) + dons Stripe lus en direct de l'API — réservé au rôle admin (garde dans `hooks.server.ts`) |
+| Mon compte | `/portal/account` | identité, rôle, **déconnexion** (retirée de la barre de nav) ; plus tard : mot de passe, comptes équipe |
 | Enfants | `/portal/children` | dossiers (identité, genre, naissance), scolarité par année (école, classe, parrainé), résultats de fin d'année (indicateurs 1.1–1.2), archivage |
 | Écoles | `/portal/schools` | CRUD des établissements, suppression bloquée si inscriptions |
 | Saisie terrain | `/portal/field` | hub mobile-first ↓ |
@@ -40,7 +42,8 @@ concernées — la garde UI (boutons masqués selon `data.user.role`) n'est qu'u
 ## Conventions du portail
 
 - **Mobile d'abord** pour tout ce qui est terrain : cibles tactiles ≥ 44 px (`h-12`), `text-base` (16 px — pas de zoom iOS), puces d'école défilantes, un formulaire = une action courte. Desktop = grilles `sm:`/`lg:`.
-- **Langue** : outils terrain en français ; les écrans purement admin pourront être en anglais. Pas de framework i18n.
+- **Langue** : outils terrain en français ; l'espace `/portal/admin` est en anglais (utilisateurs anglophones : Rosa, le board). Pas de framework i18n.
+- **Deux mondes, un portail** : les admins ne font pas de saisie terrain — chacun son accueil (`/portal` redirige le rôle admin vers `/portal/admin`), mais Enfants/Écoles/Terrain restent partagés. L'accès à `/portal/admin/*` (pages et actions) est gardé par rôle dans `hooks.server.ts`.
 - **Saisie numérique** : `inputmode="decimal"` + la validation accepte la **virgule** décimale (`33,5`) — claviers français.
 - **Dates terrain** : « aujourd'hui » = fuseau de Madagascar (`Indian/Antananarivo`), helpers dans `src/lib/server/portal.ts`.
 - **Validation** : schémas zod dans `src/lib/portal/validation.ts`, tolérants aux champs absents ; toutes les actions passent par `parseForm(schema, formData, formId)` qui renvoie soit les données typées, soit un `fail(400, { formId, error })` prêt à retourner — chaque formulaire affiche son erreur via `form?.formId`. Les params d'URL (uuid, date) sont validés par `isUuid`/`isIsoDate` avant toute requête (sinon 500 Postgres 22P02).
@@ -56,7 +59,7 @@ concernées — la garde UI (boutons masqués selon `data.user.role`) n'est qu'u
 1. **Enquêtes de confiance** (indicateurs 2.2–2.4) — design à part : auto-évaluation des jeunes 1–5 par trimestre, probablement un mode « kiosque » sans compte.
 2. **Blog** — migration des 17 articles de `public.blog-post` vers le schéma `app` + éditeur dans le portail (le rendu public ne change pas) ; ensuite, suppression de `supabase-js` et de l'ancien schéma.
 3. **Messages** — le formulaire de contact écrit en base (SendGrid supprimé) ; module de traitement pour les admins, éventuel ping Resend.
-4. **Dashboard admin + Stripe** — webhooks (rien aujourd'hui), vue paiements/abonnements, agrégats des indicateurs vs baseline 2026.
+4. **Stripe — historisation** — le dashboard admin lit l'API en direct (v1, fait) ; reste : webhooks pour historiser les paiements en base, rapprochement donateur↔parrainage, comparaison vs baseline 2026.
 5. **Gestion des comptes staff** — créer les accès de l'équipe (Ricardo, Felana, Nanouh) via le plugin admin de better-auth.
 6. **Parrainages nominatifs** — UI sur les tables `sponsors`/`sponsorships`.
 7. **V2 hors-ligne** — PWA + synchro (les PK uuid et les upserts sont déjà pensés pour).
