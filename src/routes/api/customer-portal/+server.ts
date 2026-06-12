@@ -1,9 +1,10 @@
 import { json } from '@sveltejs/kit'
-import { stripe } from '$lib/server/stripe'
+import { getStripe } from '$lib/server/stripe'
 import type { RequestHandler } from './$types'
 
 export const POST: RequestHandler = async ({ request, url }) => {
 	try {
+		const stripe = getStripe()
 		const { sessionId } = await request.json()
 
 		// Get the checkout session to find the customer ID

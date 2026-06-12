@@ -1,10 +1,10 @@
-import { supabaseClient } from '$lib/db/supabase'
+import { getSupabaseClient } from '$lib/db/supabase'
 import type { PageServerLoad } from './$types'
 import { error } from '@sveltejs/kit'
 
 async function getPost(id: string) {
 	console.log('getPost: ', id)
-	const { data, error: err } = await supabaseClient.from('blog-post').select().eq('id', id)
+	const { data, error: err } = await getSupabaseClient().from('blog-post').select().eq('id', id)
 	console.log(data)
 	// if (err === null) error(404, 'Post not found') TO FIX
 	return data![0]

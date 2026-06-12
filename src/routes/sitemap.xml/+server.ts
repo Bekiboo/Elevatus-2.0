@@ -1,4 +1,4 @@
-import { supabaseClient } from '$lib/db/supabase'
+import { getSupabaseClient } from '$lib/db/supabase'
 import type { RequestHandler } from './$types'
 
 export const prerender = true
@@ -21,7 +21,7 @@ export const GET: RequestHandler = async () => {
 	// Fetch blog posts
 	let blogPosts: Array<{ id: number; created_at: string }> = []
 	try {
-		const { data, error } = await supabaseClient
+		const { data, error } = await getSupabaseClient()
 			.from('blog-post')
 			.select('id, created_at')
 			.order('created_at', { ascending: false })

@@ -1,9 +1,9 @@
 import type { PageServerLoad } from './$types'
 import type { Database } from '$lib/db/database.types'
-import { supabaseClient } from '$lib/db/supabase'
+import { getSupabaseClient } from '$lib/db/supabase'
 
 async function getPosts(): Promise<Database['public']['Tables']['blog-post']['Row'][]> {
-	const { data, error } = await supabaseClient.from('blog-post').select()
+	const { data, error } = await getSupabaseClient().from('blog-post').select()
 	if (error) {
 		console.error('getPosts: ', error)
 		return [] // Return an empty array in case of an error
