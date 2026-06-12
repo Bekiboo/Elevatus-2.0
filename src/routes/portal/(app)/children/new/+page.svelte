@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
-	import { btnPrimary, inputSm, label } from '$lib/portal/ui'
+	import PageHeader from '$lib/components/portal/PageHeader.svelte'
+	import { btnPrimary, card, inputSm, label } from '$lib/portal/ui'
 	import type { ActionData } from './$types'
 
 	let { form }: { form: ActionData } = $props()
@@ -12,17 +13,21 @@
 	<title>Nouvel enfant — Portail Elevatus</title>
 </svelte:head>
 
-<a href="/portal/children" class="text-sm text-slate-500 hover:underline">← Enfants</a>
-<h1 class="mt-2 text-2xl font-semibold text-slate-800">Ajouter un enfant</h1>
+<PageHeader title="Ajouter un enfant" back={{ href: '/portal/children', label: 'Enfants' }} />
 
-<form method="POST" use:enhance class="mt-6 max-w-lg space-y-4 rounded-xl border border-slate-200 bg-white p-6">
+<form method="POST" use:enhance class="{card} max-w-lg space-y-4 p-5 sm:p-6">
 	<div>
 		<label for="fullName" class={label}>Nom complet *</label>
 		<input id="fullName" name="fullName" required value={form?.values?.fullName ?? ''} class={input} />
 	</div>
 	<div>
 		<label for="preferredName" class={label}>Nom d'usage / surnom</label>
-		<input id="preferredName" name="preferredName" value={form?.values?.preferredName ?? ''} class={input} />
+		<input
+			id="preferredName"
+			name="preferredName"
+			value={form?.values?.preferredName ?? ''}
+			class={input}
+		/>
 	</div>
 	<div class="grid grid-cols-2 gap-4">
 		<div>
@@ -35,7 +40,13 @@
 		</div>
 		<div>
 			<label for="birthDate" class={label}>Date de naissance</label>
-			<input id="birthDate" name="birthDate" type="date" value={form?.values?.birthDate ?? ''} class={input} />
+			<input
+				id="birthDate"
+				name="birthDate"
+				type="date"
+				value={form?.values?.birthDate ?? ''}
+				class={input}
+			/>
 		</div>
 	</div>
 	<div>
