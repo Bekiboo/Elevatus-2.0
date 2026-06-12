@@ -46,6 +46,7 @@
 		"vitest": "^3.0.7"
 	},
 	"dependencies": {
+		"@opentelemetry/api": "^1.9.1",
 		"@stripe/stripe-js": "^8.5.3",
 		"@supabase/supabase-js": "^2.49.1",
 		"@tailwindcss/vite": "^4.0.9",
