@@ -33,8 +33,8 @@ export const schoolSchema = z.object({
 })
 
 export const enrollmentSchema = z.object({
-	schoolYearId: z.string().uuid('Année scolaire requise'),
-	schoolId: z.string().uuid('École requise'),
+	schoolYearId: z.uuid('Année scolaire requise'),
+	schoolId: z.uuid('École requise'),
 	grade: z.string().refine((v) => (GRADE_VALUES as readonly string[]).includes(v), 'Classe invalide'),
 	isSponsored: z
 		.literal('on')
@@ -49,7 +49,7 @@ const triState = z
 	.transform((v) => (v == null || v === '' ? null : v === 'yes'))
 
 export const outcomeSchema = z.object({
-	enrollmentId: z.string().uuid(),
+	enrollmentId: z.uuid(),
 	completedYear: triState,
 	promoted: triState
 })

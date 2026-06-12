@@ -1,13 +1,16 @@
 import { json } from '@sveltejs/kit'
 import { stripe } from '$lib/server/stripe'
 import { Resend } from 'resend'
-import { RESEND_API_KEY } from '$env/static/private'
+import { env } from '$env/dynamic/private'
 import type { RequestHandler } from './$types'
-
-const resend = new Resend(RESEND_API_KEY)
 
 export const POST: RequestHandler = async ({ request, url }) => {
 	try {
+		if (!env.RESEND_API_KEY) {
+			return json({ error: 'Email service is not configured' }, { status: 503 })
+		}
+		const resend = new Resend(env.RESEND_API_KEY)
+
 		const { email } = await request.json()
 
 		if (!email) {
