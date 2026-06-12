@@ -47,7 +47,10 @@ export const courseAttendance = app.table(
 		recordedBy: text('recorded_by').references(() => user.id, { onDelete: 'set null' }),
 		...timestamps
 	},
-	(t) => [unique('course_attendance_course_month_unique').on(t.courseId, t.month)]
+	(t) => [
+		unique('course_attendance_course_month_unique').on(t.courseId, t.month),
+		index('course_attendance_recorded_by_idx').on(t.recordedBy)
+	]
 )
 
 // Registre des repas : une ligne par école et par jour de cantine
@@ -68,7 +71,8 @@ export const mealDays = app.table(
 	},
 	(t) => [
 		unique('meal_days_school_date_unique').on(t.schoolId, t.date),
-		index('meal_days_date_idx').on(t.date)
+		index('meal_days_date_idx').on(t.date),
+		index('meal_days_recorded_by_idx').on(t.recordedBy)
 	]
 )
 
@@ -90,6 +94,7 @@ export const growthMeasurements = app.table(
 	},
 	(t) => [
 		unique('growth_beneficiary_date_unique').on(t.beneficiaryId, t.measuredOn),
-		index('growth_beneficiary_idx').on(t.beneficiaryId)
+		index('growth_beneficiary_idx').on(t.beneficiaryId),
+		index('growth_recorded_by_idx').on(t.recordedBy)
 	]
 )

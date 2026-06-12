@@ -43,6 +43,13 @@
       "when": 1781253133138,
       "tag": "0005_seed_courses",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1781265357068,
+      "tag": "0006_fk_indexes",
+      "breakpoints": true
     }
   ]
 }

@@ -27,17 +27,21 @@ export const transitionOutcomeEnum = app.enum('transition_outcome', [
 
 // One shared person table across the three pillars (sponsorship, youth
 // center, nutrition) — the same child flows through several programs.
-export const beneficiaries = app.table('beneficiaries', {
-	id: uuid('id').primaryKey().defaultRandom(),
-	fullName: text('full_name').notNull(),
-	preferredName: text('preferred_name'),
-	gender: genderEnum('gender'),
-	birthDate: date('birth_date'),
-	notes: text('notes'),
-	archived: boolean('archived').notNull().default(false),
-	createdBy: text('created_by').references(() => user.id, { onDelete: 'set null' }),
-	...timestamps
-})
+export const beneficiaries = app.table(
+	'beneficiaries',
+	{
+		id: uuid('id').primaryKey().defaultRandom(),
+		fullName: text('full_name').notNull(),
+		preferredName: text('preferred_name'),
+		gender: genderEnum('gender'),
+		birthDate: date('birth_date'),
+		notes: text('notes'),
+		archived: boolean('archived').notNull().default(false),
+		createdBy: text('created_by').references(() => user.id, { onDelete: 'set null' }),
+		...timestamps
+	},
+	(t) => [index('beneficiaries_created_by_idx').on(t.createdBy)]
+)
 
 export const schools = app.table('schools', {
 	id: uuid('id').primaryKey().defaultRandom(),
