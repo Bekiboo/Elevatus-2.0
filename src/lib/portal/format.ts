@@ -12,6 +12,11 @@ export function fmtDate(iso: string): string {
 	return DateTime.fromISO(iso).setLocale('fr').toFormat('d LLL yyyy')
 }
 
+// « jeudi 12 juin » — la date du tableau de bord.
+export function fmtDayLong(iso: string): string {
+	return DateTime.fromISO(iso).setLocale('fr').toFormat('cccc d LLLL')
+}
+
 export function monthLabel(month: string): string {
 	return DateTime.fromFormat(month, 'yyyy-MM').setLocale('fr').toFormat('LLLL yyyy')
 }
