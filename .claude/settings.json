@@ -22,7 +22,27 @@
       "Bash(npx -y skills find svelte)",
       "Bash(npx -y skills add sveltejs/ai-tools@svelte-code-writer -y)",
       "Bash(npx @sveltejs/mcp svelte-autofixer \"src/routes/portal/\\(app\\)/field/meals/+page.svelte\")",
-      "Bash(git commit -m 'feat\\(portal\\): field data entry module — meals, growth, attendance \\(mobile-first\\) *)"
+      "Bash(git commit -m 'feat\\(portal\\): field data entry module — meals, growth, attendance \\(mobile-first\\) *)",
+      "Bash(awk -F: '{print $1\":\"$2}')",
+      "Bash(echo \"exit:$?\")",
+      "Bash(echo \"exit2:$?\")",
+      "Bash(git rm *)",
+      "Bash(npx -y @sveltejs/mcp svelte-autofixer \"src/routes/portal/\\(app\\)/field/meals/+page.svelte\")",
+      "Bash(pnpm build *)",
+      "Bash(pnpm preview *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4173/portal/login)",
+      "Bash(curl -s -o /dev/null -w \"public:%{http_code}\\\\n\" http://localhost:4173/)",
+      "Bash(BETTER_AUTH_URL=http://localhost:4173 pnpm preview --port 4173)",
+      "Bash(rm -f admin.cookies)",
+      "Bash(curl -s -b admin.cookies -X POST http://localhost:4173/api/auth/admin/create-user -H 'Content-Type: application/json' -H 'Origin: http://localhost:4173' -d '{\"email\":\"test-staff-e2e@example.com\",\"password\":\"TestStaff123!xyz\",\"name\":\"Test Staff E2E\",\"role\":\"staff\"}')",
+      "Bash(curl -s -b staff.cookies -X POST http://localhost:4173/portal/field/meals?/save -H 'Origin: http://localhost:4173' --data-urlencode schoolId=11111111-2222-3333-4444-555555555555 --data-urlencode date=2026-06-12 --data-urlencode served=yes -w '\\\\nstatus:%{http_code}\\\\n')",
+      "Bash(curl -s -b staff.cookies -X POST http://localhost:4173/portal/field/meals?/save -H 'Origin: http://localhost:4173' --data-urlencode schoolId=11111111-2222-4333-8444-555555555555 --data-urlencode date=2026-06-12 --data-urlencode served=yes -w '\\\\nstatus:%{http_code}\\\\n')",
+      "Bash(git commit -q -m 'perf\\(portal\\): index the recorded_by/created_by FKs \\(migration 0006, applied via MCP\\) *)",
+      "Bash(git commit -q -m 'refactor\\(portal\\): shared helpers, better-auth factory, role-based authorization *)",
+      "Bash(git commit -q -m 'refactor\\(portal\\): consolidate routes — parseForm everywhere, bounded queries, admin-gated deletes *)",
+      "Bash(git commit -q -m 'chore: drop dead code — portal-by-email route, verify magic-link, blog.ts, stores.ts, resend & superforms deps *)",
+      "Bash(git commit -q -m 'docs: role policy, portal conventions \\(parseForm, shared UI, bounded queries\\), preview auth gotcha *)",
+      "Bash(git commit -q -m 'chore\\(skills\\): add frontend-design skill; settings housekeeping *)"
     ]
   }
 }
