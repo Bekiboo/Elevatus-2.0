@@ -42,7 +42,14 @@
       "Bash(git commit -q -m 'refactor\\(portal\\): consolidate routes — parseForm everywhere, bounded queries, admin-gated deletes *)",
       "Bash(git commit -q -m 'chore: drop dead code — portal-by-email route, verify magic-link, blog.ts, stores.ts, resend & superforms deps *)",
       "Bash(git commit -q -m 'docs: role policy, portal conventions \\(parseForm, shared UI, bounded queries\\), preview auth gotcha *)",
-      "Bash(git commit -q -m 'chore\\(skills\\): add frontend-design skill; settings housekeeping *)"
+      "Bash(git commit -q -m 'chore\\(skills\\): add frontend-design skill; settings housekeeping *)",
+      "Bash(echo \"grep-exit:$?\")",
+      "Bash(npx -y @sveltejs/mcp svelte-autofixer \"src/lib/components/portal/Icon.svelte\" \"src/lib/components/portal/PageHeader.svelte\" \"src/routes/portal/\\(app\\)/+layout.svelte\" \"src/routes/portal/\\(app\\)/+page.svelte\")",
+      "Bash(curl -s -b /tmp/admin.cookies http://localhost:4173/portal)",
+      "Bash(git commit -q -m 'feat\\(portal\\): identité visuelle — encre/papier, Saira, barre d'\\\\''onglets mobile *)",
+      "Bash(git commit -q -m 'feat\\(portal\\): tableau de bord « Aujourd'\\\\''hui » — l'\\\\''état des registres du jour *)",
+      "Bash(git commit -q -m 'refactor\\(portal\\): pages re-stylées sur le nouveau langage *)",
+      "Bash(git commit -q -m 'docs\\(portal\\): langage visuel et composants de la refonte UI *)"
     ]
   }
 }
