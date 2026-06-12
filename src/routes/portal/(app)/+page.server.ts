@@ -1,3 +1,4 @@
+import { redirect } from '@sveltejs/kit'
 import { count, eq, max } from 'drizzle-orm'
 import { getDb } from '$lib/server/db'
 import {
@@ -13,7 +14,11 @@ import type { PageServerLoad } from './$types'
 
 // Le tableau de bord ouvre sur l'état du jour : qu'est-ce qui est déjà
 // saisi, qu'est-ce qui reste à faire ? Six agrégats légers, en parallèle.
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ locals }) => {
+	// Chacun son monde : l'accueil des admins est le dashboard global,
+	// celui des agents l'état de la saisie du jour.
+	if (locals.user?.role === 'admin') redirect(303, '/portal/admin')
+
 	const db = getDb()
 	const today = todayInMadagascar()
 	const month = currentMonthInMadagascar()

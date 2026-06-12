@@ -33,6 +33,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 		if (!event.locals.user && pathname !== `${PORTAL_PREFIX}/login`) {
 			redirect(303, `${PORTAL_PREFIX}/login`)
 		}
+
+		// L'espace admin (pages ET actions) est réservé au rôle admin.
+		if (pathname.startsWith(`${PORTAL_PREFIX}/admin`) && event.locals.user?.role !== 'admin') {
+			redirect(303, PORTAL_PREFIX)
+		}
 	}
 
 	return resolve(event)

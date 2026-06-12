@@ -87,7 +87,7 @@
 
 	const upcoming = [
 		{ title: 'Blog', description: 'Rédaction et publication des articles du site.' },
-		{ title: 'Dashboard & dons', description: 'Indicateurs agrégés, paiements Stripe des donateurs.' },
+		{ title: 'Enquêtes de confiance', description: 'Auto-évaluation des jeunes du centre, par trimestre.' },
 		{ title: 'Messages', description: 'Les messages du formulaire de contact, traités ici.' }
 	]
 </script>
