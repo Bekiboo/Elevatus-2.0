@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
-	import { btnPrimary, inputSm, label } from '$lib/portal/ui'
+	import { btnPrimaryLg, card, input, label } from '$lib/portal/ui'
 	import type { ActionData } from './$types'
 
 	let { form }: { form: ActionData } = $props()
@@ -12,15 +12,18 @@
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
-<div class="flex min-h-[80vh] items-center justify-center bg-slate-100 px-4">
+<div class="flex min-h-screen items-center justify-center bg-paper px-4">
 	<div class="w-full max-w-sm">
-		<div class="rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
-			<h1 class="text-xl font-semibold text-slate-800">Portail Elevatus</h1>
-			<p class="mt-1 text-sm text-slate-500">Connexion réservée à l'équipe.</p>
+		<p class="text-center font-saira text-3xl uppercase leading-none tracking-wider text-ink">
+			Elevatus<span class="ml-1.5 text-brand">Portail</span>
+		</p>
+
+		<div class="{card} mt-5 p-6 shadow-sm sm:p-8">
+			<p class="text-sm text-ink-soft">Connexion réservée à l'équipe.</p>
 
 			<form
 				method="POST"
-				class="mt-6 space-y-4"
+				class="mt-5 space-y-4"
 				use:enhance={() => {
 					loading = true
 					return async ({ update }) => {
@@ -38,7 +41,7 @@
 						required
 						autocomplete="email"
 						value={form?.email ?? ''}
-						class="mt-1 {inputSm}"
+						class="mt-1 {input}"
 					/>
 				</div>
 
@@ -50,7 +53,7 @@
 						type="password"
 						required
 						autocomplete="current-password"
-						class="mt-1 {inputSm}"
+						class="mt-1 {input}"
 					/>
 				</div>
 
@@ -58,7 +61,7 @@
 					<p class="text-sm text-red-600" role="alert">{form.error}</p>
 				{/if}
 
-				<button type="submit" disabled={loading} class="w-full {btnPrimary}">
+				<button type="submit" disabled={loading} class={btnPrimaryLg}>
 					{loading ? 'Connexion…' : 'Se connecter'}
 				</button>
 			</form>

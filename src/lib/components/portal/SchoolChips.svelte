@@ -23,8 +23,8 @@
 			aria-current={school.id === selectedId ? 'page' : undefined}
 			class="whitespace-nowrap rounded-full border px-4 py-2 text-sm transition
 			{school.id === selectedId
-				? 'border-slate-800 bg-slate-800 font-medium text-white'
-				: 'border-slate-300 bg-white text-slate-600'}"
+				? 'border-ink bg-ink font-semibold text-white'
+				: 'border-ink/20 bg-white text-ink-soft hover:border-ink/40'}"
 		>
 			{school.name}
 		</a>

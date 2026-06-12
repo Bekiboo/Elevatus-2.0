@@ -30,6 +30,11 @@
 	--color-dark: hsl(0, 4%, 13%);
 	--color-light: hsl(0, 0%, 96%);
 
+	/* portail staff — encre pétrole (l'accent teal assombri) sur fond papier */
+	--color-ink: hsl(196, 51%, 16%);
+	--color-ink-soft: hsl(196, 25%, 38%);
+	--color-paper: hsl(190, 14%, 96%);
+
 	/* typography */
 	--color-text: hsl(0, 4%, 18%);
 }
