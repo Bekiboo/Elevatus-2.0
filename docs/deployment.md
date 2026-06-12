@@ -6,6 +6,7 @@ _Mis à jour : 2026-06-12_
 
 - Push sur `main` → déploiement Vercel automatique.
 - **Toujours valider avant de pousser** : `pnpm check` puis `pnpm run build` puis, pour toute feature serveur, un tour sur `pnpm run preview` (le dev server masque des bugs de build — vécu, voir ci-dessous).
+- **Tester l'auth sous preview** : lancer `BETTER_AUTH_URL=http://localhost:4173 pnpm preview --port 4173` — avec le `BETTER_AUTH_URL` du `.env` (port 5173 du dev), better-auth répond **404** sur toutes ses routes (mismatch d'origine), symptôme déroutant vécu le 2026-06-12.
 - Adaptateur **explicite** `@sveltejs/adapter-vercel` dans `svelte.config.js` : le pipeline de prod complet (SSR, prérendu, traçage des fonctions) s'exécute donc aussi en local.
 
 ## Les cinq pièges déjà rencontrés (et leurs garde-fous)

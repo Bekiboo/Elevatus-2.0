@@ -20,13 +20,32 @@ et les fichiers Excel pour le suivi MEAL, d'après le cadre d'indicateurs de Ros
 
 Comptes : rôle `admin` (Julien) ou `staff` (défaut). Premier admin créé par `node scripts/seed-admin.ts`.
 
+## Rôles et autorisations
+
+Politique : **la saisie et les corrections sont ouvertes au staff ; les suppressions
+définitives sont réservées aux admins** (le cas normal pour retirer un enfant est
+l'_archivage_, pas la suppression).
+
+| Action | staff | admin |
+| --- | --- | --- |
+| Saisie terrain, fiches, archivage, corrections | ✓ | ✓ |
+| Supprimer une fiche enfant (cascade scolarité) | ✗ 403 | ✓ |
+| Supprimer une école | ✗ 403 | ✓ |
+| Supprimer une inscription **avec résultats saisis** | ✗ 403 | ✓ |
+| Supprimer une inscription sans résultats, une entrée repas | ✓ | ✓ |
+
+Côté serveur : `requireAdmin(locals)` (`src/lib/server/portal.ts`) en tête des actions
+concernées — la garde UI (boutons masqués selon `data.user.role`) n'est qu'un confort.
+
 ## Conventions du portail
 
 - **Mobile d'abord** pour tout ce qui est terrain : cibles tactiles ≥ 44 px (`h-12`), `text-base` (16 px — pas de zoom iOS), puces d'école défilantes, un formulaire = une action courte. Desktop = grilles `sm:`/`lg:`.
 - **Langue** : outils terrain en français ; les écrans purement admin pourront être en anglais. Pas de framework i18n.
 - **Saisie numérique** : `inputmode="decimal"` + la validation accepte la **virgule** décimale (`33,5`) — claviers français.
 - **Dates terrain** : « aujourd'hui » = fuseau de Madagascar (`Indian/Antananarivo`), helpers dans `src/lib/server/portal.ts`.
-- **Validation** : schémas zod dans `src/lib/portal/validation.ts`, tolérants aux champs absents ; les actions renvoient `fail(400, { formId, error })` et chaque formulaire affiche son erreur via `form?.formId`.
+- **Validation** : schémas zod dans `src/lib/portal/validation.ts`, tolérants aux champs absents ; toutes les actions passent par `parseForm(schema, formData, formId)` qui renvoie soit les données typées, soit un `fail(400, { formId, error })` prêt à retourner — chaque formulaire affiche son erreur via `form?.formId`. Les params d'URL (uuid, date) sont validés par `isUuid`/`isIsoDate` avant toute requête (sinon 500 Postgres 22P02).
+- **UI partagée** : classes Tailwind dans `src/lib/portal/ui.ts` (input, boutons), helpers d'affichage dans `src/lib/portal/format.ts` (âge, IMC, dates FR), sélecteur d'école `SchoolChips.svelte` — pas de copier-coller de styles entre pages.
+- **Requêtes bornées** : les loads chargent des fenêtres fixes (14 jours de repas, 6 mois de présences, dernière mesure par enfant via `selectDistinctOn`) — jamais « toute la table » ; les requêtes indépendantes partent en `Promise.all`.
 - **Écritures répétables** : les registres (repas, mesures, présences) font des **upserts** sur leur clé naturelle (école+date, enfant+date, classe+mois) — re-saisir corrige, jamais de doublon.
 - **Sécurité** : guard dans `hooks.server.ts` (couvre pages **et** form actions) ; erreurs Postgres attendues (23505 doublon, 23503 référence disparue) traduites en messages français.
 - **Svelte 5** : runes (`$props`, `$state`, `$derived` — y compris writable), `page` depuis `$app/state`. Valider tout composant avec le skill `svelte-code-writer` (autofixer).

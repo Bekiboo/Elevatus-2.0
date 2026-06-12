@@ -52,6 +52,12 @@ Conventions : PK `uuid` générées par défaut (générables côté client → 
 
 Les hooks (`src/hooks.server.ts`) n'activent l'auth que sur `/portal*` et `/api/auth*`, et portent le **guard d'authentification** (un guard en layout ne couvre pas les form actions).
 
+Particularités better-auth :
+
+- Les options (adapter Drizzle, plugin admin, politique de comptes) vivent dans **`src/lib/server/auth-options.ts`**, factory partagée entre l'app et `scripts/seed-admin.ts` — sans import runtime relatif pour rester exécutable sous Node nu (type-stripping).
+- `getSession()` est typé **sans** les champs du plugin admin (`role`, `banned`…) alors que l'objet les contient : `SessionUser` (exporté par `auth.ts`) réinjecte `UserWithRole`, et le hook caste à cette unique frontière.
+- L'autorisation par rôle (`requireAdmin`) est décrite dans [portal.md](portal.md#rôles-et-autorisations).
+
 ## Variables d'environnement
 
 | Variable | Usage | Où |
