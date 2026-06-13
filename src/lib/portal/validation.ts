@@ -105,6 +105,18 @@ export const growthSchema = z.object({
 	weightKg: numberField(5, 150, 'Poids (kg)')
 })
 
+// Comptes staff (espace admin, en anglais). Le mot de passe initial n'est
+// pas saisi ici : il est généré côté serveur et affiché une fois.
+export const createUserSchema = z.object({
+	name: z.string().trim().min(1, 'Name is required'),
+	email: z
+		.string()
+		.trim()
+		.toLowerCase()
+		.refine((v) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v), 'Enter a valid email address'),
+	role: z.enum(['staff', 'admin'])
+})
+
 export const attendanceSchema = z.object({
 	courseId: z.string().min(1, 'Classe requise'),
 	month: z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, 'Mois invalide'),

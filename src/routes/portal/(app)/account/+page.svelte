@@ -61,17 +61,26 @@
 		</form>
 	</div>
 
+	{#if isAdmin}
+		<a
+			href="/portal/admin/team"
+			class="{card} group flex items-center justify-between gap-4 p-5 transition hover:border-ink/30 hover:shadow-sm sm:p-6"
+		>
+			<div>
+				<p class="font-semibold text-ink">Comptes de l’équipe</p>
+				<p class="mt-0.5 text-sm text-ink-soft">Créer et gérer les accès des agents.</p>
+			</div>
+			<span class="text-ink-soft transition group-hover:text-ink"><Icon name="team" size={22} /></span>
+		</a>
+	{/if}
+
 	<div class="rounded-xl border border-dashed border-ink/15 p-4">
 		<div class="flex items-center justify-between">
-			<h2 class="font-semibold text-ink/60">Mot de passe{isAdmin ? ' & comptes équipe' : ''}</h2>
+			<h2 class="font-semibold text-ink/60">Mot de passe</h2>
 			<span class="rounded-full bg-secondary/25 px-2 py-0.5 text-xs font-medium text-ink/70">
 				À venir
 			</span>
 		</div>
-		<p class="mt-1 text-sm text-ink-soft/80">
-			{isAdmin
-				? 'Changement de mot de passe et création des accès de l’équipe, gérés ici.'
-				: 'Tu pourras bientôt changer ton mot de passe ici.'}
-		</p>
+		<p class="mt-1 text-sm text-ink-soft/80">Tu pourras bientôt changer ton mot de passe ici.</p>
 	</div>
 </div>

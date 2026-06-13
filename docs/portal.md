@@ -12,7 +12,8 @@ et les fichiers Excel pour le suivi MEAL, d'après le cadre d'indicateurs de Ros
 | Connexion | `/portal/login` | email + mot de passe (better-auth), comptes créés par les admins — pas d'inscription publique |
 | Tableau de bord terrain | `/portal` | l'état du jour (registres saisis / à faire, date de Madagascar) + accès aux modules — l'accueil des **agents** ; les admins y sont redirigés vers `/portal/admin` |
 | Dashboard admin | `/portal/admin` | **en anglais** (Rosa, board) : agrégats par année scolaire (1.1–1.2), cantine 90 j (3.2), couverture taille/poids (3.1), occupation du centre 6 mois (2.1) + dons Stripe lus en direct de l'API — réservé au rôle admin (garde dans `hooks.server.ts`) |
-| Mon compte | `/portal/account` | identité, rôle, **déconnexion** (retirée de la barre de nav) ; plus tard : mot de passe, comptes équipe |
+| Mon compte | `/portal/account` | identité, rôle, **déconnexion** (retirée de la barre de nav) + raccourci « Comptes de l'équipe » pour les admins ; plus tard : changement de mot de passe |
+| Comptes équipe | `/portal/admin/team` | **en anglais**, réservé admin : création de comptes (mot de passe temporaire généré, affiché une fois), changement de rôle, activation/désactivation, réinitialisation de mot de passe, suppression — via le plugin admin de better-auth |
 | Enfants | `/portal/children` | dossiers (identité, genre, naissance), scolarité par année (école, classe, parrainé), résultats de fin d'année (indicateurs 1.1–1.2), archivage |
 | Écoles | `/portal/schools` | CRUD des établissements, suppression bloquée si inscriptions |
 | Saisie terrain | `/portal/field` | hub mobile-first ↓ |
@@ -60,9 +61,10 @@ concernées — la garde UI (boutons masqués selon `data.user.role`) n'est qu'u
 2. **Blog** — migration des 17 articles de `public.blog-post` vers le schéma `app` + éditeur dans le portail (le rendu public ne change pas) ; ensuite, suppression de `supabase-js` et de l'ancien schéma.
 3. **Messages** — le formulaire de contact écrit en base (SendGrid supprimé) ; module de traitement pour les admins, éventuel ping Resend.
 4. **Stripe — historisation** — le dashboard admin lit l'API en direct (v1, fait) ; reste : webhooks pour historiser les paiements en base, rapprochement donateur↔parrainage, comparaison vs baseline 2026.
-5. **Gestion des comptes staff** — créer les accès de l'équipe (Ricardo, Felana, Nanouh) via le plugin admin de better-auth.
-6. **Parrainages nominatifs** — UI sur les tables `sponsors`/`sponsorships`.
-7. **V2 hors-ligne** — PWA + synchro (les PK uuid et les upserts sont déjà pensés pour).
+5. **Parrainages nominatifs** — UI sur les tables `sponsors`/`sponsorships`.
+6. **V2 hors-ligne** — PWA + synchro (les PK uuid et les upserts sont déjà pensés pour).
+
+_Fait : gestion des comptes staff (`/portal/admin/team`) — création, rôles, activation/désactivation, réinitialisation de mot de passe (plugin admin de better-auth)._
 
 ## Données
 

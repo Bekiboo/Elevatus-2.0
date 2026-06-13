@@ -14,6 +14,8 @@
 			'<circle cx="9" cy="8" r="3.5"/><path d="M3 20v-1a6 6 0 0 1 12 0v1"/><path d="m15 10 2.5 2.5L22 8"/>',
 		logout: '<path d="M9 21H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/>',
 		user: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20v-1a7 7 0 0 1 14 0v1"/>',
+		team: '<circle cx="9" cy="8" r="3"/><path d="M2 20v-1a6 6 0 0 1 12 0v1"/><path d="M16 5.5a3 3 0 0 1 0 5.8"/><path d="M18 14.2a5.5 5.5 0 0 1 4 5.3V20"/>',
+		key: '<circle cx="8" cy="12" r="4"/><path d="M11.5 11.5 21 2"/><path d="m18 5 2.5 2.5"/><path d="m15 8 2 2"/>',
 		chart: '<path d="M4 4v16h16"/><path d="M9 17v-4"/><path d="M13.5 17V7"/><path d="M18 17v-7"/>',
 		donations:
 			'<path d="M12 20s-6.5-4.2-8.7-8.3A5.2 5.2 0 0 1 12 6.3a5.2 5.2 0 0 1 8.7 5.4C18.5 15.8 12 20 12 20z"/>',

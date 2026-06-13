@@ -51,7 +51,16 @@
 	<title>Dashboard — Elevatus Portal</title>
 </svelte:head>
 
-<p class="text-sm text-ink-soft">Hello {firstName} — here's the big picture.</p>
+<div class="flex flex-wrap items-center justify-between gap-3">
+	<p class="text-sm text-ink-soft">Hello {firstName} — here's the big picture.</p>
+	<a
+		href="/portal/admin/team"
+		class="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft transition hover:text-ink"
+	>
+		<Icon name="team" size={16} />
+		Team accounts
+	</a>
+</div>
 
 <!-- Le pendant admin du tableau du jour : l'année scolaire et ses totaux -->
 <section class="mt-3 overflow-hidden rounded-2xl bg-ink text-white">

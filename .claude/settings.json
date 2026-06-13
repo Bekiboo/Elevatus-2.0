@@ -49,7 +49,32 @@
       "Bash(git commit -q -m 'feat\\(portal\\): identité visuelle — encre/papier, Saira, barre d'\\\\''onglets mobile *)",
       "Bash(git commit -q -m 'feat\\(portal\\): tableau de bord « Aujourd'\\\\''hui » — l'\\\\''état des registres du jour *)",
       "Bash(git commit -q -m 'refactor\\(portal\\): pages re-stylées sur le nouveau langage *)",
-      "Bash(git commit -q -m 'docs\\(portal\\): langage visuel et composants de la refonte UI *)"
+      "Bash(git commit -q -m 'docs\\(portal\\): langage visuel et composants de la refonte UI *)",
+      "Bash(npx -y @sveltejs/mcp svelte-autofixer \"src/routes/portal/\\(app\\)/+layout.svelte\")",
+      "Bash(npx -y @sveltejs/mcp svelte-autofixer \"src/routes/portal/\\(app\\)/+page.svelte\")",
+      "Bash(curl -s -b /tmp/elv-cookies.txt -o /dev/null -w \"%{http_code} -> %{redirect_url}\\\\n\" http://localhost:4173/portal)",
+      "Bash(curl -s -b /tmp/elv-cookies.txt -o /tmp/admin.html -w \"%{http_code}\\\\n\" http://localhost:4173/portal/admin)",
+      "Bash(curl -s -b /tmp/elv-cookies.txt -o /tmp/account.html -w \"%{http_code}\\\\n\" http://localhost:4173/portal/account)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} -> %{redirect_url}\\\\n\" http://localhost:4173/portal/admin)",
+      "Bash(grep -oE '[€$][0-9,.]+|€[0-9]+' /tmp/admin.html)",
+      "Bash(curl -s -b /tmp/elv-cookies.txt -c /tmp/elv-cookies.txt -X POST -H \"Origin: http://localhost:4173\" -H \"Content-Type: application/x-www-form-urlencoded\" -d '' -o /dev/null -w \"logout POST: %{http_code} -> %{redirect_url}\\\\n\" http://localhost:4173/portal/logout)",
+      "Bash(curl -s -b /tmp/elv-cookies.txt -o /dev/null -w \"après logout, /portal/admin: %{http_code} -> %{redirect_url}\\\\n\" http://localhost:4173/portal/admin)",
+      "Bash(git commit -m 'feat\\(portal\\): page « Mon compte » — la déconnexion quitte la barre de nav *)",
+      "Bash(git commit -m 'feat\\(portal\\): espace admin en anglais — dashboard global + dons Stripe *)",
+      "Bash(git commit -m 'docs\\(portal\\): espace admin, page Mon compte, redirection par rôle *)",
+      "Bash(curl -s -o /dev/null -w \"%{redirect_url}\\\\n\" -X POST https://elevatus-foundation.org/api/auth/sign-in/email)",
+      "Bash(curl -s -o /dev/null -w \"GET portal: %{http_code} -> %{redirect_url}\\\\n\" https://elevatus-foundation.org/portal)",
+      "Bash(curl -s -b /tmp/elv-prod.txt -o /tmp/prod-admin.html -w 'prod /portal/admin: %{http_code}\\\\n' https://www.elevatus-foundation.org/portal/admin)",
+      "Bash(grep -oE '[€$][0-9,.]+' /tmp/prod-admin.html)",
+      "Bash(node -e \"const a=require\\('better-auth/api'\\); console.log\\('APIError' in a ? 'better-auth/api OK' : Object.keys\\(a\\).filter\\(k=>/Error/i.test\\(k\\)\\)\\)\")",
+      "Bash(grep -nA25 \"create-user\" node_modules/better-auth/dist/plugins/admin/admin.d.mts)",
+      "Bash(grep -nB2 -A18 \"list-users\" node_modules/better-auth/dist/plugins/admin/admin.d.mts)",
+      "Bash(node -e \"console.log\\(require\\('zod/package.json'\\).version\\)\")",
+      "Bash(npx -y @sveltejs/mcp svelte-autofixer \"src/routes/portal/\\(app\\)/admin/team/+page.svelte\")",
+      "Bash(BETTER_AUTH_URL=http://localhost:4173 nohup pnpm preview --port 4173)",
+      "Bash(echo \"preview launching, pid $!\")",
+      "Bash(xargs kill)",
+      "Bash(git commit *)"
     ]
   }
 }
