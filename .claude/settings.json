@@ -89,7 +89,9 @@
       "Bash(/usr/bin/grep -v grep)",
       "Bash(/usr/bin/awk '{print $2, $11, $12, $13}')",
       "Bash(/usr/sbin/lsof -ti tcp:4173)",
-      "Bash(/usr/bin/find .svelte-kit/output -path \"*field/surveys*\")"
+      "Bash(/usr/bin/find .svelte-kit/output -path \"*field/surveys*\")",
+      "Bash(/usr/bin/curl -s -o /tmp/nocookie.json -w '  status: %{http_code}\\\\n' -H 'Origin: http://localhost:4173' -H 'Content-Type: application/x-www-form-urlencoded' --data-urlencode beneficiaryId=5ef01f84-0724-4b58-895d-cc94694d61a5 --data-urlencode score-2.2=5 --data-urlencode score-2.3=4 --data-urlencode score-2.4=5 http://localhost:4173/portal/kiosk?/submit)",
+      "Bash(/usr/bin/grep -oE \"expirée|error\" /tmp/nocookie.json)"
     ]
   }
 }

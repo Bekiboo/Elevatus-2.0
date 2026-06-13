@@ -37,7 +37,14 @@
 	title="Enquêtes de confiance"
 	sub="Auto-évaluation des jeunes du centre, une fois par trimestre (indicateurs 2.2–2.4)."
 	back={{ href: '/portal/field', label: 'Saisie terrain' }}
-/>
+>
+	{#snippet actions()}
+		<a href="/portal/kiosk" class="{btnSecondary} flex items-center gap-1.5">
+			<Icon name="survey" size={16} />
+			Mode kiosque
+		</a>
+	{/snippet}
+</PageHeader>
 
 {#if !data.selectedYearId}
 	<p class="rounded-xl border border-secondary/60 bg-secondary/15 p-4 text-sm text-ink">

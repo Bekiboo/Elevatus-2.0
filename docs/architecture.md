@@ -68,6 +68,7 @@ Particularités better-auth :
 | `BETTER_AUTH_SECRET` | signature des sessions | runtime serveur |
 | `BETTER_AUTH_URL` | origine canonique (`https://www.elevatus-foundation.org`, sans slash final) | runtime serveur |
 | `STRIPE_SECRET_KEY` | API Stripe (dons) | runtime serveur |
+| `KIOSK_PIN` | code d'ouverture du mode kiosque des enquêtes (`/portal/kiosk`) ; sans lui le kiosque reste fermé | runtime serveur |
 | `PUBLIC_STRIPE_PUBLISHABLE_KEY` | (réservé, non utilisé par le code actuel) | — |
 | `VITE_PUBLIC_SUPABASE_URL` / `VITE_PUBLIC_SUPABASE_ANON_KEY` | blog public via PostgREST (clé `sb_publishable_…`) | **inlinées au build** |
 

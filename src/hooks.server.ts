@@ -7,6 +7,7 @@ import { getAuth, type SessionUser } from '$lib/server/auth'
 // the database or better-auth (and keeps working if DATABASE_URL is absent).
 const AUTH_API_PREFIX = '/api/auth'
 const PORTAL_PREFIX = '/portal'
+const KIOSK_PREFIX = '/portal/kiosk'
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const { pathname } = event.url
@@ -18,6 +19,13 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	if (pathname.startsWith(AUTH_API_PREFIX)) {
 		return svelteKitHandler({ event, resolve, auth: getAuth(), building })
+	}
+
+	// Le mode kiosque se garde lui-même (code PIN + cookie signé) : pas de
+	// session better-auth, donc il échappe au guard du portail ci-dessous —
+	// sinon il serait renvoyé vers /portal/login.
+	if (pathname === KIOSK_PREFIX || pathname.startsWith(`${KIOSK_PREFIX}/`)) {
+		return resolve(event)
 	}
 
 	if (pathname === PORTAL_PREFIX || pathname.startsWith(`${PORTAL_PREFIX}/`)) {

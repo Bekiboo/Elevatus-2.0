@@ -21,6 +21,7 @@ et les fichiers Excel pour le suivi MEAL, d'après le cadre d'indicateurs de Ros
 | → Taille & poids | `/portal/field/growth` | par école et par date de séance, IMC affiché (indicateur 3.1) |
 | → Présences centre | `/portal/field/attendance` | moyenne mensuelle par classe + % de remplissage (indicateur 2.1), historique 6 mois |
 | → Enquêtes de confiance | `/portal/field/surveys` | auto-évaluation des jeunes 1–5 par trimestre (indicateurs 2.2–2.4) ; saisie agent (nominatif, recherche par nom) ; upsert sur jeune+année+trimestre+énoncé ; énoncés modifiables dans `src/lib/portal/surveys.ts` |
+| Kiosque enquêtes | `/portal/kiosk` | **hors authentification**, mode tablette partagée : l'encadrant ouvre avec `KIOSK_PIN` (cookie signé 12 h), le jeune choisit son nom et répond lui-même (gros visages 1–5), retour à zéro entre deux ; année/trimestre **recalculés serveur**, `via_kiosk=true`, anonyme côté traçabilité |
 
 Comptes : rôle `admin` (Julien) ou `staff` (défaut). Premier admin créé par `node scripts/seed-admin.ts`.
 
@@ -54,18 +55,18 @@ concernées — la garde UI (boutons masqués selon `data.user.role`) n'est qu'u
 - **Requêtes bornées** : les loads chargent des fenêtres fixes (14 jours de repas, 6 mois de présences, dernière mesure par enfant via `selectDistinctOn`) — jamais « toute la table » ; les requêtes indépendantes partent en `Promise.all`.
 - **Écritures répétables** : les registres (repas, mesures, présences) font des **upserts** sur leur clé naturelle (école+date, enfant+date, classe+mois) — re-saisir corrige, jamais de doublon.
 - **Sécurité** : guard dans `hooks.server.ts` (couvre pages **et** form actions) ; erreurs Postgres attendues (23505 doublon, 23503 référence disparue) traduites en messages français.
+- **Mode kiosque** : `/portal/kiosk` est la **seule** route `/portal` exemptée du guard d'auth (elle ne crée jamais de session better-auth) — elle se garde par un **cookie signé** (HMAC du `BETTER_AUTH_SECRET`, TTL 12 h, scopé au chemin) posé après saisie du `KIOSK_PIN`. Les actions sensibles (soumission) revérifient le cookie, et l'année/le trimestre sont **recalculés serveur** (le client ne les choisit pas). Sur la tablette, activer l'**accès guidé** du système pour verrouiller le navigateur sur l'URL.
 - **Svelte 5** : runes (`$props`, `$state`, `$derived` — y compris writable), `page` depuis `$app/state`. Valider tout composant avec le skill `svelte-code-writer` (autofixer).
 
 ## Reste à faire (ordre pressenti)
 
-1. **Mode kiosque (enquêtes de confiance)** — la saisie agent est faite ; reste le mode kiosque : le jeune répond lui-même sur tablette partagée (code d'ouverture, écran verrouillé, retour à zéro entre deux). Stockage déjà prévu (`survey_responses.via_kiosk`).
-2. **Blog** — migration des 17 articles de `public.blog-post` vers le schéma `app` + éditeur dans le portail (le rendu public ne change pas) ; ensuite, suppression de `supabase-js` et de l'ancien schéma.
-3. **Messages** — le formulaire de contact écrit en base (SendGrid supprimé) ; module de traitement pour les admins, éventuel ping Resend.
-4. **Stripe — historisation** — le dashboard admin lit l'API en direct (v1, fait) ; reste : webhooks pour historiser les paiements en base, rapprochement donateur↔parrainage, comparaison vs baseline 2026.
-5. **Parrainages nominatifs** — UI sur les tables `sponsors`/`sponsorships`.
-6. **V2 hors-ligne** — PWA + synchro (les PK uuid et les upserts sont déjà pensés pour).
+1. **Blog** — migration des 17 articles de `public.blog-post` vers le schéma `app` + éditeur dans le portail (le rendu public ne change pas) ; ensuite, suppression de `supabase-js` et de l'ancien schéma.
+2. **Messages** — le formulaire de contact écrit en base (SendGrid supprimé) ; module de traitement pour les admins, éventuel ping Resend.
+3. **Stripe — historisation** — le dashboard admin lit l'API en direct (v1, fait) ; reste : webhooks pour historiser les paiements en base, rapprochement donateur↔parrainage, comparaison vs baseline 2026.
+4. **Parrainages nominatifs** — UI sur les tables `sponsors`/`sponsorships`.
+5. **V2 hors-ligne** — PWA + synchro (les PK uuid et les upserts sont déjà pensés pour).
 
-_Fait : gestion des comptes staff (`/portal/admin/team`) ; enquêtes de confiance — saisie agent (`/portal/field/surveys`, indicateurs 2.2–2.4) + agrégat par trimestre sur le dashboard admin._
+_Fait : gestion des comptes staff (`/portal/admin/team`) ; enquêtes de confiance — saisie agent (`/portal/field/surveys`) **et mode kiosque** (`/portal/kiosk`, indicateurs 2.2–2.4) + agrégat par trimestre sur le dashboard admin._
 
 ## Données
 
