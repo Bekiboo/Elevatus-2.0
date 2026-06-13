@@ -20,6 +20,7 @@ et les fichiers Excel pour le suivi MEAL, d'après le cadre d'indicateurs de Ros
 | → Repas servis | `/portal/field/meals` | registre quotidien par école : servi/pas servi + nombre (indicateur 3.2) ; 14 derniers jours corrigeables |
 | → Taille & poids | `/portal/field/growth` | par école et par date de séance, IMC affiché (indicateur 3.1) |
 | → Présences centre | `/portal/field/attendance` | moyenne mensuelle par classe + % de remplissage (indicateur 2.1), historique 6 mois |
+| → Enquêtes de confiance | `/portal/field/surveys` | auto-évaluation des jeunes 1–5 par trimestre (indicateurs 2.2–2.4) ; saisie agent (nominatif, recherche par nom) ; upsert sur jeune+année+trimestre+énoncé ; énoncés modifiables dans `src/lib/portal/surveys.ts` |
 
 Comptes : rôle `admin` (Julien) ou `staff` (défaut). Premier admin créé par `node scripts/seed-admin.ts`.
 
@@ -57,14 +58,14 @@ concernées — la garde UI (boutons masqués selon `data.user.role`) n'est qu'u
 
 ## Reste à faire (ordre pressenti)
 
-1. **Enquêtes de confiance** (indicateurs 2.2–2.4) — design à part : auto-évaluation des jeunes 1–5 par trimestre, probablement un mode « kiosque » sans compte.
+1. **Mode kiosque (enquêtes de confiance)** — la saisie agent est faite ; reste le mode kiosque : le jeune répond lui-même sur tablette partagée (code d'ouverture, écran verrouillé, retour à zéro entre deux). Stockage déjà prévu (`survey_responses.via_kiosk`).
 2. **Blog** — migration des 17 articles de `public.blog-post` vers le schéma `app` + éditeur dans le portail (le rendu public ne change pas) ; ensuite, suppression de `supabase-js` et de l'ancien schéma.
 3. **Messages** — le formulaire de contact écrit en base (SendGrid supprimé) ; module de traitement pour les admins, éventuel ping Resend.
 4. **Stripe — historisation** — le dashboard admin lit l'API en direct (v1, fait) ; reste : webhooks pour historiser les paiements en base, rapprochement donateur↔parrainage, comparaison vs baseline 2026.
 5. **Parrainages nominatifs** — UI sur les tables `sponsors`/`sponsorships`.
 6. **V2 hors-ligne** — PWA + synchro (les PK uuid et les upserts sont déjà pensés pour).
 
-_Fait : gestion des comptes staff (`/portal/admin/team`) — création, rôles, activation/désactivation, réinitialisation de mot de passe (plugin admin de better-auth)._
+_Fait : gestion des comptes staff (`/portal/admin/team`) ; enquêtes de confiance — saisie agent (`/portal/field/surveys`, indicateurs 2.2–2.4) + agrégat par trimestre sur le dashboard admin._
 
 ## Données
 

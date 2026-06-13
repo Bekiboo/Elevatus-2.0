@@ -28,6 +28,22 @@ export async function getCurrentSchoolYear(db: Db) {
 	)
 }
 
+// Trimestre « courant » : la position d'aujourd'hui dans l'année scolaire,
+// découpée en trois. Sert seulement de valeur par défaut — l'agent peut
+// toujours choisir un autre trimestre. Hors période → 1 (avant) ou 3 (après).
+export function currentTerm(
+	year: { startsOn: string | null; endsOn: string | null } | null
+): number {
+	if (!year?.startsOn || !year?.endsOn) return 1
+	const start = DateTime.fromISO(year.startsOn)
+	const end = DateTime.fromISO(year.endsOn)
+	const now = DateTime.fromISO(todayInMadagascar())
+	if (now <= start) return 1
+	if (now >= end) return 3
+	const frac = now.diff(start).toMillis() / end.diff(start).toMillis()
+	return Math.min(3, Math.max(1, Math.floor(frac * 3) + 1))
+}
+
 export async function getActiveSchools(db: Db) {
 	return db.select().from(schools).where(eq(schools.archived, false)).orderBy(asc(schools.name))
 }
@@ -37,7 +53,9 @@ export function resolveSelectedSchool<T extends { id: string }>(
 	allSchools: T[],
 	url: URL
 ): string | null {
-	return allSchools.find((s) => s.id === url.searchParams.get('ecole'))?.id ?? allSchools[0]?.id ?? null
+	return (
+		allSchools.find((s) => s.id === url.searchParams.get('ecole'))?.id ?? allSchools[0]?.id ?? null
+	)
 }
 
 // Garde d'autorisation : à appeler en tête des actions destructrices.

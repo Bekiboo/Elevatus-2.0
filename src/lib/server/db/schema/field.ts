@@ -10,7 +10,7 @@ import {
 	uuid
 } from 'drizzle-orm/pg-core'
 import { app, user } from './auth'
-import { beneficiaries, schools } from './domain'
+import { beneficiaries, schoolYears, schools } from './domain'
 
 const timestamps = {
 	createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
@@ -73,6 +73,37 @@ export const mealDays = app.table(
 		unique('meal_days_school_date_unique').on(t.schoolId, t.date),
 		index('meal_days_date_idx').on(t.date),
 		index('meal_days_recorded_by_idx').on(t.recordedBy)
+	]
+)
+
+// Enquêtes de confiance : auto-évaluation des jeunes du centre (indicateurs
+// 2.2–2.4). Une note 1–5 par énoncé, par jeune et par trimestre d'année
+// scolaire. Upsert sur (jeune, année, trimestre, énoncé) → re-saisir corrige,
+// jamais de doublon. `via_kiosk` distingue l'auto-saisie (tablette partagée)
+// de la saisie par un agent. Le libellé des énoncés vit côté code
+// (src/lib/portal/surveys.ts), seule la clé est stockée.
+export const surveyResponses = app.table(
+	'survey_responses',
+	{
+		id: uuid('id').primaryKey().defaultRandom(),
+		beneficiaryId: uuid('beneficiary_id')
+			.notNull()
+			.references(() => beneficiaries.id, { onDelete: 'cascade' }),
+		schoolYearId: uuid('school_year_id')
+			.notNull()
+			.references(() => schoolYears.id, { onDelete: 'restrict' }),
+		term: integer('term').notNull(), // 1 | 2 | 3
+		questionKey: text('question_key').notNull(), // '2.2' | '2.3' | '2.4'
+		score: integer('score').notNull(), // 1..5
+		viaKiosk: boolean('via_kiosk').notNull().default(false),
+		recordedBy: text('recorded_by').references(() => user.id, { onDelete: 'set null' }),
+		...timestamps
+	},
+	(t) => [
+		unique('survey_response_unique').on(t.beneficiaryId, t.schoolYearId, t.term, t.questionKey),
+		index('survey_responses_year_term_idx').on(t.schoolYearId, t.term),
+		index('survey_responses_beneficiary_idx').on(t.beneficiaryId),
+		index('survey_responses_recorded_by_idx').on(t.recordedBy)
 	]
 )
 

@@ -21,11 +21,17 @@
 				data.stats.schools === 0
 					? { tone: 'idle', text: 'aucune école' }
 					: data.stats.mealsToday >= data.stats.schools
-						? { tone: 'done', text: `${data.stats.mealsToday}/${data.stats.schools} écoles saisies` }
+						? {
+								tone: 'done',
+								text: `${data.stats.mealsToday}/${data.stats.schools} écoles saisies`
+							}
 						: data.stats.mealsToday > 0
-							? { tone: 'partial', text: `${data.stats.mealsToday}/${data.stats.schools} écoles saisies` }
-							: { tone: 'todo', text: 'à saisir aujourd’hui' },
-			},
+							? {
+									tone: 'partial',
+									text: `${data.stats.mealsToday}/${data.stats.schools} écoles saisies`
+								}
+							: { tone: 'todo', text: 'à saisir aujourd’hui' }
+		},
 		{
 			href: '/portal/field/attendance',
 			icon: 'attendance',
@@ -34,11 +40,17 @@
 				data.stats.courses === 0
 					? { tone: 'idle', text: 'aucune classe' }
 					: data.stats.attendanceMonth >= data.stats.courses
-						? { tone: 'done', text: `${data.stats.attendanceMonth}/${data.stats.courses} classes saisies` }
+						? {
+								tone: 'done',
+								text: `${data.stats.attendanceMonth}/${data.stats.courses} classes saisies`
+							}
 						: data.stats.attendanceMonth > 0
-							? { tone: 'partial', text: `${data.stats.attendanceMonth}/${data.stats.courses} classes saisies` }
-							: { tone: 'todo', text: 'à saisir ce mois-ci' },
-			},
+							? {
+									tone: 'partial',
+									text: `${data.stats.attendanceMonth}/${data.stats.courses} classes saisies`
+								}
+							: { tone: 'todo', text: 'à saisir ce mois-ci' }
+		},
 		{
 			href: '/portal/field/growth',
 			icon: 'growth',
@@ -87,7 +99,6 @@
 
 	const upcoming = [
 		{ title: 'Blog', description: 'Rédaction et publication des articles du site.' },
-		{ title: 'Enquêtes de confiance', description: 'Auto-évaluation des jeunes du centre, par trimestre.' },
 		{ title: 'Messages', description: 'Les messages du formulaire de contact, traités ici.' }
 	]
 </script>

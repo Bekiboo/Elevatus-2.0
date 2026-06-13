@@ -37,6 +37,7 @@ Conçu d'après le cadre d'indicateurs MEAL de Rosa Brandon (oct. 2025) :
 - **`transitions`** — devenir post-bac des diplômés (indicateur 1.3).
 - **`sponsors`**, **`sponsorships`** — lien donateur↔enfant (schéma prêt, UI à venir ; `stripe_customer_id` fera le pont avec Stripe).
 - **`courses`**, **`course_attendance`** — classes du centre de jeunes (couture 25 / informatique 15 / tutorat 40) et moyenne de présence mensuelle (indicateur 2.1).
+- **`survey_responses`** — auto-évaluation des jeunes du centre, une note 1–5 par énoncé/jeune/trimestre (indicateurs 2.2–2.4) ; `via_kiosk` distingue l'auto-saisie de la saisie agent. Les énoncés vivent côté code (`src/lib/portal/surveys.ts`), seule la clé est stockée.
 - **`meal_days`** — registre quotidien de la cantine par école (indicateur 3.2).
 - **`growth_measurements`** — taille/poids → IMC (indicateur 3.1 ; classification OMS par âge à venir).
 - Tables better-auth : `user` (avec `role`), `session`, `account`, `verification`.

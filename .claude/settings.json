@@ -74,7 +74,22 @@
       "Bash(BETTER_AUTH_URL=http://localhost:4173 nohup pnpm preview --port 4173)",
       "Bash(echo \"preview launching, pid $!\")",
       "Bash(xargs kill)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(curl -sf -o /dev/null -w \"root: %{http_code}\\\\n\" http://localhost:4173/)",
+      "Bash(/usr/bin/lsof -ti tcp:4173)",
+      "Bash(/usr/bin/xargs kill *)",
+      "Bash(/bin/ls /Users/julien/dev/Elevatus-2.0/docs/)",
+      "Bash(/bin/ls /Users/julien/dev/Elevatus-2.0/src/lib/server/db/schema/)",
+      "Bash(npx drizzle-kit *)",
+      "mcp__supabase__list_migrations",
+      "Bash(npx -y @sveltejs/mcp svelte-autofixer \"src/routes/portal/\\(app\\)/field/surveys/+page.svelte\")",
+      "Bash(npx -y @sveltejs/mcp svelte-autofixer \"src/routes/portal/\\(app\\)/admin/+page.svelte\")",
+      "Bash(/bin/ps aux *)",
+      "Bash(/usr/bin/grep -iE \"vite preview|4173\")",
+      "Bash(/usr/bin/grep -v grep)",
+      "Bash(/usr/bin/awk '{print $2, $11, $12, $13}')",
+      "Bash(/usr/sbin/lsof -ti tcp:4173)",
+      "Bash(/usr/bin/find .svelte-kit/output -path \"*field/surveys*\")"
     ]
   }
 }

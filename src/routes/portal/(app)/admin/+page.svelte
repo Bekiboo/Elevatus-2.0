@@ -72,7 +72,9 @@
 	</div>
 	<div class="grid grid-cols-2 border-t border-white/10 sm:grid-cols-4">
 		{#each headline as stat (stat.label)}
-			<div class="border-b border-r border-white/10 px-5 py-4 last:border-r-0 sm:border-b-0 sm:px-6">
+			<div
+				class="border-b border-r border-white/10 px-5 py-4 last:border-r-0 sm:border-b-0 sm:px-6"
+			>
 				<p class="font-saira text-3xl uppercase leading-none tracking-wide sm:text-4xl">
 					{stat.value}
 				</p>
@@ -147,8 +149,7 @@
 			</p>
 			<p class="mt-1 text-sm text-ink-soft">meals served</p>
 			<p class="mt-2 text-xs text-ink-soft/80">
-				{data.stats.meals90.served} of {data.stats.meals90.entries} recorded days served (indicator
-				3.2).
+				{data.stats.meals90.served} of {data.stats.meals90.entries} recorded days served (indicator 3.2).
 			</p>
 		</div>
 
@@ -158,7 +159,9 @@
 				<h3 class="font-semibold">Growth · 90 days</h3>
 			</div>
 			<p class="mt-3 font-saira text-4xl uppercase leading-none text-ink">
-				{data.stats.growthMeasured90}<span class="text-xl text-ink-soft">/{data.stats.children}</span>
+				{data.stats.growthMeasured90}<span class="text-xl text-ink-soft"
+					>/{data.stats.children}</span
+				>
 			</p>
 			<p class="mt-1 text-sm text-ink-soft">children measured</p>
 			<p class="mt-2 text-xs text-ink-soft/80">
@@ -200,13 +203,66 @@
 	</div>
 </section>
 
+<!-- Confiance des jeunes : auto-évaluation 2.2–2.4, par trimestre -->
+<section class="mt-8">
+	<h2 class={sectionTitle}>Youth confidence · self-assessment</h2>
+	<div class="{card} mt-3 p-5 sm:p-6">
+		{#if !data.confidenceHasData}
+			<p class="text-sm text-ink-soft">
+				No self-assessments recorded yet for {data.yearLabel ?? 'the current school year'} (indicators
+				2.2–2.4).
+			</p>
+		{:else}
+			<div class="overflow-x-auto">
+				<table class="w-full text-left text-sm">
+					<thead class="text-xs uppercase tracking-wide text-ink-soft">
+						<tr>
+							<th class={th}>Indicator</th>
+							<th class="py-2 pr-3 text-center font-medium">Term 1</th>
+							<th class="py-2 pr-3 text-center font-medium">Term 2</th>
+							<th class="py-2 pr-3 text-center font-medium">Term 3</th>
+						</tr>
+					</thead>
+					<tbody>
+						{#each data.confidence as q (q.key)}
+							<tr class="border-t border-ink/5">
+								<td class="py-2.5 pr-3">
+									<span class="font-medium text-ink">{q.title}</span>
+									<span class="text-xs text-ink-soft"> · {q.key}</span>
+								</td>
+								{#each q.terms as t, i (i)}
+									<td class="py-2.5 pr-3 text-center">
+										{#if t}
+											<span class="font-saira text-xl text-ink">{t.avg.toFixed(1)}</span>
+											<span class="text-xs text-ink-soft">/5</span>
+											<span class="block text-[11px] text-ink-soft/70">{t.responders} resp.</span>
+										{:else}
+											<span class="text-ink-soft/50">—</span>
+										{/if}
+									</td>
+								{/each}
+							</tr>
+						{/each}
+					</tbody>
+				</table>
+			</div>
+			<p class="mt-3 text-xs text-ink-soft/80">
+				Average self-rating (1–5) by youth at the centre, per term (indicators 2.2–2.4). A rising
+				score across terms is the signal to watch.
+			</p>
+		{/if}
+	</div>
+</section>
+
 <!-- Dons : lecture directe de l'API Stripe -->
 <section class="mt-8">
 	<h2 class={sectionTitle}>Donations</h2>
 	{#if !data.stripe.ok}
 		<div class="mt-3 rounded-xl border border-dashed border-ink/15 p-4">
 			<p class="text-sm text-ink-soft">
-				Stripe data is unavailable right now — check the <code class="text-xs">STRIPE_SECRET_KEY</code>
+				Stripe data is unavailable right now — check the <code class="text-xs"
+					>STRIPE_SECRET_KEY</code
+				>
 				configuration.
 			</p>
 		</div>
@@ -272,8 +328,8 @@
 					</table>
 				{/if}
 				<p class="mt-3 text-xs text-ink-soft/80">
-					Read live from Stripe. Webhook-based history (per-donor records, sponsorship matching)
-					is on the roadmap.
+					Read live from Stripe. Webhook-based history (per-donor records, sponsorship matching) is
+					on the roadmap.
 				</p>
 			</div>
 		</div>

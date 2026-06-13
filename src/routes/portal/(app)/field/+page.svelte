@@ -31,6 +31,13 @@
 			title: 'Présences du centre',
 			description: 'La moyenne de présence par classe : couture, informatique, tutorat.',
 			cadence: 'Une fois par mois'
+		},
+		{
+			href: '/portal/field/surveys',
+			icon: 'survey',
+			title: 'Enquêtes de confiance',
+			description: 'Auto-évaluation des jeunes du centre, notée de 1 à 5.',
+			cadence: 'Chaque trimestre'
 		}
 	]
 </script>
@@ -44,7 +51,7 @@
 	sub="Les trois registres du quotidien. Tout fonctionne sur téléphone."
 />
 
-<div class="grid gap-3 sm:grid-cols-3">
+<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
 	{#each tools as { href, icon, title, description, cadence } (href)}
 		<a
 			{href}

@@ -9,9 +9,11 @@ import {
 	growthMeasurements,
 	mealDays,
 	schools,
-	schoolYears
+	schoolYears,
+	surveyResponses
 } from '$lib/server/db/schema'
 import { getCurrentSchoolYear, todayInMadagascar } from '$lib/server/portal'
+import { SURVEY_QUESTIONS } from '$lib/portal/surveys'
 import { getStripe } from '$lib/server/stripe'
 import type { PageServerLoad } from './$types'
 
@@ -122,6 +124,7 @@ export const load: PageServerLoad = async () => {
 		[meals90],
 		[growth90],
 		attendanceByMonth,
+		surveyAgg,
 		stripe
 	] = await Promise.all([
 		getCurrentSchoolYear(db),
@@ -148,9 +151,10 @@ export const load: PageServerLoad = async () => {
 			.select({
 				entries: count(),
 				served: sql`count(*) filter (where ${mealDays.served})`.mapWith(Number),
-				meals: sql`coalesce(sum(${mealDays.mealsCount}) filter (where ${mealDays.served}), 0)`.mapWith(
-					Number
-				)
+				meals:
+					sql`coalesce(sum(${mealDays.mealsCount}) filter (where ${mealDays.served}), 0)`.mapWith(
+						Number
+					)
 			})
 			.from(mealDays)
 			.where(gte(mealDays.date, from90)),
@@ -173,21 +177,47 @@ export const load: PageServerLoad = async () => {
 			.where(gte(courseAttendance.month, from6Months))
 			.groupBy(courseAttendance.month)
 			.orderBy(asc(courseAttendance.month)),
+		// Indicateurs 2.2–2.4 : moyenne d'auto-évaluation par énoncé et par
+		// trimestre (toutes années — on filtre l'année courante côté JS).
+		db
+			.select({
+				schoolYearId: surveyResponses.schoolYearId,
+				term: surveyResponses.term,
+				questionKey: surveyResponses.questionKey,
+				avg: sql`avg(${surveyResponses.score})`.mapWith(Number),
+				responders: sql`count(distinct ${surveyResponses.beneficiaryId})`.mapWith(Number)
+			})
+			.from(surveyResponses)
+			.groupBy(surveyResponses.schoolYearId, surveyResponses.term, surveyResponses.questionKey),
 		loadStripeSummary()
 	])
+
+	// Auto-évaluation des jeunes pour l'année scolaire courante, en tableau
+	// énoncé × trimestre (moyenne /5), pour lire la progression d'un coup d'œil.
+	const yearRows = surveyAgg.filter((r) => r.schoolYearId === currentYear?.id)
+	const confidence = SURVEY_QUESTIONS.map((q) => ({
+		key: q.key,
+		title: q.enTitle,
+		terms: [1, 2, 3].map((t) => {
+			const row = yearRows.find((r) => r.term === t && r.questionKey === q.key)
+			return row ? { avg: row.avg, responders: row.responders } : null
+		})
+	}))
+	const confidenceHasData = yearRows.length > 0
 
 	return {
 		yearLabel: currentYear?.label ?? null,
 		stats: {
 			children: childCount.n,
 			schools: schoolCount.n,
-			sponsoredNow:
-				educationByYear.find((y) => y.label === currentYear?.label)?.sponsored ?? 0,
+			sponsoredNow: educationByYear.find((y) => y.label === currentYear?.label)?.sponsored ?? 0,
 			meals90: meals90,
 			growthMeasured90: growth90.measured
 		},
 		educationByYear,
 		attendanceByMonth,
+		confidence,
+		confidenceHasData,
 		stripe
 	}
 }
